@@ -1,0 +1,90 @@
+<html manifest="offlineCache.manifest">
+<head>
+<title>Paulomon's Exploit Site</title>
+<meta charset="utf-8"/>
+<style>
+.button {
+  background-color: #003263;  
+  border-radius: 5px;
+  color: white;
+  padding: .5em;
+  text-decoration: none;
+  height:100%;
+  display:inline-table;
+  font-family: system-ui;
+}
+
+.button:focus,
+.button:hover {
+  background-color: #007bff;
+  color: White;
+}
+
+.titlehead {
+  background-color: #003263;  
+  border-radius: 5px;
+  color: white;
+  padding: .5em;
+  text-decoration: none;
+  text-align: center;
+  margin-top: -10px;
+  margin-bottom: -10px;
+  font-family: system-ui;
+}
+
+.titlehead:focus,
+.titlehead:hover {
+  background-color: #007bff;
+  color: White;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("index1.png");
+
+  
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style></head>
+<body class="bg">
+<script>
+	if (localStorage.truefirm == null) {
+		if(navigator.userAgent.indexOf("6.72")>=0){localStorage.truefirm="672/index672.html";window.location.href="672/index672.html";}
+		else if(navigator.userAgent.indexOf("7.0")>=0){localStorage.truefirm="index702m.html";window.location.href = "index702m.html";}
+		else if(navigator.userAgent.indexOf("7.5")>=0){localStorage.truefirm="index75X.html";window.location.href = "index75X.html";}
+	}else{
+		window.location.href = localStorage.truefirm;
+	}
+</script>
+<h1 id="progress" class="titlehead">Paulomon's Exploit Site for PS3/PS4</h1><hr><br>
+<div>
+<table align="center" style="width:600px;margin-top:30px;">
+<tr>
+<td align="center" colspan="1" >
+<h1 style='font-size:30px;text-align:center;text-shadow: 4px 4px 4px black;color:white'>PS4 Exploits</h1>
+<a href="505/index.html" class="button" style="width:29%">Paulomon's Exploit for FW5.05</a>
+<a href="672/index672.html" class="button" style="width:29%">Paulomon's Exploit for FW6.72</a>
+<br>
+<hr>
+<a href="702/index702.html" class="button" style="width:29%">Paulomon's Exploit for FW7.02</a>
+<a href="702Mini/index.html" class="button" style="width:29%">Paulomon's Mini Exploit for FW7.02</a>
+<br>
+<hr>
+<a href="75XV2/index.html" class="button" style="width:29%">Paulomon's Exploit for FW7.5X</a>
+<a href="75XV2Mini/index.html" class="button" style="width:29%">Paulomon's Mini Exploit for FW7.5X </a>
+<a href="75XV2Mini/index.html" class="button" style="width:29%">Paulomon's Micro Exploit for FW7.5X </a>
+<br>
+<hr>
+<h1 style='font-size:30px;text-align:center;text-shadow: 4px 4px 4px black;color:white'>PS3 Exploits</h1>
+<a href="PS3/index.html" class="button" style="width:29%">Paulomon's Exploit for PS3</a>
+<a href="PS3/hen486/index.html" class="button" style="width:29%">Paulomon's HEN installer HFW4.86</a>
+<a href="PS3/hen487/index.html" class="button" style="width:29%">Paulomon's HEN installer HFW4.87</a>
+</td>
+</tr>
+</table></div>
+</body>
+</html>

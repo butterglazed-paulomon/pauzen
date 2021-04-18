@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html manifest="cache.manifest"><head>
+<title>Paulomon's Micro Exploit For FW75X</title>
+<style>
+html, body {
+background-image: url('bg2.gif');
+background-position:center;
+background-repeat:no-repeat;
+background-size:cover;
+
+}
+h1 {
+text-shadow: 0.1em 0.1em 0.2em black;
+font-size:25px;
+text-align:center;
+color:white;
+}
+.btn {
+width: 262px;
+height: 49px;
+padding-top: 10px;
+padding-bottom: 13px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 20px;
+margin-top: 15px;
+margin-bottom: 5px;
+margin-left: 15px;
+margin-right: 5px;
+border-bottom-width: 0px;
+border-right-width: 0px;
+border-top-width: 0px;
+border-left-width: 0px;
+-webkit-transition-duration: 0.4s;
+transition-duration: 0.4s;
+cursor: pointer;
+}
+.btn-main {
+background-color: #003263;
+color: white;
+border-radius: 8px;
+}
+.btn-main:hover {
+background-color: #0058b1;
+color: white;
+    border-radius: 8px;
+}
+.btn-web {
+background-color: #076300;
+color: white;
+border-radius: 8px;
+}
+.btn-web:hover {
+background-color: #18891b;
+color: white;
+border-radius: 8px;
+}
+.btn-page {
+background-color: #b10000;
+color: white;
+border-radius: 8px;
+}
+.btn-page:hover {
+background-color: #f31414;
+color: white;
+border-radius: 8px;
+}
+</style>
+<script>
+function DLProgress(e){Percent=(Math.round(e.loaded / e.total * 100));document.getElementById="display:none";window.msgs.innerHTML="Installing Paulomon Exploit: " + Percent + "%";}
+function DisplayCacheProgress(){setTimeout(function(){window.msgs.innerHTML="Paulomon Exploit Installed!";},1000);setTimeout(function(){window.msgs.innerHTML="Close and Re-open the browser to run the Exploit";},3000);}window.applicationCache.addEventListener("progress",DLProgress,false);window.applicationCache.oncached=function(e){DisplayCacheProgress();};window.applicationCache.onupdateready=function(e){DisplayCacheProgress();};
+document.cookie = 'kex=1';
+</script>
+</head>
+<h1 id=msgs>Paulomon's Micro Exploit For FW75X</h1>
+<hr>
+<br>
+<h1 style="font-size:20px;text-align:center;color:yellow;">Memory Errors are Normal, just try again! :) </h1>
+<div style="text-align:center">
+<br>
+<br>
+<button class="btn btn-main" onmouseover="mainpayload1()" onmouseout="pagetitle()" onclick=load_goldhen()> GoldHEN v1.1 </button>
+<button class="btn btn-main" onmouseover="mainpayload2()" onmouseout="pagetitle()" onclick=load_mira75x()> MIRA 7.5x </button>
+<br>
+<button class="btn btn-main" onmouseover="mainpayload4()" onmouseout="pagetitle()" onclick=load_binloader()> Bin Loader </button>
+<button class="btn btn-main" onmouseover="webact()" onmouseout="pagetitle()" onclick=load_webact()> Web-Activator </button>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<hr style="margin-top: 62px;">
+<h1 style="font-size:25px;text-align:center;margin-top: 15px;color:yellow;">Visit us:&nbsp&nbsp<a href="https://facebook.com/tinkeringwithPaulomon" style="color:#f31414;">@tinkeringwithPaulomon</a></h1>
+<br>
+</div>
+<script>
+function mainpayload1(){
+document.getElementById("msgs").innerHTML = "GoldHEN v1.1 for All Firmwares 7.5x";
+}
+function mainpayload2(){
+document.getElementById("msgs").innerHTML = "MIRA for All Firmwares 7.5x";
+}
+function mainpayload4(){
+document.getElementById("msgs").innerHTML = "Inject a Payload Using the IP of the console and Port 9021";
+}
+function todex(){
+document.getElementById("msgs").innerHTML = "Enable Some Debugging Functions Available on TestKit";
+}
+function dumper(){
+document.getElementById("msgs").innerHTML = "Dump your Games (Necessary a USB Drive in exFAT)";
+}
+function ftp(){
+document.getElementById("msgs").innerHTML = "Access this console Through FTP";
+}
+function app2usb(){
+document.getElementById("msgs").innerHTML = "Transfer Games / Apps to USB Drive in exFAT";
+}
+function enableUpdates(){
+document.getElementById("msgs").innerHTML = "Enable System Updates";
+}
+function disableUpdates(){
+document.getElementById("msgs").innerHTML = "Disable System Updates";
+}
+function dbackup(){
+document.getElementById("msgs").innerHTML = "Creates a Backup of the Console Database and Your User on a USB Drive";
+}
+function dbrestore(){
+document.getElementById("msgs").innerHTML = "Restore Database Backup from USB Drive";
+}
+function historyBlocker(){
+document.getElementById("msgs").innerHTML = "Disable Browser History, it will only show Frequently used Pages once you open";
+}
+function ebrowser(){
+document.getElementById("msgs").innerHTML = "Enable The PS4 Browser";
+}
+function kernelDump(){
+document.getElementById("msgs").innerHTML = "Dump a Conole Kernel to USB Drive";
+}
+function kernelClock(){
+document.getElementById("msgs").innerHTML = "Change the Time for the Console Kernel Clock";
+}
+function ps4debug(){
+document.getElementById("msgs").innerHTML = "Activate Your User Account Offline";
+}
+function disbaslr(){
+document.getElementById("msgs").innerHTML = "Disables the ASLR (Address space layout randomization)";
+}
+function rifrenamer(){
+document.getElementById("msgs").innerHTML = "Renames 'fake' RIFs to 'free' RIFs";
+}
+function fanthreshold(){
+document.getElementById("msgs").innerHTML = "Modify PS4 FAN Speed";
+}
+function webact(){
+document.getElementById("msgs").innerHTML = "Activate Your User Account from the Console Browser";
+}
+function exitidu(){
+document.getElementById("msgs").innerHTML = "Disable IDU Mode, if you have activated it by mistake";
+}
+function webrte(){
+document.getElementById("msgs").innerHTML = "Required to Activate Cheats Through the PS4 Trainer Website";
+}
+function ps4trainer(){
+document.getElementById("msgs").innerHTML = "PS4 Trainer Website (Follow Instructions There)";
+}
+function pagetitle(){
+document.getElementById("msgs").innerHTML = "Paulomon's Micro Exploit For FW75X";
+}
+
+for(var i=50; i<=75; i=i+5){
+    var select = document.getElementById("tempC");
+    var option = document.createElement("OPTION");
+	select.options.add(option);
+	option.text = i;
+	option.value = i;
+}
+tempC.value=60;
+
+function load_goldhen(){
+
+  var link = document.createElement('a');
+        document.body.appendChild(link);
+        link.href = 'goldhen.html';
+        link.click();
+}
+function load_mira75x(){
+
+  var link = document.createElement('a');
+        document.body.appendChild(link);
+        link.href = 'mira-75x.html';
+        link.click();
+}
+function load_binloader(){
+
+  var link = document.createElement('a');
+        document.body.appendChild(link);
+        link.href = 'payload.html';
+        link.click();
+}
+function load_todex(){
+
+  var link = document.createElement('a');
+        document.body.appendChild(link);
+        link.href = 'payload.html#f=todex.js';
+        link.click();
+}
+function load_dumper(){
+
+  var link = document.createElement('a');
+        document.body.appendChild(link);
+        link.href = 'payload.html#f=app-dumper.js';
+        link.click();
+}
+function load_ftp(){
+
+  var link = document.createElement('a');
+        document.body.appendChild(link);
+        link.href = 'payload.html#f=ftp.js';
+        link.click();
+}
+function load_app2usb(){
+
+  var link = document.createElement('a');
+        document.body.appendChild(link);
+        link.href = 'payload.html#f=app2usb.js';
+        link.click();
+}
+function load_enablebUpdates(){
+
+  var link = document.createElement('a');
+        document.body.appendChild(link);
+        link.href = 'payload.html#f=enable-updates.js';
+        link.click();
+}
+function load_disableUpdates(){
+
+  var link = document.createElement('a');
+        document.body.appendChild(link);
+        link.href = 'payload.html#f=disable-updates.js';
+        link.click();
+}
+function load_dbackup(){
+
+  var link = document.createElement('a');
+        document.body.appendChild(link);
+        link.href = 'payload.html#f=backup.js';
+        link.click();
+}
+function load_dbrestore(){
+
+  var link = document.createElement('a');
+        document.body.appendChild(link);
+        link.href = 'payload.html#f=restore.js';
+        link.click();
+}
+function load_historyBlocker(){
+
+  var link = document.createElement('a');
+        document.body.appendChild(link);
+        link.href = 'payload.html#f=history-blocker.js';
+        link.click();
+}
+function load_ebrowser(){
+
+  var link = document.createElement('a');
+        document.body.appendChild(link);
+        link.href = 'payload.html#f=enable-browser.js';
+        link.click();
+}
+function load_kernelDump(){
+
+  var link = document.createElement('a');
+        document.body.appendChild(link);
+        link.href = 'payload.html#f=kernel-dumper.js';
+        link.click();
+}
+function load_kernelClock(){
+
+  var link = document.createElement('a');
+        document.body.appendChild(link);
+        link.href = 'payload.html#f=kernel-clock.js';
+        link.click();
+}
+function load_ps4debug(){
+
+  var link = document.createElement('a');
+        document.body.appendChild(link);
+        link.href = 'payload.html#f=ps4debug.js';
+        link.click();
+}
+function load_disbAslr(){
+
+  var link = document.createElement('a');
+        document.body.appendChild(link);
+        link.href = 'payload.html#f=disable-aslr.js';
+        link.click();
+}
+function load_rifRen(){
+
+  var link = document.createElement('a');
+        document.body.appendChild(link);
+        link.href = 'payload.html#f=rif-renamer.js';
+        link.click();
+}
+function load_fanthreshold(){
+
+  var link = document.createElement('a');
+        document.body.appendChild(link);
+        link.href = "payload.html#f=fan-threshold"+tempC.value+".js";
+        link.click();
+}
+function load_webact(){
+
+  var link = document.createElement('a');
+        document.body.appendChild(link);
+        link.href = 'web-activator.html';
+        link.click();
+}
+function load_exitidu(){
+
+  var link = document.createElement('a');
+        document.body.appendChild(link);
+        link.href = 'payload.html#f=idu.js';
+        link.click();
+}
+function load_webrte(){
+
+  var link = document.createElement('a');
+        document.body.appendChild(link);
+        link.href = 'payload.html#f=webrte.js';
+        link.click();
+}
+function load_ps4trainer(){
+
+  var link = document.createElement('a');
+        document.body.appendChild(link);
+        link.href = 'http://ps4trainer.com/Trainer/index.html';
+        link.click();
+}
+function load_morepls(){
+
+  var link = document.createElement('a');
+        document.body.appendChild(link);
+        link.href = 'more-plds.html';
+        link.click();
+}
+</script>
+</body>
+</html>
