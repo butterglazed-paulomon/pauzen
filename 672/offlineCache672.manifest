@@ -9,6 +9,7 @@ jb/jb.js
 jb/oldjb.js
 payloads/mirahen.js
 payloads/goldhen.js
+payloads/goldhenb3.js
 payloads/miraunofficial.js
 payloads/preloader.js
 payloads/loader.js

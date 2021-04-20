@@ -57,15 +57,15 @@
   <a href="index.html" class="back" >Back > </a>
  </div><hr style="clear:both;" >
  <div class="themes" >
- 	<div class="theme" ><img src="1.jpg" ><button class="pointer" onclick="set(0)">Select</button></div>
+ 	<div class="theme" ><img src="index1.png" ><button class="pointer" onclick="set(0)">Select</button></div>
  </div>
 <script type="text/javascript">
  if(localStorage.getItem("theme")==null){
-   localStorage.setItem("theme","1.jpg")
+   localStorage.setItem("theme","index1.png")
  }
  document.body.style.background = "url('img/"+localStorage.getItem("theme")+"')"
  document.body.style.backgroundSize = "cover"
- var imgs = ["1.jpg"];
+ var imgs = ["index1.png"];
  render()
  function render(){
      document.querySelector(".themes").innerHTML=""

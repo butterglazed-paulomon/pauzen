@@ -48,6 +48,9 @@ function triggerFunction(payload){
 	}else if(payload == "goldhen"){
 		localStorage.Fail++;
 		goldhen();
+	}else if(payload == "goldhenb3"){
+		localStorage.Fail++;
+		goldhenb3();
 	}else if(payload == "miraunofficial"){
 		localStorage.Fail++;
 		miraunofficial();
