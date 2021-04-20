@@ -84,6 +84,7 @@ document.cookie = 'kex=1';
 <h1 style="font-size:20px;text-align:center;color:yellow;">Memory Errors are Normal, just try again! :) </h1>
 <div style="text-align:center">
 <button class="btn btn-main" onmouseover="mainpayload1()" onmouseout="pagetitle()" onclick=load_goldhen()> GoldHEN v1.1 </button>
+<button class="btn btn-main" onmouseover="mainpayload1b()" onmouseout="pagetitle()" onclick=load_goldhenb3()> GoldHEN v1.1b3 </button>
 <button class="btn btn-main" onmouseover="mainpayload2()" onmouseout="pagetitle()" onclick=load_mira75x()> MIRA 7.5x </button>
 <button class="btn btn-main" onmouseover="mainpayload4()" onmouseout="pagetitle()" onclick=load_binloader()> Bin Loader </button>
 <br>
@@ -118,6 +119,9 @@ document.cookie = 'kex=1';
 <script>
 function mainpayload1(){
 document.getElementById("msgs").innerHTML = "GoldHEN v1.1 for All Firmwares 7.5x (Includes Temporary Fix for CE-30391-6)";
+}
+function mainpayload1b(){
+document.getElementById("msgs").innerHTML = "GoldHEN v1.1b3 for All Firmwares 7.5x (Includes Temporary Fix for CE-30391-6)";
 }
 function mainpayload2(){
 document.getElementById("msgs").innerHTML = "MIRA for All Firmwares 7.5x";
@@ -205,6 +209,15 @@ function load_goldhen(){
         link.href = 'goldhen.html';
         link.click();
 }
+
+function load_goldhenb3(){
+
+  var link = document.createElement('a');
+        document.body.appendChild(link);
+        link.href = 'goldhenb3.html';
+        link.click();
+}
+
 function load_mira75x(){
 
   var link = document.createElement('a');
