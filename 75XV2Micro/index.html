@@ -84,6 +84,7 @@ document.cookie = 'kex=1';
 <button class="btn btn-main" onmouseover="mainpayload1b()" onmouseout="pagetitle()" onclick=load_goldhenb3()> GoldHEN v1.1b3 </button>
 <br>
 <button class="btn btn-main" onmouseover="mainpayload2()" onmouseout="pagetitle()" onclick=load_mira75x()> MIRA 7.5x </button>
+<button class="btn btn-main" onmouseover="mainpayloadh()" onmouseout="pagetitle()" onclick=load_hen213b()> HEN 2.1.3b+Spoof </button>
 <br>
 <button class="btn btn-main" onmouseover="mainpayload4()" onmouseout="pagetitle()" onclick=load_binloader()> Bin Loader </button>
 <button class="btn btn-main" onmouseover="webact()" onmouseout="pagetitle()" onclick=load_webact()> Web-Activator </button>
@@ -114,6 +115,9 @@ document.getElementById("msgs").innerHTML = "GoldHEN v1.1b3 for All Firmwares 7.
 }
 function mainpayload2(){
 document.getElementById("msgs").innerHTML = "MIRA for All Firmwares 7.5x";
+}
+function mainpayloadh(){
+document.getElementById("msgs").innerHTML = "HEN 2.1.3b for All Firmware 7.5X";
 }
 function mainpayload4(){
 document.getElementById("msgs").innerHTML = "Inject a Payload Using the IP of the console and Port 9021";
@@ -226,6 +230,13 @@ function load_todex(){
   var link = document.createElement('a');
         document.body.appendChild(link);
         link.href = 'payload.html#f=todex.js';
+        link.click();
+}
+function load_hen213b(){
+
+  var link = document.createElement('a');
+        document.body.appendChild(link);
+        link.href = 'payload.html#f=hen213b.js';
         link.click();
 }
 function load_dumper(){
