@@ -34,6 +34,7 @@ var g_jsview_butterfly = null;
 var g_message_heading_leak = null;
 var g_message_body_leak = null;
 
+var g_textarea_div_elem = null;
 var g_obj_str = {};
 
 var g_rows1 = '1px,'.repeat(LENGTH_VALIDATION_MESSAGE / 8 - 2) + "1px";
@@ -115,9 +116,9 @@ function setupRW() {
 	if(!read64(g_jsview_butterfly.sub(16)).equals(new Int64("0xffff000000001337")))
 		die("[!] Failed to setup addrof/fakeobj primitives");
 	if(localStorage.autoExploit=="true")
-		debug_log("-> WebKit Exploit Complete.. Running Kernel Exploit ");
+		debug_log("-> WebKit Exploit Complete.. Running Kernel Exploit !!");
 	else
-		debug_log("-> WebKit Exploit Complete.. Run the Kernel Exploit");
+		debug_log("-> WebKit Exploit Complete.. Run the Kernel Exploit to Jailbreak !!");
 
 	/* Getting code execution */
 	/* ... */
@@ -198,11 +199,20 @@ function toggle_payload(pld){
 		document.getElementById("progress").innerHTML="Loading Payload.. Please wait..";
 		preloadScripts(['payloads/preloader.js', 'payloads/ps4debug.js', 'payloads/loader.js']);
 	}else if(pld == "goldhen"){
-		document.getElementById("progress").innerHTML="Loading Payload.. Please wait..";
+		document.getElementById("progress").innerHTML="Loading GoldHEN 1.0.. Please wait..";
 		preloadScripts(['payloads/preloader.js', 'payloads/goldhen.js', 'payloads/loader.js']);
-	}else if(pld == "goldhenb6"){
-		document.getElementById("progress").innerHTML="Loading Payload.. Please wait..";
-		preloadScripts(['payloads/preloader.js', 'payloads/goldhenb6.js', 'payloads/loader.js']);
+	}else if(pld == "goldhen1750"){
+		document.getElementById("progress").innerHTML="Loading GoldHEN 1.1 for FW750.. Please wait..";
+		preloadScripts(['payloads/preloader.js', 'payloads/goldhen1750.js', 'payloads/loader.js']);
+	}else if(pld == "goldhen1751"){
+		document.getElementById("progress").innerHTML="Loading GoldHEN 1.1 for FW750.. Please wait..";
+		preloadScripts(['payloads/preloader.js', 'payloads/goldhen1751.js', 'payloads/loader.js']);
+	}else if(pld == "goldhen1755"){
+		document.getElementById("progress").innerHTML="Loading GoldHEN 1.1 for FW755.. Please wait..";
+		preloadScripts(['payloads/preloader.js', 'payloads/goldhen1755.js', 'payloads/loader.js']);
+	}else if(pld == "hen213b"){
+		document.getElementById("progress").innerHTML="Loading HEN213b.. Please wait..";
+		preloadScripts(['payloads/preloader.js', 'payloads/hen213b.js', 'payloads/loader.js']);
 	}else if(pld == "webrte"){
 		document.getElementById("progress").innerHTML="Loading Payload.. Please wait..";
 		preloadScripts(['payloads/preloader.js', 'payloads/webrte.js', 'payloads/loader.js']);
@@ -408,7 +418,7 @@ function confuseTargetObjRound1() {
 	 * The timeout must be > 5s because deleteBubbleTree is scheduled to run in
 	 * the next 5s
 	 */
-	setTimeout(function(){leakJSC();}, 6000);
+	setTimeout(leakJSC, 6000);
 }
 
 function handle2() {
@@ -513,7 +523,7 @@ function prepareUAF() {
 function sprayHTMLTextArea() {
 	debug_log("-> Spraying HTMLTextareaElement ...");
 
-	let textarea_div_elem = window.xyu = document.createElement("div");
+	let textarea_div_elem = g_textarea_div_elem = document.createElement("div");
 	document.body.appendChild(textarea_div_elem);
 	textarea_div_elem.id = "div1";
 	var element = document.createElement("textarea");
@@ -525,7 +535,7 @@ function sprayHTMLTextArea() {
 	 * This spray is not perfect, "element.cloneNode" will trigger a fastMalloc
 	 * allocation of the node attributes and an IsoHeap allocation of the
 	 * Element. The virtual page layout will look something like that:
-	 * [IsoHeap] [fastMalloc] [IsoHeap] [fastMalloc] [IsoHeap] [...] DARKMODDER
+	 * [IsoHeap] [fastMalloc] [IsoHeap] [fastMalloc] [IsoHeap] [...]
 	 */
 	for (let i = 0; i < SPRAY_ELEM_SIZE; i++)
 		textarea_div_elem.appendChild(element.cloneNode());
