@@ -51,6 +51,7 @@
 <script>
 	if (localStorage.truefirm == null) {
 		if(navigator.userAgent.indexOf("6.72")>=0){localStorage.truefirm="index672.html";window.location.href="index672.html";}
+		else if(navigator.userAgent.indexOf("5.0")>=0){localStorage.truefirm="505/index.html";window.location.href = "505/index.html";}
 		else if(navigator.userAgent.indexOf("7.0")>=0){localStorage.truefirm="index702.html";window.location.href = "index702.html";}
 		else if(navigator.userAgent.indexOf("7.5")>=0){localStorage.truefirm="index75X.html";window.location.href = "index75X.html";}
 	}else{
