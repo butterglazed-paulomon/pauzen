@@ -1,6 +1,6 @@
-// Taken from https://github.com/saelo/jscpwn/blob/master/int64.js
-//
-// Copyright (c) 2016 Samuel Groß
+
+
+
 
 function Int64(low, high) {
     var bytes = new Uint8Array(8);
@@ -49,9 +49,9 @@ function Int64(low, high) {
             break;
     }
 
-    // Return a double whith the same underlying bit representation.
+    
     this.asDouble = function () {
-        // Check for NaN
+        
         if (bytes[7] == 0xff && (bytes[6] == 0xff || bytes[6] == 0xfe))
             throw new RangeError("Can not be represented by a double");
 
@@ -67,20 +67,20 @@ function Int64(low, high) {
         return Struct.unpack(Struct.int64, bytes);
     };
 
-    // Return a javascript value with the same underlying bit representation.
-    // This is only possible for integers in the range [0x0001000000000000, 0xffff000000000000)
-    // due to double conversion constraints.
+    
+    
+    
     this.asJSValue = function () {
         if ((bytes[7] == 0 && bytes[6] == 0) || (bytes[7] == 0xff && bytes[
             6] == 0xff))
             throw new RangeError(
                 "Can not be represented by a JSValue");
 
-        // For NaN-boxing, JSC adds 2^48 to a double value's bit pattern.
+        
         return Struct.unpack(Struct.float64, this.sub(0x1000000000000).bytes());
     };
 
-    // Return the underlying bytes of this number as array.
+    
     this.bytes = function () {
         var arr = [];
         for (var i = 0; i < bytes.length; i++) {
@@ -89,12 +89,12 @@ function Int64(low, high) {
         return arr;
     };
 
-    // Return the byte at the given index.
+    
     this.byteAt = function (i) {
         return bytes[i];
     };
 
-    // Return the value of this number as unsigned hex string.
+    
     this.toString = function () {
         var arr = [];
         for (var i = 0; i < bytes.length; i++) {
@@ -134,11 +134,11 @@ function Int64(low, high) {
         }
         return false;
     };
-    // Basic arithmetic.
-    // These functions assign the result of the computation to their 'this' object.
+    
+    
 
-    // Decorator for Int64 instance operations. Takes care
-    // of converting arguments to Int64 instances if required.
+    
+    
     function operation(f, nargs) {
         return function () {
             if (arguments.length != nargs)
@@ -196,13 +196,13 @@ function Int64(low, high) {
     }, 1);
 }
 
-// Constructs a new Int64 instance with the same bit representation as the provided double.
+
 Int64.fromDouble = function (d) {
     var bytes = Struct.pack(Struct.float64, d);
     return new Int64(bytes);
 };
 
-// Some commonly used numbers.
+
 Int64.Zero = new Int64(0);
 Int64.One = new Int64(1);
 Int64.NegativeOne = new Int64(0xffffffff, 0xffffffff);

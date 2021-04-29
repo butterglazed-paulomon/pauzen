@@ -8,16 +8,16 @@ function debug_log(msg) {
 	frame1();
 }
 
-// The following functions are taken from https://github.com/saelo/jscpwn/:
-//  hex, hexlify, unhexlify, hexdump
-//  Copyright (c) 2016 Samuel Groß
 
-// Return the hexadecimal representation of the given byte.
+
+
+
+
 function hex(b) {
 	return ('0' + b.toString(16)).substr(-2);
 }
 
-// Return the hexadecimal representation of the given byte array.
+
 function hexlify(bytes) {
 	var res = [];
 	for (var i = 0; i < bytes.length; i++)
@@ -26,7 +26,7 @@ function hexlify(bytes) {
 	return res.join('');
 }
 
-// Return the binary data represented by the given hexdecimal string.
+
 function unhexlify(hexstr) {
 	if (hexstr.length % 2 == 1)
 		throw new TypeError("Invalid hex string");
@@ -49,7 +49,7 @@ function hexdump(data) {
 		if (parts.length > 8)
 			parts.splice(8, 0, ' ');
 		lines.push("" + i.toString(16) + " : " + parts.join(' '));
-		// lines.push(parts.join(' '));
+		
 	}
 
 	return lines.join('\n');
@@ -59,9 +59,9 @@ function buf2hex(buffer) {
 	return Array.prototype.map.call(new Uint8Array(buffer), x => ('00' + x.toString(16)).slice(-2)).join('');
 }
 
-// Simplified version of the similarly named python module.
+
 var Struct = (function () {
-	// Allocate these once to avoid unecessary heap allocations during pack/unpack operations.
+	
 	var buffer = new ArrayBuffer(8);
 	var byteView = new Uint8Array(buffer);
 	var uint32View = new Uint32Array(buffer);
@@ -71,9 +71,7 @@ var Struct = (function () {
 		pack: function (type, low, high) {
 			var view = type;
 			view[0] = low;
-			/*if (arguments.length == 2) {
-				view[1] = high;
-			}*/
+
 			return new Uint8Array(buffer, 0, type.BYTES_PER_ELEMENT);
 		},
 
@@ -81,12 +79,12 @@ var Struct = (function () {
 			if (bytes.length !== type.BYTES_PER_ELEMENT)
 				throw Error("Invalid bytearray");
 
-			var view = type;        // See below
+			var view = type;        
 			byteView.set(bytes);
 			return view[0];
 		},
 
-		// Available types.
+		
 		int8: byteView,
 		int32: uint32View,
 		float64: float64View
