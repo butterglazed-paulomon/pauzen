@@ -3,9 +3,11 @@ CACHE MANIFEST
 
 AppToUsb.bin
 apptousb.html
+bg2.gif
 binloader.html
 blank.html
 blocker.html
+cache505.manifest
 Database_Backup.bin
 Database_Restore.bin
 db_backup.html
@@ -21,8 +23,8 @@ FTPRW.bin
 ftprw.html
 goldhen.html
 goldhen505.bin
-goldhenb3.html
 goldhenb3.bin
+goldhenb3.html
 Hen16.bin
 Hen17.bin
 Hen18.bin
@@ -36,12 +38,14 @@ hen214.html
 hen214b.html
 hen214_spoof900fw.bin
 HenVR18.bin
-bg2.gif
-index1.png
 index.html
+index1.png
 mirahen18.html
 ps4debug100.bin
 ps4debug100.html
+RifRenamer.bin
+RifRenamer.html
+rte.html
 SaveMounter.bin
 save_backup.html
 Save_Data_Backup.bin
@@ -50,6 +54,10 @@ save_mounter.html
 save_restore.html
 todex.bin
 todex.html
+Trophy_Backup.bin
+Trophy_Restore.bin
+trp_backup.html
+trp_restore.html
 unblock.html
 vtxdump.html
 vtxftp.html
