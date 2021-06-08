@@ -198,6 +198,9 @@ function toggle_payload(pld){
 	}else if(pld == "ps4debug"){
 		document.getElementById("progress").innerHTML="Loading Payload.. Please wait..";
 		preloadScripts(['payloads/preloader.js', 'payloads/ps4debug.js', 'payloads/loader.js']);
+	}else if(pld == "orbistool"){
+		document.getElementById("progress").innerHTML="Loading Payload.. Please wait..";
+		preloadScripts(['payloads/preloader.js', 'payloads/orbistool.js', 'payloads/loader.js']);
 	}else if(pld == "goldhen"){
 		document.getElementById("progress").innerHTML="Loading Payload.. Please wait..";
 		if(fw=="755"){
