@@ -198,11 +198,11 @@ function toggle_payload(pld){
 	}else if(pld == "ps4debug"){
 		document.getElementById("progress").innerHTML="Loading Payload.. Please wait..";
 		preloadScripts(['payloads/preloader.js', 'payloads/ps4debug.js', 'payloads/loader.js']);
-	}else if(pld == "orbistool"){
-		document.getElementById("progress").innerHTML="Loading Payload.. Please wait..";
-		preloadScripts(['payloads/preloader.js', 'payloads/orbistool.js', 'payloads/loader.js']);
+	}else if(pld == "toolbox755"){
+		document.getElementById("progress").innerHTML="Loading Orbis Toolbox.. Please wait..";
+		preloadScripts(['payloads/preloader.js', 'payloads/otoolbox755.js', 'payloads/loader.js']);
 	}else if(pld == "goldhen"){
-		document.getElementById("progress").innerHTML="Loading Payload.. Please wait..";
+		document.getElementById("progress").innerHTML="Loading GoldHEN.. Please wait..";
 		if(fw=="755"){
 			preloadScripts(['payloads/preloader.js', 'payloads/goldhen'+fw+'.js', 'payloads/loader.js']);
 		}else{
