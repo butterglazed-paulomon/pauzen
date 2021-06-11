@@ -157660,7 +157660,9 @@ var _ = malloc_nogc.pop();
 var _ = malloc_nogc.pop();
 if (main_ret == 179 || main_ret == 0) {
   document.getElementById("progress").innerHTML = "Paulomon Exploit Complete!";
-} else {
-  alert("Exploit Failed. Restart and Try Again");
-  document.getElementById("progress").innerHTML = "Exploit Failed. Restart and Try Again";
-}
+  localStorage.passcount = ++localStorage.passcount;window.passCounter.innerHTML=localStorage.passcount;}
+else if(main_ret != 1){
+    localStorage.failcount = ++localStorage.failcount;window.failCounter.innerHTML=localStorage.failcount;
+    document.getElementById("progress").innerHTML="Exploit Failed. Restart and Try Again";
+	alert("Exploit Failed. Restart and Try Again");}
+	
