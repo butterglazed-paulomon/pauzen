@@ -139,22 +139,6 @@
 		.slider.round:before {
 		  border-radius: 50%;
 		}
-		.fail{
-        float:right;
-        margin-right:2.25%;
-        margin-top: 11px;
-        font-weight:bold;
-        font-size:28px;
-        color: white;
-         }
-       .pass {
-       float:left;
-       margin-left:1.25%;
-       font-weight:bold;
-       margin-top: 11px;
-       font-size:28px;
-       color: white;
-       }
 
 	</style>
 	<head>
@@ -204,10 +188,6 @@
 		
 		function done(){
 			document.getElementById("myProgress").remove();
-			if (localStorage.passcount == null) localStorage.passcount=0;
-            window.passCounter.innerHTML=localStorage.passcount;
-            if (localStorage.failcount == null) localStorage.failcount=0;
-            window.failCounter.innerHTML=localStorage.failcount;
 			if(document.getElementById("progress").innerHTML.includes("Failed")){
 				document.getElementById('load').innerHTML='<tr style="color:white;">'+
 					'<td id="aexp" colspan="2" align="right" style="width: 12%;font-family: system-ui;font-size: 20px;">Autoload Exploit &nbsp;</td>'+
@@ -316,13 +296,7 @@
 		<script src="./webkit/utils.js"></script>
 		<script src="./webkit/int64.js"></script>
 		<script src="./webkit/ps4.js"></script>
-		<a class="pass" style="color: white;font-size:30px; font-weight: bold;">Pass = <span id=passCounter></span></a><a  class="fail" style="color: white;font-size:30px; font-weight: bold;">Fail = <span id=failCounter></span></a><h1 id="progress" class="titlehead">Initializing Paulomon Exploit...</h1><hr><br>
-		<script>
-			if (localStorage.passcount == null) localStorage.passcount=0;
-			window.passCounter.innerHTML=localStorage.passcount;
-			if (localStorage.failcount == null) localStorage.failcount=0;
-			window.failCounter.innerHTML=localStorage.failcount;
-		</script>
+		<h1 id="progress" class="titlehead">Initializing Paulomon Exploit...</h1><hr><br>
 		<button style="opacity:0" id="input1" onfocus="handle2()"></button>
 		<button style="opacity:0" id="input2"></button>
 		<button style="opacity:0" id="input3" onfocus="handle2()"></button>
