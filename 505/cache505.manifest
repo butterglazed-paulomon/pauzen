@@ -23,8 +23,6 @@ FTPRW.bin
 ftprw.html
 goldhen.html
 goldhen505.bin
-goldhenb3.bin
-goldhenb3.html
 Hen16.bin
 Hen17.bin
 Hen18.bin
@@ -52,6 +50,8 @@ Save_Data_Backup.bin
 Save_Data_Restore.bin
 save_mounter.html
 save_restore.html
+orbistool.html
+orbistool.bin
 todex.bin
 todex.html
 Trophy_Backup.bin
