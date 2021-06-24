@@ -215,9 +215,9 @@
 					'</tr>'+
 					'<tr><td><br/></td></tr>'+
 					'<tr id="toggleExploit" style="color:white;">'+
-					'<td id="oexp" align="right" style="color:#585858; width: 45%;font-family: system-ui;font-size: 20px;">Preload Old Exploit &nbsp;</td>'+
+					'<td id="oexp" align="right" style="color:#585858; width: 45%;font-family: system-ui;font-size: 20px;">Preload Kernel Exploit 1 &nbsp;</td>'+
 					'<td style="width: 10%;"><label class="switch"><input checked id="tog" onclick="if(document.getElementById(\'tog\').checked){document.getElementById(\'oexp\').style.color=\'#585858\';document.getElementById(\'nexp\').style.color=\'white\';localStorage.jb=\'jb.js\';}else{document.getElementById(\'nexp\').style.color=\'#585858\';document.getElementById(\'oexp\').style.color=\'white\';localStorage.jb=\'oldjb.js\';}" type="checkbox"><span class="slider round"></span></label></td>'+
-					'<td id="nexp" align="left" style="width: 45%;font-family: system-ui;font-size: 20px;">&nbsp; Preload New Exploit</td>'+
+					'<td id="nexp" align="left" style="width: 45%;font-family: system-ui;font-size: 20px;">&nbsp; Preload Kernel Exploit 2</td>'+
 					'</tr>';
 				if(localStorage.autoExploit=="true"){document.getElementById('tog1').checked=true;document.getElementById('toggleExploit').style.display='table-row';}else{document.getElementById('tog1').checked=false;document.getElementById('toggleExploit').style.display='none';}
 			}else{
@@ -227,13 +227,13 @@
 					'</tr>'+
 					'<tr><td><br/></td></tr>'+
 					'<tr id="toggleExploit" style="color:white;">'+
-					'<td id="oexp" align="right" style="color:#585858; width: 45%;font-family: system-ui;font-size: 20px;">Preload Old Exploit &nbsp;</td>'+
+					'<td id="oexp" align="right" style="color:#585858; width: 45%;font-family: system-ui;font-size: 20px;">Preload Kernel Exploit 1 &nbsp;</td>'+
 					'<td style="width: 10%;"><label class="switch"><input checked id="tog" onclick="if(document.getElementById(\'tog\').checked){document.getElementById(\'oexp\').style.color=\'#585858\';document.getElementById(\'nexp\').style.color=\'white\';localStorage.jb=\'jb.js\';}else{document.getElementById(\'nexp\').style.color=\'#585858\';document.getElementById(\'oexp\').style.color=\'white\';localStorage.jb=\'oldjb.js\';}" type="checkbox"><span class="slider round"></span></label></td>'+
-					'<td id="nexp" align="left" style="width: 45%;font-family: system-ui;font-size: 20px;">&nbsp; Preload New Exploit</td>'+
+					'<td id="nexp" align="left" style="width: 45%;font-family: system-ui;font-size: 20px;">&nbsp; Preload Kernel Exploit 2</td>'+
 					'</tr>'+
 					'<tr id="mexp">'+
-					'<td align="center" colspan="3"><a href="#" id="exploit_old" class="button" onclick="toggle_payload(\'exploit_old\'); return false" style="width:44.5%">Old Exploit</a>&nbsp;'+
-					'<a href="#" id="exploit" class="button" onclick="toggle_payload(\'exploit\'); return false" style="width:44.5%">New Exploit</a>&nbsp;</td>'+
+					'<td align="center" colspan="3"><a href="#" id="exploit_old" class="button" onclick="toggle_payload(\'exploit_old\'); return false" style="width:44.5%">Kernel Exploit 1 (0521)</a>&nbsp;'+
+					'<a href="#" id="exploit" class="button" onclick="toggle_payload(\'exploit\'); return false" style="width:44.5%">Kernel Exploit 2 (0604)</a>&nbsp;</td>'+
 					'</tr>'+
 					'<tr><td><br/></td></tr>'+
 					'<tr>'+
