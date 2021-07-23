@@ -117,7 +117,7 @@ function showSlides() {
   slideIndex++;
   if (slideIndex > slides.length) {slideIndex = 1}
   slides[slideIndex-1].style.display = "block";
-  setTimeout(showSlides, 3000); // Change image every 2 seconds
+  setTimeout(showSlides, 3000); //slide every 3 secs
 }
 
 var slideIndex = 0;
@@ -133,9 +133,9 @@ function plusSlides(n) {
 function currentSlide(n) {
   showSlides(slideIndex = n);
 }
-
-
 </script>
+
+
 <div class="slideshow-container">
 
 <div class="mySlides fade">
