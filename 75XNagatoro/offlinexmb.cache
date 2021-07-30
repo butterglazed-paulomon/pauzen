@@ -1,14 +1,16 @@
 CACHE MANIFEST 
-# Nagatoro Exploit Host
-# 11/05/2021-17:43:27.08 
+# v4 
+# 07/06/2021-14:37:43.52 
 
-bg1.png
+img.jpg
 index.css
 index.html
+README.md
 common\blob.js
-common\exp_jailbreak.js
-common\exp_jailbreak_new.js
-common\exp_jailbreak_old.js
+common\exp_jailbreak0.js
+common\exp_jailbreak1.js
+common\exp_jailbreak2.js
+common\exp_jailbreak3.js
 common\exp_loaderBL.js
 common\exp_loaderPL.js
 common\int64.js
@@ -32,12 +34,14 @@ img\fakeusb.png
 img\fan.png
 img\ftp.png
 img\fwspoof.png
+img\gtav.png
 img\hen.png
 img\historyBlocker.png
 img\kernelDumper.png
 img\linux.png
 img\mira.png
 img\moduledumper.png
+img\OrbisToolbox.png
 img\restore.png
 img\rifrenamer.png
 img\savedata.png
@@ -65,6 +69,13 @@ payload\pl_ftp.bin
 payload\pl_FWspoof.bin
 payload\pl_goldhen_1.0.bin
 payload\pl_goldhen_1.1.bin
+payload\pl_GTA_ArabicGuy100.bin
+payload\pl_GTA_ArabicGuy127.bin
+payload\pl_GTA_ArabicGuy132.bin
+payload\pl_GTA_Lamance132.bin
+payload\pl_GTA_NativeCaller100.bin
+payload\pl_GTA_NativeCaller127.bin
+payload\pl_GTA_NativeCaller132.bin
 payload\pl_henb.bin
 payload\pl_historyblocker.bin
 payload\pl_kerneldumper.bin
@@ -75,6 +86,7 @@ payload\pl_mira2b.bin
 payload\pl_moduledumper.bin
 payload\pl_OfflineCacheBackup.bin
 payload\pl_OfflineCacheRestore.bin
+payload\pl_OrbisToolbox.bin
 payload\pl_ps4debug.bin
 payload\pl_Restore.bin
 payload\pl_rifrenamer.bin
@@ -91,5 +103,3 @@ payload\fan_control\pl_fancontrol65.bin
 payload\fan_control\pl_fancontrol70.bin
 payload\fan_control\pl_fancontrol75.bin
 payload\fan_control\pl_fancontrol80.bin
-payload\fan_control\pl_fancontrol85.bin
-payload\fan_control\pl_fancontrol90.bin
