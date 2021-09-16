@@ -2,6 +2,7 @@ CACHE MANIFEST
 # random: bafe893fe0aeb8ffed1edb08c0dfe542
 
 CACHE:
+index1.png
 app2usb.bin
 backup.bin
 blob.js
@@ -17,13 +18,6 @@ goldhen_v1.0_fw755.bin
 goldhen_v1.1_fw750.bin
 goldhen_v1.1_fw751.bin
 goldhen_v1.1_fw755.bin
-gta5_arabicguy_v1.00.bin
-gta5_arabicguy_v1.27.bin
-gta5_arabicguy_v1.32.bin
-gta5_lamance_v1.32.bin
-gta5_native_caller_v1.00.bin
-gta5_native_caller_v1.27.bin
-gta5_native_caller_v1.32.bin
 hen_v2.1.3b.bin
 history_blocker.bin
 index.html
