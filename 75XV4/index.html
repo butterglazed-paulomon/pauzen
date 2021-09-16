@@ -946,40 +946,6 @@ function applyGoldHenVersion() {
   }
 }
 
-// GTA 5 Mods
-
-function setGTA5Version(value) {
-  if (value == "all") { // Default
-    localStorage.removeItem("gta5_version");
-  } else {
-    localStorage.setItem("gta5_version", value);
-  }
-  applyGTA5Version();
-}
-
-function applyGTA5Version() {
-  let x = document.getElementById("select_gta5");
-  let gta5_version = localStorage.getItem("gta5_version");
-  let a = document.querySelectorAll(".payload_link.gta5");
-  if (gta5_version === null) {
-    x.value = "all"; // Default
-    // Show all versions
-    for (let i = 0; i < a.length; i++) {
-      a[i].style.display = "inline-block";
-    }
-  } else {
-    x.value = gta5_version;
-    for (let i = 0; i < a.length; i++) {
-      if (a[i].href.includes(gta5_version)) {
-        // Only show the selected version
-        a[i].style.display = "inline-block";
-      } else {
-        // Hide all other versions
-        a[i].style.display = "none";
-      }
-    }
-  }
-}
 
 // Color scheme
 
