@@ -2,7 +2,7 @@
 <html manifest="cache.manifest">
 <head>
   <meta charset="UTF-8">
-  <title>Jailbreak</title>
+  <title>Paulomon Exploit V4</title>
   <style>
     body {
       margin: 0;
@@ -270,7 +270,7 @@
     if (useragent.substring(13,26) === "PlayStation 4") {
       var firmware = useragent.substring(27,31);
     } else {
-      alert("You are not using a PS4 to view this website. Do not click on any links, or your system is likely to freeze.\nThis website is only to be used with a PS4. Proceed at your own risk!");
+      alert("Paulomon Exploit detected that you are not using a PS4 to view this site.\nThis website is only to be used with a PS4. Proceed at your own risk!");
     }
   </script>
 </head>
@@ -284,7 +284,7 @@
   </script>
   <div id="website">
     <header>
-      <span id="title">PS4 JAILBREAK</span>
+      <span id="title">Paulomon Exploit V4</span>
       <script>
         // Show for which target firmware the website is made
         document.title += " " + targetFirmware;
@@ -339,27 +339,13 @@
       <div id="instructions" style="overflow: hidden">
         <noscript><span style="color: red">JavaScript is required to run the jailbreak. Press the OPTIONS button, go to "Settings" and check "Enable JavaScript", then refresh the web page.</span></noscript>
         <b style="font-size: large">Instructions</b>
-        <p>This page is now cached in your PS4 browser. You can disconnect your PS4 from the Internet and, from now on, keep using the jailbreak offline. To make this easier, feel free to add a bookmark.</p>
-        <p>To jailbreak, click on the payload that you want to load. Provided everything goes well, in about 30-40 seconds you will see the message <i>"You're all set!"</i>, followed by <i>"There is not enough free system memory"</i>. Usually though, you will need multiple attempts.</p>
-        <p><b>Several messages can appear:</b>
-          <ul>
-            <li><b>"There is not enough free system memory"</b>: It means the WebKit exploit was not successful. Press "OK" to try again. This is normal, as the chance to succeed is quite low.</li>
-            <li><b>"Jailbreak failed! Reboot your PS4 and try again"</b>: The Kernel exploit has failed, and the system is not stable anymore. While trying to reboot, the system might crash, which looks like an instant power down. Press the power button on the PS4 to turn it on again. A disk check will run, and then you can resume jailbreaking.</li>
-            <li><b>"Failed to setup a relative read primitive"</b>: This can happen when you move your controller's analog sticks while the WebKit exploit is still trying to succeed. Do not move the analog sticks. After pressing "OK", you can resume jailbreaking without rebooting.</li>
-            <li><b>"You're all set!"</b>: The jailbreak was successful, and the selected payload has been loaded into memory.</li>
-          </ul>
-        </p>
-        <p>Loading a HEN/GoldHEN or Mira payload unlocks installed homebrew applications and enables "Debug Settings": leave the browser and go to "Settings - *Debug Settings - Game - Package Installer" to install homebrew PKG files from the root folder of an exFAT-formatted USB storage device.<br>
-          <b>Once you have enabled Debug Settings, do not ever go into "*Debug Settings - System - IDU Mode", or your PS4 will brick!</b><br>
-          For GoldHEN's Rest Mode support to work, make sure to enable "Keep Application Suspended" in "Settings - Power Save Settings - See Features Available in Rest Mode".
-        </p>
-        <p>You can also send your own payload files from a computer. First, load the "Netcat" payload and wait for it to succeed, in which case the browser's output stops at <i>"[+] Waiting for payload ..."</i>. Then, on your computer, use a Netcat program to send your payload files to the PS4.<br>
-          Payloads that run inside the browser, like FTP and Netcat, stay active until the window is closed. To leave the browser while keeping them alive, use the PS button.</p>
+        <p>This exploit is now installed in your browser cache for offline use.</p>
+      
       </div>
       <div class="tab" id="tab_changelog">
         <div class="tab_title">Changelog<span id="tab_changelog_version" style="font-size: medium; font-weight: normal"></span></div>
         <div class="tab_content" id="changelog">
-          Please report any bugs by creating an issue on <a href="https://github.com/hippie68/hippie68.github.io/issues">GitHub</a>.<br><br>
+          Please report any bugs by creating an issue on <a href="https://www.facebook.com/tinkeringwithpaulomon">Facebook</a>.<br><br>
           <script>
             // Shows the changelog, replacing newlines with "<br>"
             document.getElementById("changelog").innerHTML += changes.replace(/\n/g, "<br>");
@@ -383,37 +369,8 @@
               <label for="select_wallpaper">Wallpaper:</label>
               <select id="select_wallpaper" onchange="applyOptionEnableWallpaper()">
                 <option value="cache" selected>Offline cache</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tL2QxMDYxMGJkZDY3MjcyOWNjZWQzNjhhYzg5NWRiMDQ4NmI4NmIwMTguanBnCg==">Assassin's Creed: Black Flag</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tL2Q1MzgwNDJiMTM3MjY4NTQwZjE4MjQ5NzgyZmZiNmMxNWQwNGI0YjAuanBnCg==">Assassin's Creed: Valhalla #1</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tL2Y0YzY1MDE2MzI5NTc4M2QyNThiZWRjMzU2MTBjMjUzOThiMTdkNWUuanBnCg==">Assassin's Creed: Valhalla #2</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tLzc5MTVhMjM2NDI3MjZhMDkxNmFmNDk0NTRlZjdkNmM4MmIzZWE4MmYuanBnCg==">Bloodborne #1</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tLzYzY2M1NDk3NDY1NzcwMzM0NmRmMjAzYTZmODk0ZjM1MmEwMmJhM2YuanBnCg==">Bloodborne #2</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tLzIyMDk0ZGIwNjBkYTQ5NmVhMTNkZGJkNGEyMzUwZmJjOWUyODY5ZjIuanBnCg==">Code Vein</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tL2I2NDhjODFlOTVkNmQzNjg2NTVhNDIwNGRhNDNkMjUzYjFjMWQyYjIuanBnCg==">Cyberpunk 2077 Girl #1</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tL2ZkNTgxMGM0NWFiYzg5YjBlZTFiNTEwYjI2OGRhZjZiYmUwNzViODEuanBnCg==">Cyberpunk 2077 Girl #2</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tLzkzZmQ0N2JlMTZhMjM4ODk2NjkzYjAwZmVhZGY0Y2ZkMzE3ZGQ2NjkuanBnCg==">Cyberpunk 2077 Main Cover</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tLzYwOWQ5ZDlkMTdkMWU2NGM0OTViM2U3ZTM1YjI4NTIzZmQ2Njk5ZDcuanBnCg==">Dark Souls #1</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tLzI5MDhjNDM4ZTdjNGE1NDM4ZDkyNWYxZWFiNmNlN2YyNjc1NGNkNGQuanBnCg==">Dark Souls #2</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tL2U4OTBmZWIxYzJjZjJmNmI0ZGFmY2RmMDg3OGZhYmM3Yzg2OTQ2ZjEuanBnCg==">Days Gone</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tLzA2N2Y4MWZhOWE0MzhhMjM3ZjhkNzg2NzczODVhYzVmNzhiZDkyOTYuanBnCg==">Detroit: Become Human</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tLzQwMGQ3MjFmMGJjMWUzYTcxYjIwNWI1YTgxZmQ4YjlkZGQ2NGY2ZmYuanBnCg==">Dying Light</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tL2NiMDBmMWNjMDQ0NDEwYzczYWYxNzdmMDdlZjdjZTAxN2E3MTQ3NWUuanBnCg==">Fallout: New Vegas</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tLzIzZjZiNzI3MTNhM2JlZjM0ZGE4Y2EzZDliMTcyNTlkMjgwMTJmYzUuanBnCg==">Ghost of Tsushima</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tLzMxOTEwOGY2MTYyNjViYWJlNzI0YjM2ZjgwZTJlYTI1NWY0Yjk0OGMuanBnCg==">God of War</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tLzQwNjZlZGExNzEyMmJjMDZiN2FkNTk0M2VkNWNkZDIwYjQ1MWU4MDkuanBnCg==">Grand Theft Auto</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tLzg5MWJmZGI3MjNlYTUxY2Y2Y2YwOGU1NDg1ZjMzYTU2NGJhYjU0NTMuanBnCg==">Metro Exodus</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tLzUxYTlkMDNjNTg5NDJjYTU4MGZkYWNmNDQwZWE0YjU1NTYwNTZhZjMuanBnCg==">Monster Hunter: World</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tLzA3NjdjOGY3ZTEzNzM0ZGNkZGU3NDFmNzM1NjIzMzZkMjRhOThjOGEuanBnCg==">Need for Speed</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tL2I2ZTJmMzZlYTEzNDk2NDMzOWM5ZTI2N2Q5MDliNzQ2NDMzZDcxZDYuanBnCg==">NieR: Automata</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tL2IxYWIwNzhmMzc1Zjk5MTgwY2RiMzg5MGM0ZDZiYjIzYTkwMThlMjEuanBnCg==">No Man's Sky</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tL2NjMDMyMDljYjEzMDQ0ZDJmNzk0NWRmYWQzZDY5N2Q0NjUxNTM5NmMuanBnCg==">Persona 5</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tL2EwMGExYWU4ZjFlMjQ1NTM5ZTY1YjQ2N2NkODZiNDk1MDQ4Y2M0YzguanBnCg==">Red Dead Redemption 2</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tLzM4Mjc3NTk2ZGVhOTFiOGU3YzQzZDU4YjM4YzYxZjc1NDYyZjc1YzUuanBnCg==">Sekiro: Shadows Die Twice</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tL2Y2ZmZlODE5YTBlYTVkZjFhZDQwNDc4NGVjNDRjNzJjZGJhZmM0MjMuanBnCg==">Spider-Men</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tLzY5MWZhMWE3M2Y0NDE5ZGU3ZTRjNTBkNGI0ZmZhMTIwM2QyNTc3Y2QuanBnCg==">The Last of Us Ellie #1</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tL2E4NTdiZTY5MmMyNzdhYmFiMDE0NDBhYmQ3MTdkNmE0NjdiZWYxZTEuanBnCg==">The Last of Us Ellie #2</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tLzVkMzI3MGIwNWYxNDY0M2RkNmIyZTBkYTFkZDY0MDA3NDEwYjExNzcuanBnCg==">The Witcher 3 Geralt and Ciri</option>
-                <option value="aHR0cHM6Ly9iYXlpbWcuY29tL2U3ZGE1NzQ4MmVmMDcyZjkzOTQyODAwOGUxZjdmZGMzYjRmYTAwM2EuanBnCg==">The Witcher 3 Triss Merrigold</option>
+                <option value="aHR0cHM6Ly9idXR0ZXJnbGF6ZWQtcGF1bG9tb24uZ2l0aHViLmlvL3BhdXplbi9pbmRleDEucG5n">Paulomon Exploit Classic</option>
+                <option value="aHR0cHM6Ly9idXR0ZXJnbGF6ZWQtcGF1bG9tb24uZ2l0aHViLmlvL3BhdXplbi9iZzIuZ2lmCg==">Paulomon Exploit Animated</option>
               </select><br>
               <button id="button_cache_wallpaper" onclick="cacheWallpaper()" style="display: block; width: 100%">Cache selected wallpaper</button>
               <button id="wallpaper_cache" onclick="deleteWallpaperCache()" style="width: 100%">Delete offline cache</button> <!-- "Delete data" buttons have the same ID name as the key they delete -->
@@ -570,13 +527,6 @@
           <a class="payload_link" href="javascript:selectPayload('payload.html#p0=goldhen_v1.1.bin')" onmouseover="showPayloadInfo('Enables homebrew, Debug Settings, and Debug Trophies. Ignores firmware checks to run the latest backports, provides remote package install, starts an FTP server (port 2121), and supports Rest Mode.')">GoldHEN 1.1</a>
           <a class="payload_link" href="javascript:selectPayload('payload.html#p0=hen_v2.1.3.bin')" onmouseover="showPayloadInfo('Regular HEN. Enables homebrew and Debug Settings. Might not work with some of the latest backports.')">HEN 2.1.3</a>
           <a class="payload_link" href="javascript:selectPayload('payload.html#p0=hen_v2.1.3b.bin')" onmouseover="showPayloadInfo('Enables homebrew and Debug Settings. Spoofs the firmware version to 9.99 to run the latest backports.')">HEN 2.1.3b</a>
-          <a class="payload_link gta5" href="javascript:selectPayload('payload.html#p0=gta5_arabicguy_v1.00.bin')" onmouseover="showPayloadInfo('Enables a mod menu in GTA 5, which you can activate in-game by pressing D-pad right + Square. Only works with game version 1.00.')">GTA 5 ArabicGuy v1.00</a>
-          <a class="payload_link gta5" href="javascript:selectPayload('payload.html#p0=gta5_arabicguy_v1.27.bin')" onmouseover="showPayloadInfo('Enables a mod menu in GTA 5, which you can activate in-game by pressing D-pad right + Square. Only works with game version 1.27.')">GTA 5 ArabicGuy v1.27</a>
-          <a class="payload_link gta5" href="javascript:selectPayload('payload.html#p0=gta5_arabicguy_v1.32.bin')" onmouseover="showPayloadInfo('Enables a mod menu in GTA 5, which you can activate in-game by pressing D-pad right + Square. Only works with game version 1.32.')">GTA 5 ArabicGuy v1.32</a>
-          <a class="payload_link gta5" href="javascript:selectPayload('payload.html#p0=gta5_lamance_v1.32.bin')" onmouseover="showPayloadInfo('Enables a mod menu in GTA 5, which you can activate in-game by pressing D-pad right + Square. Only works with game version 1.32.')">GTA 5 Lamance v1.32</a>
-          <a class="payload_link gta5" href="javascript:selectPayload('payload.html#p0=gta5_native_caller_v1.00.bin')" onmouseover="showPayloadInfo('Enables a mod menu in GTA 5, which you can activate in-game by pressing D-pad right + Square. Only works with game version 1.00.')">GTA 5 Native Caller v1.00</a>
-          <a class="payload_link gta5" href="javascript:selectPayload('payload.html#p0=gta5_native_caller_v1.27.bin')" onmouseover="showPayloadInfo('Enables a mod menu in GTA 5, which you can activate in-game by pressing D-pad right + Square. Only works with game version 1.27.')">GTA 5 Native Caller v1.27</a>
-          <a class="payload_link gta5" href="javascript:selectPayload('payload.html#p0=gta5_native_caller_v1.32.bin')" onmouseover="showPayloadInfo('Enables a mod menu in GTA 5, which you can activate in-game by pressing D-pad right + Square. Only works with game version 1.32.')">GTA 5 Native Caller v1.32</a>
           <a class="payload_link" href="javascript:selectPayload('payload.html#p0=history_blocker.bin')" onmouseover="showPayloadInfo('Normally, the PS4 browser automatically loads the last used page. This payload turns that feature off/on.')">History Blocker</a>
           <a class="payload_link" href="javascript:selectPayload('payload.html#p0=linux_1gb.bin')" onmouseover="showPayloadInfo('Loads Linux from a prepared USB storage device. Leaves Linux with 7 GB of RAM, as 1 GB will be used for graphics.')">Linux (1 GB)</a>
           <a class="payload_link" href="javascript:selectPayload('payload.html#p0=linux_3gb.bin')" onmouseover="showPayloadInfo('Loads Linux from a prepared USB storage device. Leaves Linux with 5 GB of RAM, as 3 GB will be used for graphics. Do not use the 3 GB payload during Linux installation.')">Linux (3 GB)</a>
@@ -608,13 +558,6 @@
           <a class="payload_link goldhen" href="javascript:selectPayload('payload.html#p0=goldhen_v1.1_fw750.bin')" onmouseover="showPayloadInfo('Enables homebrew, Debug Settings, and Debug Trophies. Ignores firmware checks to run the latest backports, provides remote package install, starts an FTP server (port 2121), and supports Rest Mode.')">GoldHEN 1.1 (FW 7.50)</a>
           <a class="payload_link goldhen" href="javascript:selectPayload('payload.html#p0=goldhen_v1.1_fw751.bin')" onmouseover="showPayloadInfo('Enables homebrew, Debug Settings, and Debug Trophies. Ignores firmware checks to run the latest backports, provides remote package install, starts an FTP server (port 2121), and supports Rest Mode.')">GoldHEN 1.1 (FW 7.51)</a>
           <a class="payload_link goldhen" href="javascript:selectPayload('payload.html#p0=goldhen_v1.1_fw755.bin')" onmouseover="showPayloadInfo('Enables homebrew, Debug Settings, and Debug Trophies. Ignores firmware checks to run the latest backports, provides remote package install, starts an FTP server (port 2121), and supports Rest Mode.')">GoldHEN 1.1 (FW 7.55)</a>
-          <a class="payload_link gta5" href="javascript:selectPayload('payload.html#p0=gta5_arabicguy_v1.00.bin')" onmouseover="showPayloadInfo('Enables a mod menu in GTA 5, which you can activate in-game by pressing D-pad right + Square. Only works with game version 1.00.')">GTA 5 ArabicGuy v1.00</a>
-          <a class="payload_link gta5" href="javascript:selectPayload('payload.html#p0=gta5_arabicguy_v1.27.bin')" onmouseover="showPayloadInfo('Enables a mod menu in GTA 5, which you can activate in-game by pressing D-pad right + Square. Only works with game version 1.27.')">GTA 5 ArabicGuy v1.27</a>
-          <a class="payload_link gta5" href="javascript:selectPayload('payload.html#p0=gta5_arabicguy_v1.32.bin')" onmouseover="showPayloadInfo('Enables a mod menu in GTA 5, which you can activate in-game by pressing D-pad right + Square. Only works with game version 1.32.')">GTA 5 ArabicGuy v1.32</a>
-          <a class="payload_link gta5" href="javascript:selectPayload('payload.html#p0=gta5_lamance_v1.32.bin')" onmouseover="showPayloadInfo('Enables a mod menu in GTA 5, which you can activate in-game by pressing D-pad right + Square. Only works with game version 1.32.')">GTA 5 Lamance v1.32</a>
-          <a class="payload_link gta5" href="javascript:selectPayload('payload.html#p0=gta5_native_caller_v1.00.bin')" onmouseover="showPayloadInfo('Enables a mod menu in GTA 5, which you can activate in-game by pressing D-pad right + Square. Only works with game version 1.00.')">GTA 5 Native Caller v1.00</a>
-          <a class="payload_link gta5" href="javascript:selectPayload('payload.html#p0=gta5_native_caller_v1.27.bin')" onmouseover="showPayloadInfo('Enables a mod menu in GTA 5, which you can activate in-game by pressing D-pad right + Square. Only works with game version 1.27.')">GTA 5 Native Caller v1.27</a>
-          <a class="payload_link gta5" href="javascript:selectPayload('payload.html#p0=gta5_native_caller_v1.32.bin')" onmouseover="showPayloadInfo('Enables a mod menu in GTA 5, which you can activate in-game by pressing D-pad right + Square. Only works with game version 1.32.')">GTA 5 Native Caller v1.32</a>
           <a class="payload_link" href="javascript:selectPayload('payload.html#p0=hen_v2.1.3b.bin')" onmouseover="showPayloadInfo('Enables homebrew and Debug Settings. Spoofs the firmware version to 9.99 to run the latest backports.')">HEN 2.1.3b</a>
           <a class="payload_link" href="javascript:selectPayload('payload.html#p0=history_blocker.bin')" onmouseover="showPayloadInfo('Normally, the PS4 browser automatically loads the last used page. This payload turns that feature off/on.')">History Blocker</a>
           <a class="payload_link" href="javascript:selectPayload('payload.html#p0=linux_1gb.bin')" onmouseover="showPayloadInfo('Loads Linux from a prepared USB storage device. Leaves Linux with 7 GB of RAM, as 1 GB will be used for graphics.')">Linux (1 GB)</a>
@@ -631,8 +574,8 @@
           <a class="payload_link" href="javascript:toggleChainRecording()" onmouseover="showPayloadInfo('Enables chaining of multiple payloads to run them all in one go. Select multiple payloads to chain them, then press \'Launch\'.')">Multiple payloads</a>
         </div>
       </div>
-      <div class="fw702 credits">Credits: @sleirsgoevy for his 7.02 jailbreak, Linux payloads, and Web Activator, M A 7 for his ideas, Synacktiv team for the WebKit exploit, @theflow for the kernel exploit, &lt;anonymous&gt; for 7.02 module dumps, @ChendoChap for HEN 2.1.3, @karo_sharifi for HEN 2.1.3b and GTA 5 mods, SiSTRo for GoldHEN, OSM for Orbis Toolbox, @dmiller423 & Nazky for PS4Debug, @zecoxao for ToDEX, @tihmstar for 7.02 offsets in the Linux loader, @Al-Azif for Mira and her payload collection.</div>
-      <div class="fw75x credits">Credits: @sleirsgoevy for his 7.5x jailbreak, Linux payloads, and Web Activator, M A 7 for his ideas, Synacktiv team for the WebKit exploit, @theflow for the kernel exploit, &lt;anonymous&gt; for 7.5x kernel dump, @karo_sharifi for HEN 2.1.3b and GTA 5 mods, SiSTRo for GoldHEN, OSM for Orbis Toolbox, @Joonie86 for PS4Debug, @Al-Azif for Mira and her payload collection.</div>
+      <div class="fw702 credits"></div>
+      <div class="fw75x credits"></div>
     </footer>
   </div>
 <script>
