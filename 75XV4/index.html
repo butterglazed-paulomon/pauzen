@@ -2,7 +2,7 @@
 <html manifest="cache.manifest">
 <head>
   <meta charset="UTF-8">
-  <title>Paulomon Exploit V4 for 7.5X</title>
+  <title>Paulomon Exploit V4</title>
   <style>
     body {
       margin: 0;
@@ -262,14 +262,6 @@
     .fw75x {
       display: none;
     }
-	.bg {
-  /* The image used */
-  background-image: url("index1.png");
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
   </style>
   <style id="scrollbar"></style>
   <script>
@@ -278,7 +270,7 @@
     if (useragent.substring(13,26) === "PlayStation 4") {
       var firmware = useragent.substring(27,31);
     } else {
-      alert("This site is for PS4 only with FW 7.5X, if you are looking for other exploits, kindly go back to the homepage at butterglazed-paulomon.github.io/pauzen");
+      alert("Paulomon Exploit detected that you are not using a PS4 to view this site.\nThis website is only to be used with a PS4. Proceed at your own risk!");
     }
   </script>
 </head>
@@ -292,11 +284,11 @@
   </script>
   <div id="website">
     <header>
-      <span id="title">Paulomon Exploit V4 for 7.5X</span>
+      <span id="title">Paulomon Exploit V4</span>
       <script>
         // Show for which target firmware the website is made
         document.title += " " + targetFirmware;
-        document.getElementById("title").innerHTML += " for system version " + targetFirmware;
+        document.getElementById("title").innerHTML += " FOR FIRMWARE " + targetFirmware;
         // Show current firmware if it differs
         if (firmware !== undefined && firmware.substring(0,3) !== targetFirmware.substring(0,3)) {
           document.getElementById("title").innerHTML += `<span style="color: var(--border-color)">  Current firmware:  ` + firmware;
@@ -304,8 +296,8 @@
       </script>
       <div id="button_container">
         <div id="updateinfo"></div> <!-- Displays caching progress -->
-        <button onmousedown="showTab('tab_changelog', event)">What's new</button>
-        <button id="button_jailbreakhistory" style="display: none" onmousedown="showTab('tab_jailbreakhistory', event); loadJailbreakHistory()">Backtrack of Jailbreak</button>
+        <button onmousedown="showTab('tab_changelog', event)">Changelog</button>
+        <button id="button_jailbreakhistory" style="display: none" onmousedown="showTab('tab_jailbreakhistory', event); loadJailbreakHistory()">Jailbreak history</button>
         <button onmousedown="showTab('tab_options', event)">Settings</button>
         <script>
           function hideTabs() {
@@ -347,21 +339,13 @@
       <div id="instructions" style="overflow: hidden">
         <noscript><span style="color: red">JavaScript is required to run the jailbreak. Press the OPTIONS button, go to "Settings" and check "Enable JavaScript", then refresh the web page.</span></noscript>
         <b style="font-size: large">Instructions</b>
-        <p>This exploit has now been installed to your browser. You can bookmark this page for easy access.</p>
-        <p>To exploit, click on the payload that you want to load. If everything went good, you should be able to activate the payload.</i>, followed by <i>"There is not enough free system memory"</i>. Usually though, you will need multiple attempts.</p>
-        <p><b>One of these messages can appear:</b>
-          <ul>
-            <li><b>"There is not enough free system memory"</b>: It means the WebKit exploit was not successful. Press "OK" to try again. This is normal, as the chance to succeed is quite low.</li>
-            <li><b>"Jailbreak failed! Reboot your PS4 and try again"</b>: The Kernel exploit has failed, and the system is not stable anymore. While trying to reboot, the system might crash, which looks like an instant power down. Press the power button on the PS4 to turn it on again. A disk check will run, and then you can resume jailbreaking.</li>
-            <li><b>"Failed to setup a relative read primitive"</b>: This can happen when you move your controller's analog sticks while the WebKit exploit is still trying to succeed. Do not move the analog sticks. After pressing "OK", you can resume jailbreaking without rebooting.</li>
-            <li><b>"You're all set!"</b>: The jailbreak was successful, and the selected payload has been loaded into memory.</li>
-          </ul>
-        </p>
+        <p>This exploit is now installed in your browser cache for offline use.</p>
+      
       </div>
       <div class="tab" id="tab_changelog">
         <div class="tab_title">Changelog<span id="tab_changelog_version" style="font-size: medium; font-weight: normal"></span></div>
         <div class="tab_content" id="changelog">
-          Please report any bugs by creating an issue on <a href="https://github.com/hippie68/hippie68.github.io/issues">GitHub</a>.<br><br>
+          Please report any bugs by creating an issue on <a href="https://www.facebook.com/tinkeringwithpaulomon">Facebook</a>.<br><br>
           <script>
             // Shows the changelog, replacing newlines with "<br>"
             document.getElementById("changelog").innerHTML += changes.replace(/\n/g, "<br>");
@@ -385,7 +369,8 @@
               <label for="select_wallpaper">Wallpaper:</label>
               <select id="select_wallpaper" onchange="applyOptionEnableWallpaper()">
                 <option value="cache" selected>Offline cache</option>
-                <option value="aHR0cHM6Ly9idXR0ZXJnbGF6ZWQtcGF1bG9tb24uZ2l0aHViLmlvL3BhdXplbi9pbmRleDEucG5n">Paulomon Exploit Theme</option>
+                <option value="aHR0cHM6Ly9idXR0ZXJnbGF6ZWQtcGF1bG9tb24uZ2l0aHViLmlvL3BhdXplbi9pbmRleDEucG5n">Paulomon Exploit Classic</option>
+                <option value="aHR0cHM6Ly9idXR0ZXJnbGF6ZWQtcGF1bG9tb24uZ2l0aHViLmlvL3BhdXplbi9iZzIuZ2lmCg==">Paulomon Exploit Animated</option>
               </select><br>
               <button id="button_cache_wallpaper" onclick="cacheWallpaper()" style="display: block; width: 100%">Cache selected wallpaper</button>
               <button id="wallpaper_cache" onclick="deleteWallpaperCache()" style="width: 100%">Delete offline cache</button> <!-- "Delete data" buttons have the same ID name as the key they delete -->
@@ -542,13 +527,6 @@
           <a class="payload_link" href="javascript:selectPayload('payload.html#p0=goldhen_v1.1.bin')" onmouseover="showPayloadInfo('Enables homebrew, Debug Settings, and Debug Trophies. Ignores firmware checks to run the latest backports, provides remote package install, starts an FTP server (port 2121), and supports Rest Mode.')">GoldHEN 1.1</a>
           <a class="payload_link" href="javascript:selectPayload('payload.html#p0=hen_v2.1.3.bin')" onmouseover="showPayloadInfo('Regular HEN. Enables homebrew and Debug Settings. Might not work with some of the latest backports.')">HEN 2.1.3</a>
           <a class="payload_link" href="javascript:selectPayload('payload.html#p0=hen_v2.1.3b.bin')" onmouseover="showPayloadInfo('Enables homebrew and Debug Settings. Spoofs the firmware version to 9.99 to run the latest backports.')">HEN 2.1.3b</a>
-          <a class="payload_link gta5" href="javascript:selectPayload('payload.html#p0=gta5_arabicguy_v1.00.bin')" onmouseover="showPayloadInfo('Enables a mod menu in GTA 5, which you can activate in-game by pressing D-pad right + Square. Only works with game version 1.00.')">GTA 5 ArabicGuy v1.00</a>
-          <a class="payload_link gta5" href="javascript:selectPayload('payload.html#p0=gta5_arabicguy_v1.27.bin')" onmouseover="showPayloadInfo('Enables a mod menu in GTA 5, which you can activate in-game by pressing D-pad right + Square. Only works with game version 1.27.')">GTA 5 ArabicGuy v1.27</a>
-          <a class="payload_link gta5" href="javascript:selectPayload('payload.html#p0=gta5_arabicguy_v1.32.bin')" onmouseover="showPayloadInfo('Enables a mod menu in GTA 5, which you can activate in-game by pressing D-pad right + Square. Only works with game version 1.32.')">GTA 5 ArabicGuy v1.32</a>
-          <a class="payload_link gta5" href="javascript:selectPayload('payload.html#p0=gta5_lamance_v1.32.bin')" onmouseover="showPayloadInfo('Enables a mod menu in GTA 5, which you can activate in-game by pressing D-pad right + Square. Only works with game version 1.32.')">GTA 5 Lamance v1.32</a>
-          <a class="payload_link gta5" href="javascript:selectPayload('payload.html#p0=gta5_native_caller_v1.00.bin')" onmouseover="showPayloadInfo('Enables a mod menu in GTA 5, which you can activate in-game by pressing D-pad right + Square. Only works with game version 1.00.')">GTA 5 Native Caller v1.00</a>
-          <a class="payload_link gta5" href="javascript:selectPayload('payload.html#p0=gta5_native_caller_v1.27.bin')" onmouseover="showPayloadInfo('Enables a mod menu in GTA 5, which you can activate in-game by pressing D-pad right + Square. Only works with game version 1.27.')">GTA 5 Native Caller v1.27</a>
-          <a class="payload_link gta5" href="javascript:selectPayload('payload.html#p0=gta5_native_caller_v1.32.bin')" onmouseover="showPayloadInfo('Enables a mod menu in GTA 5, which you can activate in-game by pressing D-pad right + Square. Only works with game version 1.32.')">GTA 5 Native Caller v1.32</a>
           <a class="payload_link" href="javascript:selectPayload('payload.html#p0=history_blocker.bin')" onmouseover="showPayloadInfo('Normally, the PS4 browser automatically loads the last used page. This payload turns that feature off/on.')">History Blocker</a>
           <a class="payload_link" href="javascript:selectPayload('payload.html#p0=linux_1gb.bin')" onmouseover="showPayloadInfo('Loads Linux from a prepared USB storage device. Leaves Linux with 7 GB of RAM, as 1 GB will be used for graphics.')">Linux (1 GB)</a>
           <a class="payload_link" href="javascript:selectPayload('payload.html#p0=linux_3gb.bin')" onmouseover="showPayloadInfo('Loads Linux from a prepared USB storage device. Leaves Linux with 5 GB of RAM, as 3 GB will be used for graphics. Do not use the 3 GB payload during Linux installation.')">Linux (3 GB)</a>
@@ -596,8 +574,8 @@
           <a class="payload_link" href="javascript:toggleChainRecording()" onmouseover="showPayloadInfo('Enables chaining of multiple payloads to run them all in one go. Select multiple payloads to chain them, then press \'Launch\'.')">Multiple payloads</a>
         </div>
       </div>
-      <div class="fw702 credits">Credits: @sleirsgoevy for his 7.02 jailbreak, Linux payloads, and Web Activator, M A 7 for his ideas, Synacktiv team for the WebKit exploit, @theflow for the kernel exploit, &lt;anonymous&gt; for 7.02 module dumps, @ChendoChap for HEN 2.1.3, @karo_sharifi for HEN 2.1.3b and GTA 5 mods, SiSTRo for GoldHEN, OSM for Orbis Toolbox, @dmiller423 & Nazky for PS4Debug, @zecoxao for ToDEX, @tihmstar for 7.02 offsets in the Linux loader, @Al-Azif for Mira and her payload collection and hippie68 for the layout</div>
-      <div class="fw75x credits">Credits: @sleirsgoevy for his 7.5x jailbreak, Linux payloads, and Web Activator, M A 7 for his ideas, Synacktiv team for the WebKit exploit, @theflow for the kernel exploit, &lt;anonymous&gt; for 7.5x kernel dump, @karo_sharifi for HEN 2.1.3b and GTA 5 mods, SiSTRo for GoldHEN, OSM for Orbis Toolbox, @Joonie86 for PS4Debug, @Al-Azif for Mira and her payload collection and hippie68 for the layout</div>
+      <div class="fw702 credits"></div>
+      <div class="fw75x credits"></div>
     </footer>
   </div>
 <script>
@@ -946,6 +924,40 @@ function applyGoldHenVersion() {
   }
 }
 
+// GTA 5 Mods
+
+function setGTA5Version(value) {
+  if (value == "all") { // Default
+    localStorage.removeItem("gta5_version");
+  } else {
+    localStorage.setItem("gta5_version", value);
+  }
+  applyGTA5Version();
+}
+
+function applyGTA5Version() {
+  let x = document.getElementById("select_gta5");
+  let gta5_version = localStorage.getItem("gta5_version");
+  let a = document.querySelectorAll(".payload_link.gta5");
+  if (gta5_version === null) {
+    x.value = "all"; // Default
+    // Show all versions
+    for (let i = 0; i < a.length; i++) {
+      a[i].style.display = "inline-block";
+    }
+  } else {
+    x.value = gta5_version;
+    for (let i = 0; i < a.length; i++) {
+      if (a[i].href.includes(gta5_version)) {
+        // Only show the selected version
+        a[i].style.display = "inline-block";
+      } else {
+        // Hide all other versions
+        a[i].style.display = "none";
+      }
+    }
+  }
+}
 
 // Color scheme
 
@@ -1386,8 +1398,8 @@ function enableWallpaperMode(imageUrl) {
 
 // Removes the wallpaper and resets the website's looks to default
 function disableWallpaperMode() {
-  document.getElementById("instructions").style.display = "cover";
-  document.getElementById("website").style.opacity = "1";
+  document.getElementById("instructions").style.display = "block";
+  document.getElementById("website").style.opacity = "1.0";
   document.querySelector(".credits" + ".fw" + targetFirmware.replace(".", "")).style.display = "block";
   document.body.style.backgroundImage = "none";
   document.querySelector("main").style.backgroundColor = "var(--background-color-2)";
