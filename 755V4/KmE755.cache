@@ -1,7 +1,7 @@
 CACHE MANIFEST 
 # 7.55AUTO V1.1 21-08-2021
 
-1.jpg
+index1.png
 int64.js
 ps4.js
 utils.js
@@ -26,10 +26,6 @@ pl_ftp.bin
 pl_goldhen_1.0.bin
 pl_goldhen_1.1.bin
 pl_goldhen_2.0b2.bin
-pl_gtava1.bin
-pl_gtava2.bin
-pl_gtava3.bin
-pl_gtavl.bin
 pl_historyblocker.bin
 pl_kerneldumper.bin
 pl_Linux1gb.bin
