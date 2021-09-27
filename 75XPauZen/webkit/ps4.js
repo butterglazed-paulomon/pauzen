@@ -214,10 +214,6 @@ function toggle_payload(pld){
 	}else if(pld == "webrte"){
 		document.getElementById("progress").innerHTML="Loading Payload.. Please wait..";
 		preloadScripts(['payloads/preloader.js', 'payloads/webrte.js', 'payloads/loader.js']);
-	}else if(pld == "goldhen20"){
-		document.getElementById("progress").innerHTML="Loading Payload.. Please wait..";
-		load_goldhen20b()
-		
 
 	}
 	if(window.postPayload)
@@ -225,16 +221,6 @@ function toggle_payload(pld){
 	payload_finished(pld);
 	
 }
-//inserted function from prb exploit - Paulomon
-function loadScript2(){getScript("loader.js",function(){});}
-		
-function load_goldhen20b(){
-	msgs.innerHTML='Loading GoldHen V2.0B1 ...';
-	LoadedMSG="GoldHen V2.0B1 Loaded";
-	PLfile = "755.bin"
-	loadScript2();
-}
-//end of added functions
 
 function payload_finished(payload)
 {
