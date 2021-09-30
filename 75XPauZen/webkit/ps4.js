@@ -208,15 +208,16 @@ function toggle_payload(pld){
 		}else{
 			preloadScripts(['payloads/preloader'+fw+'.js', 'payloads/goldhen'+fw+'.js', 'payloads/loader.js']);	
 		}
-	}else if(pld == "goldhenold"){
-		document.getElementById("progress").innerHTML="Loading Payload.. Please wait..";
-		preloadScripts(['payloads/preloader.js', 'payloads/goldhen.js', 'payloads/loader.js']);
+	}else if(pld == "goldhen20"){
+		document.getElementById("progress").innerHTML="Loading GoldHEN 2.0.. Please wait..";
+		if(fw=="755"){
+			preloadScripts(['payloads/preloader.js', 'payloads/goldhen2'+fw+'.js', 'payloads/loader.js']);
+		}else{
+			preloadScripts(['payloads/preloader'+fw+'.js', 'payloads/goldhen2'+fw+'.js', 'payloads/loader.js']);	
+		}
 	}else if(pld == "webrte"){
 		document.getElementById("progress").innerHTML="Loading Payload.. Please wait..";
 		preloadScripts(['payloads/preloader.js', 'payloads/webrte.js', 'payloads/loader.js']);
-	}else if(pld == "goldhen20"){
-		document.getElementById("progress").innerHTML="Loading GoldHEN V2.0.. Please wait..";
-		preloadScripts(['payloads/preloader.js', 'payloads/goldhen20.js', 'payloads/loader.js']);
 	}
 	if(window.postPayload)
 		window.postPayload();

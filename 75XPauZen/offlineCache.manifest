@@ -31,11 +31,12 @@ payloads/disableaslr.js
 payloads/enablebrowser.js
 payloads/historyblocker.js
 payloads/exitidu.js
-payloads/goldhen.js
 payloads/otoolbox755.js
 payloads/goldhen750.js
 payloads/goldhen751.js
 payloads/goldhen755.js
 payloads/ps4debug.js
 payloads/webrte.js
-payloads/goldhen20.js
+payloads/goldhen2750.js
+payloads/goldhen2751.js
+payloads/goldhen2755.js
