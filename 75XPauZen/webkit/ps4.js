@@ -208,7 +208,7 @@ function toggle_payload(pld){
 		}else{
 			preloadScripts(['payloads/preloader'+fw+'.js', 'payloads/goldhen'+fw+'.js', 'payloads/loader.js']);	
 		}
-	}else if(pld == "goldhen20"){
+//	}else if(pld == "goldhen20"){
 		document.getElementById("progress").innerHTML="Loading GoldHEN 2.0.. Please wait..";
 		if(fw=="755"){
 			preloadScripts(['payloads/preloader.js', 'payloads/goldhen2'+fw+'.js', 'payloads/loader.js']);
