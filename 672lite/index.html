@@ -14,17 +14,17 @@ function DisplayCacheProgress(){setTimeout(function(){window.msgs.innerHTML="Cac
 <h1 style='font-size:18px;text-align:center;'>Exploit Entry</h1>
 <div style="text-align:center">
 <button onclick="load_exploit(); return false"> Load THIS First </button> >>>>> 
-<button onclick="load_HEN(); return false"> Then HEN </button> or 
-<button onclick="load_GoldHEN11(); return false"> Then GoldHEN 1.1 </button> or 
+<button onclick="load_HEN(); return false"> Then GoldHEN 1.1 </button> or 
+<button onclick="load_GoldHEN11(); return false"> Then GoldHEN 2.0b </button> or 
 <button onclick="load_mira(); return false"> Then Mira </button> or 
 <button onclick="load_mira_unofficial(); return false"> Then Mira (Unofficial)</button>
 <br><br>
 <h1 style='font-size:18px;text-align:center;'>1-click Exploit + Payload</h1>
-<button onclick="load_exploit_HEN(); return false"> Exploit + HEN </button>
+<button onclick="load_exploit_HEN(); return false"> Exploit + GoldHEN 1.1</button>
 <br><br>
 <button onclick="load_exploit_mira(); return false"> Exploit + MIRA </button>
 <br><br>
-<button onclick="load_exploit_goldhen11(); return false"> Exploit + GoldHEN 1.1 </button>
+<button onclick="load_exploit_goldhen11(); return false"> Exploit + GoldHEN 2.0b </button>
 <br><br>
 <button onclick="load_exploit_miraUnoff(); return false"> Exploit + MIRA (unofficial) </button>
 <br><br>
@@ -66,8 +66,8 @@ setTimeout(jailbreak,500);
 }
 
 function load_exploit_HEN(){
-msgs.innerHTML="<h1 style='font-size:25px;text-align:center;'>Loading Exploit + HEN ...</h1>";
-LoadedMSG="Exploit + HEN Loaded ✔";ExploitMira="HEN";MiraSRC="pl_HEN.js";
+msgs.innerHTML="<h1 style='font-size:25px;text-align:center;'>Loading Exploit + GoldHEN 1.1 ...</h1>";
+LoadedMSG="Exploit + GoldHEN 1.1 Loaded ✔";ExploitMira="HEN";MiraSRC="pl_HEN.js";
 setTimeout(jailbreak,500);
 }
 
@@ -78,8 +78,8 @@ setTimeout(jailbreak,500);
 }
 
 function load_exploit_goldhen11(){
-msgs.innerHTML="<h1 style='font-size:25px;text-align:center;'>Loading Exploit + GoldHEN 1.1 ...</h1>";
-LoadedMSG="Exploit + GoldHEN Loaded ✔";ExploitMira="yes";MiraSRC="pl_goldhen11.js";
+msgs.innerHTML="<h1 style='font-size:25px;text-align:center;'>Loading Exploit + GoldHEN 2.0b ...</h1>";
+LoadedMSG="Exploit + GoldHEN 2.0b Loaded ✔";ExploitMira="yes";MiraSRC="pl_goldhen11.js";
 setTimeout(jailbreak,500);
 }
 
@@ -96,14 +96,14 @@ var script = document.createElement('script');script.src = "exp_BinLoader.js";do
 }
 
 function load_HEN(){
-msgs.innerHTML="<h1 style='font-size:25px;text-align:center;'>Loading HEN ...</h1>";
+msgs.innerHTML="<h1 style='font-size:25px;text-align:center;'>Loading GoldHEN 1.1 ...</h1>";
 LoadedMSG="HEN Loaded ✔";
 var script = document.createElement('script');script.src = "pl_HEN.js";document.getElementsByTagName('head')[0].appendChild(script);
 var script = document.createElement('script');script.src = "exp_loader.js";document.getElementsByTagName('head')[0].appendChild(script);
 }
 
 function load_GoldHEN11(){
-msgs.innerHTML="<h1 style='font-size:25px;text-align:center;'>Loading GoldHEN 1.1...</h1>";
+msgs.innerHTML="<h1 style='font-size:25px;text-align:center;'>Loading GoldHEN 2.0b...</h1>";
 LoadedMSG="GoldHEN Loaded ✔";
 var script = document.createElement('script');script.src = "pl_goldhen11.js";document.getElementsByTagName('head')[0].appendChild(script);
 var script = document.createElement('script');script.src = "exp_loader.js";document.getElementsByTagName('head')[0].appendChild(script);

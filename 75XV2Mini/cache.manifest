@@ -1,9 +1,11 @@
 CACHE MANIFEST 
-# v1.4
+# v2.5.5 paulomon-exploit 
 
-app2usb.js
 app-dumper.js
+app2usb.js
 backup.js
+bg2.gif
+binloader.html
 blob.js
 disable-aslr.js
 disable-updates.js
@@ -15,38 +17,39 @@ fan-threshold60.js
 fan-threshold65.js
 fan-threshold70.js
 fan-threshold75.js
-hen213b.js
 frontend.js
 ftp.js
-goldhen.html
 goldhen-750.js
 goldhen-751.js
 goldhen-755.js
-goldhenb3.html
-goldhenb3-750.js
-goldhenb3-751.js
-goldhenb3-755.js
+goldhen.html
+goldhen2.html
+goldhen2750.js
+goldhen2751.js
+goldhen2755.js
+hen213b.js
 history-blocker.js
 idu.js
-index1.png
-bg2.gif
 index.html
+index1.png
 int64.js
 jb.js
+jb.js.old
 kernel-clock.js
 kernel-dumper.js
 loader-750.js
 loader-751.js
 loader-755.js
-mira.js
-mira-75x.html
 mira-750.js
 mira-751.js
 mira-755.js
+mira-75x.html
+mira.js
 netcat.js
 payload.html
 ps4.js
 ps4debug.js
+README.md
 restore.js
 rif-renamer.js
 todex.js

@@ -1,11 +1,11 @@
 CACHE MANIFEST 
-# v2.5.5 Self-Host 
+# paulomon-host
 
-bg2.gif
 app2usb.html
 app2usb.js
 backup.html
 backup.js
+bg2.gif
 binloader.html
 binloader.js
 dumper.html
@@ -22,6 +22,8 @@ ftp.html
 ftp.js
 goldhen.html
 goldhen.js
+goldhen2.html
+goldhen2.js
 goldhenb3.html
 goldhenb3.js
 hblocker.html
