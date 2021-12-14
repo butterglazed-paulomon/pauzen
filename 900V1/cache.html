@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html manifest="cache.manifest">
+<head>
+<meta charset="UTF-8" />
+<link rel="shortcut icon" href="img/favicon.ico" />
+<title>Paulomon Exploit FW9.00 - Leeful</title>
+<link rel="stylesheet" href="css/main.css">
+<style > 
+       html, body{
+background: url('img/index1.png');
+background-attachment: fixed;
+background-size:100% 100%;
+background-repeat:no-repeat;
+background-color: #000;
+        }
+
+        .loader {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin: -75px 0 0 -75px;
+            border: 10px solid #1f1e1e;
+            border-radius: 50%;
+            border-top: 10px solid #044595;
+            border-left: 10px solid #044595;
+            width: 120px;
+            height: 120px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .info {
+            overflow: hidden;
+            position: fixed;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-size: 45px;
+            font-family: sans-serif;
+            color: #ffffff;
+            transform: translate(-50%, -50%);
+        }
+
+        .j {
+            font-size: 15px;
+            color: #ffffff;
+        }
+    </style>
+<script>
+history.replaceState(null,null,'index.html');var histlength=history.length;history.go(-histlength);
+function DLProgress(e){Percent=(Math.round(e.loaded / e.total * 100));msgs.innerHTML="Installing Paulomon Exploit... " + Percent + "%"};
+function DisplayCacheProgress(){
+setTimeout(function(){msgs.innerHTML="Paulomon Exploit Installation Complete!";},2000);
+setTimeout(function(){location.reload();},3000);
+}
+window.applicationCache.addEventListener("progress",DLProgress,false);window.applicationCache.oncached=function(e){DisplayCacheProgress();};window.applicationCache.onupdateready=function(e){DisplayCacheProgress();};
+</script>
+</head>
+<a href="https://facebook.com/tinkeringwithPaulomon"><img class="icon" src="img/logo1.png"/></a>
+<h1 class="msgs" id="msgs">Paulomon Exploit FW9.00 - Leeful</h1>
+<hr>
+<body style=overflow:hidden>
+<div id=msgs class=info style='-webkit-font-feature-settings:"tnum";font-feature-settings:"tnum";'></div>
+</body>
+</html>
