@@ -1,0 +1,27 @@
+CACHE MANIFEST 
+
+CACHE: 
+app2usb.js
+backup.js
+disable-aslr.js
+disable-updates.js
+dumper.js
+enable-updates.js
+exit-idu.js
+fan-threshold.js
+ftp.js
+goldhen.js
+history-blocker.js
+bg2.gif
+index.html
+int64.js
+kernel-clock.js
+kernel-dumper.js
+kexploit.js
+module-dumper.js
+permanent-uart.js
+restore.js
+rif-renamer.js
+rop.js
+todex.js
+webkit.js

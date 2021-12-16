@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html manifest="cache.manifest"><head>
+<link rel="shortcut icon" href="favicon.ico"/>
+<title>Paulomon's Exploit V3 for FW 9.00</title>
+<style>
+html, body {
+background-image: url('bg2.gif');
+background-position: center;
+background-size: cover;
+background-repeat: no-repeat;
+background-color: #24272b;
+color: white;
+text-align: center;
+margin: 0px;
+overflow: hidden;
+}
+h1 {
+text-shadow: 0.1em 0.1em 0.2em black;
+font-size: 35px;
+font-family: sans-serif;
+text-align: center;
+color: white;
+}
+.btn {
+background-color: rgba(1,1,255,0.4);
+color: white;
+width: 200px;
+height: 49px;
+padding-bottom: 5px;
+text-align: center;
+font-size: 20px;
+margin-top: 8px;
+margin-bottom: 8px;
+margin-left: 8px;
+margin-right: 8px;
+border-bottom-width: 0px;
+border-right-width: 0px;
+border-top-width: 0px;
+border-left-width: 0px;
+transition-duration: 0.4s;
+cursor: pointer;
+border-radius: 8px;
+}
+.btn:hover {
+background-color: #0058b1;
+}
+.btn-toolbox {
+background-color: #ae2301;
+}
+.btn-toolbox:hover {
+background-color: #d42a01;
+}
+</style>
+<script src="int64.js"></script>
+<script src="rop.js"></script>
+<script src="kexploit.js"></script>
+<script src="webkit.js"></script>
+</head>
+<body>
+<script>
+function DLProgress(e){Percent=(Math.round(e.loaded / e.total * 100));window.msgs.innerHTML="Installing Paulomon Exploit: " + Percent + "%";}
+function DisplayCacheProgress(){setTimeout(function(){window.msgs.innerHTML="Paulomon Exploit Installed Successfully!";},1000);setTimeout(function(){window.msgs.innerHTML="Re-open the browser to initialize exploit.";},3000);}window.applicationCache.addEventListener("progress",DLProgress,false);window.applicationCache.oncached=function(e){DisplayCacheProgress();};window.applicationCache.onupdateready=function(e){DisplayCacheProgress();};
+</script>
+<h1 id="msgs">Paulomon's Exploit V3 for FW 9.00</h1>
+<hr>
+<br>
+<button class="btn" onclick=load_goldhen2()> Exploit + GoldHEN 2.0b </button>
+<br>
+<br>
+<h1 style="font-size:20px;text-align:center;">Payloads</h1>
+<button class="btn" onclick=load_todex()> ToDex </button>
+<button class="btn" onclick=load_dumper()> Dumper </button>
+<button class="btn" onclick=load_app2usb()> App2USB </button>
+<button class="btn" onclick=load_dbackup()> DB Backup </button>
+<button class="btn" onclick=load_dbrestore()> DB Restore </button>
+<br>
+<button class="btn" onclick=load_enablebUpdates()> Enable Updates </button>
+<button class="btn" onclick=load_disableUpdates()> Disable Updates </button>
+<button class="btn" onclick=load_historyBlocker()> History Blocker </button>
+<button class="btn" onclick=load_kernelDump()> Kernel Dumper </button>
+<button class="btn" onclick=load_kernelClock()> Kernel Clock </button>
+<br>
+<button class="btn" onclick=load_moduleDump()> Module Dumper </button>
+<button class="btn" onclick=load_disbAslr()> Disable ASLR </button>
+<button class="btn" onclick=load_exitidu()> Exit IDU </button>
+<button class="btn" onclick=load_rifRen()> RIF Renamer </button>
+<button class="btn" onclick=load_permUart()> Permanent UART </button>
+<br>
+<button class="btn" onclick=load_fanthreshold()> Fan Threshold 60 &#176;C </button>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<script>
+function allset() {
+setTimeout(function(){document.location.href = 'index.html';},3000);
+window.msgs.innerHTML="<h1>"+LoadedMSG+"</h1>";
+}
+
+function load_goldhen2(){
+var script = document.createElement('script');script.src = "goldhen.js";document.getElementsByTagName('head')[0].appendChild(script);
+msgs.innerHTML="Initializing Exploit + GoldHEN v2.0b...";
+LoadedMSG="GoldHEN v2.0b loaded successfully!";
+setTimeout(poc,1500);
+}
+
+function load_todex(){
+var script = document.createElement('script');script.src = "todex.js";document.getElementsByTagName('head')[0].appendChild(script);
+msgs.innerHTML="Initializing Exploit + ToDex... Please Wait !!!"
+LoadedMSG="ToDex loaded successfully!";
+setTimeout(poc,1500);
+}
+
+function load_dumper(){
+var script = document.createElement('script');script.src = "dumper.js";document.getElementsByTagName('head')[0].appendChild(script);
+msgs.innerHTML="Initializing Exploit + Dumper... Please Wait !!!"
+LoadedMSG="Dumper loaded successfully!";
+setTimeout(poc,1500);
+}
+
+function load_ftp(){
+var script = document.createElement('script');script.src = "ftp.js";document.getElementsByTagName('head')[0].appendChild(script);
+msgs.innerHTML="Initializing Exploit + FTP... Please Wait !!!"
+LoadedMSG="FTP loaded successfully!";
+setTimeout(poc,1500);
+}
+
+function load_app2usb(){
+var script = document.createElement('script');script.src = "app2usb.js";document.getElementsByTagName('head')[0].appendChild(script);
+msgs.innerHTML="Initializing Exploit + App2USB... Please Wait !!!"
+LoadedMSG="App2USB loaded successfully!";
+setTimeout(poc,1500);
+}
+
+function load_dbackup(){
+var script = document.createElement('script');script.src = "backup.js";document.getElementsByTagName('head')[0].appendChild(script);
+msgs.innerHTML="Initializing Exploit + DB Backup... Please Wait !!!"
+LoadedMSG="DB Backup loaded successfully!";
+setTimeout(poc,1500);
+}
+
+function load_dbrestore(){
+var script = document.createElement('script');script.src = "restore.js";document.getElementsByTagName('head')[0].appendChild(script);
+msgs.innerHTML="Initializing Exploit + DB Restore... Please Wait !!!"
+LoadedMSG="DB Restore loaded successfully!";
+setTimeout(poc,1500);
+}
+
+function load_enablebUpdates(){
+var script = document.createElement('script');script.src = "enable-updates.js";document.getElementsByTagName('head')[0].appendChild(script);
+msgs.innerHTML="Initializing Exploit + Enable Updates... Please Wait !!!"
+LoadedMSG="Enable Updates loaded successfully!";
+setTimeout(poc,1500);
+}
+
+function load_disableUpdates(){
+var script = document.createElement('script');script.src = "disable-updates.js";document.getElementsByTagName('head')[0].appendChild(script);
+msgs.innerHTML="Initializing Exploit + Disable Updates... Please Wait !!!"
+LoadedMSG="Disable Updates loaded successfully!";
+setTimeout(poc,1500);
+}
+
+function load_historyBlocker(){
+var script = document.createElement('script');script.src = "history-blocker.js";document.getElementsByTagName('head')[0].appendChild(script);
+msgs.innerHTML="Initializing Exploit + History Blocker... Please Wait !!!"
+LoadedMSG="History Blocker loaded successfully!";
+setTimeout(poc,1500);
+}
+
+function load_kernelDump(){
+var script = document.createElement('script');script.src = "kernel-dumper.js";document.getElementsByTagName('head')[0].appendChild(script);
+msgs.innerHTML="Initializing Exploit + Kernel Dumper... Please Wait !!!"
+LoadedMSG="Kernel Dumper loaded successfully!";
+setTimeout(poc,1500);
+}
+
+function load_kernelClock(){
+var script = document.createElement('script');script.src = "kernel-clock.js";document.getElementsByTagName('head')[0].appendChild(script);
+msgs.innerHTML="Initializing Exploit + Kernel Clock... Please Wait !!!"
+LoadedMSG="Kernel Clock loaded successfully!";
+setTimeout(poc,1500);
+}
+
+function load_moduleDump(){
+var script = document.createElement('script');script.src = "module-dumper.js";document.getElementsByTagName('head')[0].appendChild(script);
+msgs.innerHTML="Initializing Exploit + Module Dumper... Please Wait !!!"
+LoadedMSG="Module Dumper loaded successfully!";
+setTimeout(poc,1500);
+}
+
+function load_disbAslr(){
+var script = document.createElement('script');script.src = "disable-aslr.js";document.getElementsByTagName('head')[0].appendChild(script);
+msgs.innerHTML="Initializing Exploit + Disable ASLR... Please Wait !!!"
+LoadedMSG="Disable ASLR loaded successfully!";
+setTimeout(poc,1500);
+}
+
+function load_exitidu(){
+var script = document.createElement('script');script.src = "exit-idu.js";document.getElementsByTagName('head')[0].appendChild(script);
+msgs.innerHTML="Initializing Exploit + Exit IDU... Please Wait !!!"
+LoadedMSG="Exit IDU loaded successfully!";
+setTimeout(poc,1500);
+}
+
+function load_rifRen(){
+var script = document.createElement('script');script.src = "rif-renamer.js";document.getElementsByTagName('head')[0].appendChild(script);
+msgs.innerHTML="Initializing Exploit + RIF Renamer... Please Wait !!!"
+LoadedMSG="RIF Renamer loaded successfully!";
+setTimeout(poc,1500);
+}
+
+function load_permUart(){
+var script = document.createElement('script');script.src = "permanent-uart.js";document.getElementsByTagName('head')[0].appendChild(script);
+msgs.innerHTML="Initializing Exploit + Permanent UART... Please Wait !!!"
+LoadedMSG="Permanent UART loaded successfully!";
+setTimeout(poc,1500);
+}
+
+function load_fanthreshold(){
+var script = document.createElement('script');script.src = "fan-threshold.js";document.getElementsByTagName('head')[0].appendChild(script);
+msgs.innerHTML="Initializing Exploit + Fan Threshold... Please Wait !!!"
+LoadedMSG="Fan Threshold loaded successfully!";
+setTimeout(poc,1500);
+}
+</script>
+</body>
+</html>
