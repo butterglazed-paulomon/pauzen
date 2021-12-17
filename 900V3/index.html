@@ -87,6 +87,7 @@ function DisplayCacheProgress(){setTimeout(function(){window.msgs.innerHTML="Pau
 <button class="btn" onclick=load_permUart()> Permanent UART </button>
 <br>
 <button class="btn" onclick=load_fanthreshold()> Fan Threshold 60 &#176;C </button>
+<button class="btn" onclick=load_webrte()> WebRTE </button>
 <br>
 <br>
 <br>
@@ -118,6 +119,13 @@ function load_todex(){
 var script = document.createElement('script');script.src = "todex.js";document.getElementsByTagName('head')[0].appendChild(script);
 msgs.innerHTML="Initializing Exploit + ToDex... Please Wait !!!"
 LoadedMSG="ToDex loaded successfully!";
+setTimeout(poc,1500);
+}
+
+function load_webrte(){
+var script = document.createElement('script');script.src = "webrte.js";document.getElementsByTagName('head')[0].appendChild(script);
+msgs.innerHTML="Initializing Exploit + WebRTE... Please Wait !!!"
+LoadedMSG="WebRTE loaded successfully!";
 setTimeout(poc,1500);
 }
 
