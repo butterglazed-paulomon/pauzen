@@ -1,5 +1,6 @@
 <html manifest="offlineCache.manifest">
 <link rel="shortcut icon" href="favicon.ico"/>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 	<style>
 		.button {
 		  background-color: #003263;  
@@ -51,191 +52,23 @@
 	<head>
 		<title>Paulomon's Exploit for FW 9.00</title>
 		<script>
-			function allset() {
-				document.getElementById("progress").innerHTML="Paulomon Exploit Complete!";
+			function loadcomplete() {
+				document.getElementById("progress").innerHTML=sessionStorage.Queue+"Paulomon Exploit Loaded Successfully!";
+				sessionStorage.Queue="";
 			}
 		</script>
 		<script src="int64.js"></script>
 		<script src="rop.js"></script>
 		<script src="kexploit.js"></script>
 		<script src="webkit.js"></script>
-		<script type="text/javascript" src="main.js"></script>
+		<script src="payloads.js"></script>
 	</head>
 	<body class="bg">
 		<script>
+			window.onload = function(e){if(sessionStorage.Queue==null){sessionStorage.Queue="";}else if(sessionStorage.Queue!=""){executependingqueue(sessionStorage.Queue);}};
 			window.applicationCache.ondownloading=function(){document.getElementById("progress").innerHTML="Installing Paulomon Exploit V2"};
 			window.applicationCache.onprogress=function(a){document.getElementById("progress").innerHTML="Installing: "+(Math.round(100*(a.loaded/a.total)))+"% Completed"};
 			window.applicationCache.oncached=function(){document.getElementById("progress").innerHTML="Paulomon Exploit Installed Successfully!";setTimeout(function(){document.getElementById("progress").innerHTML="Re-open the page to start the exploit."; }, 1500);};
-		</script>
-		<script>
-			function load_PS4Debug(){
-				progress.innerHTML="Sending the payload...";
-				PLfile = "payloads/ps4debug.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_permanentuart(){
-				progress.innerHTML="Sending the payload...";
-				PLfile = "payloads/permanentuart.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_App2USB(){
-				progress.innerHTML="Sending the payload...";
-				PLfile = "payloads/app2usb.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_BackupDB(){
-				progress.innerHTML="Sending the payload...";
-				PLfile = "payloads/backupdb.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_AppDumper(){
-				progress.innerHTML="Sending the payload...";
-				PLfile = "payloads/appdumper.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_KernelDumper(){
-				progress.innerHTML="Sending the payload...";
-				PLfile = "payloads/kerneldumper.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_ModuleDumper(){
-				progress.innerHTML="Sending the payload...";
-				PLfile = "payloads/mdumper.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_RestoreDB(){
-				progress.innerHTML="Sending the payload...";
-				PLfile = "payloads/restoredb.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_DisableASLR(){
-				progress.innerHTML="Sending the payload...";
-				PLfile = "payloads/disableaslr.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_DisableUpdates(){
-				progress.innerHTML="Sending the payload...";
-				PLfile = "payloads/disableupdates.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_EnableUpdates(){
-				progress.innerHTML="Sending the payload...";
-				PLfile = "payloads/enableupdates.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_EnableBrowser(){
-				progress.innerHTML="Sending the payload...";
-				PLfile = "payloads/enablebrowser.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_ExitIDU(){
-				progress.innerHTML="Sending the payload...";
-				PLfile = "payloads/exitidu.bin";
-				LoadviaGoldhen(PLfile);
-			}
-			  
-			function load_FTP(){
-				progress.innerHTML="Sending the payload...";
-				PLfile = "payloads/ftp.bin";
-				LoadviaGoldhen(PLfile);
-			}
-			  
-			function load_HistoryBlocker(){
-				progress.innerHTML="Sending the payload...";
-				PLfile = "payloads/historyblocker.bin";
-				LoadviaGoldhen(PLfile);
-			}
-			  
-			function load_RIFRenamer(){
-				progress.innerHTML="Sending the payload...";
-				PLfile = "payloads/rifrenamer.bin";
-				LoadviaGoldhen(PLfile);
-			}
-			  
-			function load_Orbis(){
-				progress.innerHTML="Sending the payload...";
-				PLfile = "payloads/Orbis-Toolbox-900.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_Linux(){
-				progress.innerHTML="Sending the payload...";
-				PLfile = "payloads/LinuxLoader.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_ToDex(){
-				progress.innerHTML="Sending the payload...";
-				PLfile = "payloads/ToDex.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_WebRTE(){
-				progress.innerHTML="Sending the payload...";
-				PLfile = "payloads/WebRTE.bin";
-				LoadviaGoldhen(PLfile);
-			}
-			
-			function load_Both(){
-				document.getElementById("progress").innerHTML="Executing Paulomon Exploit, please wait..."
-				setTimeout(poc, 1500);
-			}
-			
-			function load_payload(payload){
-				if(payload == "app2usb"){
-					load_App2USB();
-				}else if(payload == "backup"){
-					load_BackupDB();
-				}else if(payload == "disableupdates"){
-					load_DisableUpdates();
-				}else if(payload == "dumper"){
-					load_AppDumper();
-				}else if(payload == "enablebrowser"){
-					load_EnableBrowser();
-				}else if(payload == "enableupdates"){
-					load_EnableUpdates();
-				}else if(payload == "exitidu"){
-					load_ExitIDU();
-				}else if(payload == "ftp"){
-					load_FTP();
-				}else if(payload == "orbis"){
-					load_Orbis();
-				}else if(payload == "historyblocker"){
-					load_HistoryBlocker();
-				}else if(payload == "disableaslr"){
-					load_DisableASLR();
-				}else if(payload == "kerneldumper"){
-					load_KernelDumper();
-				}else if(payload == "linuxloader"){
-					load_Linux();
-				}else if(payload == "moduledumper"){
-					load_ModuleDumper();
-				}else if(payload == "permanentuart"){
-					load_permanentuart();
-				}else if(payload == "ps4debug"){
-					load_PS4Debug();
-				}else if(payload == "restore"){
-					load_RestoreDB();
-				}else if(payload == "rifrenamer"){
-					load_RIFRenamer();
-				}else if(payload == "todex"){
-					load_ToDex();
-				}else if(payload == "webrte"){
-					load_WebRTE();
-				}
-			}
 		</script>
 		<h1 id="progress" class="titlehead">Paulomon's Exploit for FW 9.00</h1><hr><br>
 		<input type="hidden" id="psip" value="localhost"/>
@@ -243,7 +76,7 @@
 			<table align="center" style="width:600px;margin-top:30px;">
 			<tr>
 			<td align="center" id="exploit" colspan="2">
-			<a href="#" class="button" onclick="load_Both(); return false" style="width:43%">Start Exploit -> GoldHEN 2.0b</a>
+			<a href="#" class="button" onclick="goldhen(); return false" style="width:43%">Exploit + GoldHEN 2.0b</a>
 			</td>
 			</tr>
 			<tr><td><br/></td></tr>
@@ -251,30 +84,42 @@
 			<td colspan="2" align="center"><hr><br></td>
 			</tr>
 			<tr>
-			<tr>
-			<td align="center" colspan="2"><a href="#" class="button" onclick="load_payload('disableupdates'); return false" style="width:43%">Disable Updates</a>
-			<a href="#" class="button" onclick="load_payload('enableupdates'); return false" style="width:43%">Enable Updates</a></td>
+			<td align="center" colspan="2"><a href="#" class="button" onclick="app2usb(); return false" style="width:43%">App2USB</a>
+			<a href="#" class="button" onclick="appdumper(); return false" style="width:43%">App Dumper</a></td>
 			</tr><tr><td><br/></td></tr>
 			<tr>
-			<td align="center" colspan="2"><a href="#" class="button" onclick="load_payload('moduledumper'); return false" style="width:43%"> Module Dumper</a>
-			<a href="#" class="button" onclick="load_payload('kerneldumper'); return false" style="width:43%">Kernel Dumper</a></td>
+			<td align="center" colspan="2"><a href="#" class="button" onclick="disableupdates();return false" style="width:43%">Disable Updates</a>
+			<a href="#" class="button" onclick="enableupdates(); return false" style="width:43%">Enable Updates</a></td>
 			</tr><tr><td><br/></td></tr>
 			<tr>
 			<tr>
-			<td align="center" colspan="2"><a href="#" class="button" onclick="load_payload('restore'); return false" style="width:43%">Restore</a>
-			<a href="#" class="button" onclick="load_payload('backup'); return false" style="width:43%">Backup</a></td>
+			<td align="center" colspan="2">
+			<a href="#" class="button" onclick="ftp(); return false" style="width:43%">FTP</a>
+			<a href="#" class="button" onclick="fanthreshold(temp.value); return false" style="width:43%;border-radius: 5px 0px 0px 5px;">Set Fan Threshold</a>
+			<select id="temp" style="height:42px;border-radius: 0px 5px 5px 0px;position: absolute;" class="button">
+			<option value="40">40°C</option><option value="41">41°C</option><option value="42">42°C</option><option value="43">43°C</option><option value="44">44°C</option><option value="45">45°C</option><option value="46">46°C</option><option value="47">47°C</option><option value="48">48°C</option><option value="49">49°C</option><option value="50">50°C</option><option value="51">51°C</option><option value="52">52°C</option><option value="53">53°C</option><option value="54">54°C</option><option value="55">55°C</option><option value="56">56°C</option><option value="57">57°C</option><option value="58">58°C</option><option value="59">59°C</option><option value="60">60°C</option><option value="61">61°C</option><option value="62">62°C</option><option value="63">63°C</option><option value="64">64°C</option><option value="65">65°C</option><option value="66">66°C</option><option value="67">67°C</option><option value="68">68°C</option><option value="69">69°C</option><option value="70" selected>70°C</option><option value="71">71°C</option><option value="72">72°C</option><option value="73">73°C</option><option value="74">74°C</option><option value="75">75°C</option><option value="76">76°C</option><option value="77">77°C</option><option value="78">78°C</option><option value="79">79°C</option>
+			</select>
+			</td>
 			</tr><tr><td><br/></td></tr>
 			<tr>
-			<td align="center" colspan="2"><a href="#" class="button" onclick="load_payload('exitidu'); return false" style="width:43%">Exit IDU</a>
-			<a href="#" class="button" onclick="load_payload('disableaslr'); return false" style="width:43%">Disable ASLR</a></td>
+			<td align="center" colspan="3"><a href="#" class="button" onclick="backup(); return false" style="width:29%">DB BackUp</a>
+			<a href="#" class="button" onclick="restore(); return false" style="width:29%">DB Restore</a>
+			<a href="#" class="button" onclick="rifrenamer(); return false" style="width:29%">RIF Renamer</a></td>
 			</tr><tr><td><br/></td></tr>
 			<tr>
-			<td align="center" colspan="2"><a href="#" class="button" onclick="load_payload('todex'); return false" style="width:43%">To-DEX</a>
-			<a href="#" class="button" onclick="load_payload('permanentuart'); return false" style="width:43%">Permanent UART</a></td>
+			<td align="center" colspan="3"><a href="#" class="button" onclick="moduledumper(); return false" style="width:29%">Module Dumper</a>
+			<a href="#" class="button" onclick="kerneldumper(); return false" style="width:29%">Kernel Dumper</a>
+			<a href="#" class="button" onclick="kernelclock(); return false" style="width:29%">Kernel Clock</a></td>
 			</tr><tr><td><br/></td></tr>
 			<tr>
-			<td align="center" colspan="2"><a href="#" class="button" onclick="load_payload('enablebrowser'); return false" style="width:43%">Enable Browser</a>
-			<a href="#" class="button" onclick="load_payload('historyblocker'); return false" style="width:43%">History Blocker</a></td>
+			<td align="center" colspan="3"><a href="#" class="button" onclick="ps4debug(); return false" style="width:29%">PS4 Debug</a>
+			<a href="#" class="button" onclick="webrte(); return false" style="width:29%">WebRTE</a>
+			<a href="#" class="button" onclick="permanentuart(); return false" style="width:29%">Permanent UART</a></td>
+			</tr><tr><td><br/></td></tr>
+			<tr>
+			<td align="center" colspan="3"><a href="#" class="button" onclick="exitidu(); return false" style="width:29%">Exit IDU</a>
+			<a href="#" class="button" onclick="todex(); return false" style="width:29%">To-DEX</a>
+			<a href="#" class="button" onclick="disableaslr(); return false" style="width:29%">Disable ASLR</a></td>
 			</tr>
 			</table></div>
 	</body>

@@ -1,26 +1,11 @@
 CACHE MANIFEST
-# v1.0 : 14-12-2021 - @tinkeringwithPaulomon
+# v1.0 : 18-12-2021
  
 index.html
-index1.png
 bg2.gif
+favicon.ico
 int64.js
 kexploit.js
-main.js
 rop.js
 webkit.js
-payloads/app2usb.bin
-payloads/backupdb.bin
-payloads/disableaslr.bin
-payloads/disableupdates.bin
-payloads/enablebrowser.bin
-payloads/enableupdates.bin
-payloads/exitidu.bin
-payloads/ftp.bin
-payloads/historyblocker.bin
-payloads/kerneldumper.bin
-payloads/mdumper.bin
-payloads/permanentuart.bin
-payloads/restoredb.bin
-payloads/rifrenamer.bin
-payloads/ToDex.bin
+payloads.js
