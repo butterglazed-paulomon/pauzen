@@ -10,11 +10,10 @@ enable-updates.js
 exit-idu.js
 fan-threshold.js
 ftp.js
-goldhen_2.0b.js
-goldhen_2.0b2.js
+goldhen.js
 history-blocker.js
-bg2.gif
 favicon.ico
+bg2.gif
 index.html
 int64.js
 kernel-clock.js
