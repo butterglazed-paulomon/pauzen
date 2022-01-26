@@ -1,5 +1,5 @@
 CACHE MANIFEST 
-# @tinkeringwithPaulomon 
+# tinkeringwithPaulomon
 
 app2usb.bin
 backup.bin
@@ -14,7 +14,7 @@ fan-threshold.js
 favicon.ico
 frontend.js
 ftp.bin
-goldhen_2.0b.bin
+goldhen_2.0b3.bin
 goldhen_2.0b2.bin
 history-blocker.bin
 index.html
