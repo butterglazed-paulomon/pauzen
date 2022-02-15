@@ -1,8 +1,8 @@
 <!DOCTYPE html><html manifest="paulomonpico.cache">
 <head>
 <script>
-        function DLProgress(e){Percent=(Math.round(e.loaded / e.total * 100));window.msgs.innerHTML="Installing Offline Cache: " + Percent + "%"};
-        function DisplayCacheProgress(){setTimeout(function(){window.msgs.innerHTML="Cache Installed Successfully";},1000);setTimeout(function(){window.msgs.innerHTML="Turn Off the Internet & Reopen!!!";},3000);}window.applicationCache.addEventListener("progress",DLProgress,false);window.applicationCache.oncached=function(e){DisplayCacheProgress();};window.applicationCache.onupdateready=function(e){DisplayCacheProgress();};
+        function DLProgress(e){Percent=(Math.round(e.loaded / e.total * 100));window.msgs.innerHTML="Installing Paulomon Auto-Exploit Pico: " + Percent + "%"};
+        function DisplayCacheProgress(){setTimeout(function(){window.msgs.innerHTML="Installed!";},1000);setTimeout(function(){window.msgs.innerHTML="Turn Off the Internet & Reopen!!!";},3000);}window.applicationCache.addEventListener("progress",DLProgress,false);window.applicationCache.oncached=function(e){DisplayCacheProgress();};window.applicationCache.onupdateready=function(e){DisplayCacheProgress();};
 </script>
 <title>Paulomon's Auto Exploit Pico</title>
 <meta name=viewport content="width=device-width, initial-scale=1">
@@ -32,7 +32,7 @@ function injectPayload() //single payload inject for both conditions/removed nee
 	chain.syscall(74, payload_loader, bufLen, (0x1 | 0x2 | 0x4));
 	var pthread = p.malloc(0x10);
 	chain.call(libKernelBase.add32(OFFSET_lk_pthread_create), pthread, 0x0, payload_loader, payload_buffer);
-	showMessage("Payload Loaded.");
+	showMessage("Paulomon Auto-Exploit Successful.");
 }
 
 function sleep(ms) {
@@ -919,7 +919,7 @@ var trigger_spray = function () {
     //Trigger OOB
 
     alert("Plug-in the USB drive now!\n\nOnly press OK if a notification pops.\nRemove the USB drive after pressing OK.\n\@tinkeringwithPaulomon");
-    showMessage("Loading ExFatHax...");
+    showMessage("Loading Filesystem Exploit...");
 
 
     sleep(3000).then(() => {
