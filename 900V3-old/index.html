@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html manifest="cache.manifest"><head>
+<link rel="shortcut icon" href="favicon.ico"/>
+<title>Paulomon's Exploit V3 for FW 9.00</title>
+<link rel="stylesheet" href="style.css">
+<script src="int64.js"></script>
+<script src="rop.js"></script>
+<script src="kexploit.js"></script>
+<script src="webkit.js"></script>
+</head>
+<body>
+<script>
+function DLProgress(e){Percent=(Math.round(e.loaded / e.total * 100));window.msgs.innerHTML="Installing Paulomon Exploit: " + Percent + "%";}
+function DisplayCacheProgress(){setTimeout(function(){window.msgs.innerHTML="Paulomon Exploit Installed Successfully!";},1000);setTimeout(function(){window.msgs.innerHTML="Re-open the browser to activate exploit.";},3000);}window.applicationCache.addEventListener("progress",DLProgress,false);window.applicationCache.oncached=function(e){DisplayCacheProgress();};window.applicationCache.onupdateready=function(e){DisplayCacheProgress();};
+</script>
+<h1 id="msgs">Paulomon's Exploit V3 for FW 9.00</h1>
+<hr>
+<br>
+<h1 style="font-size:20px;color:white;">Main Payloads</h1>
+<button class="btn" onclick=load_goldhen21()> GoldHEN 2.1.1 </button>
+<button class="btn" onclick=load_binloader()> Bin Loader </button>
+<br>
+<h1 style="font-size:20px;text-align:center;">Payloads</h1>
+<button class="btn" onclick=load_todex()> ToDex </button>
+<button class="btn" onclick=load_dumper()> App-Dumper </button>
+<button class="btn" onclick=load_ftp()> FTP </button>
+<button class="btn" onclick=load_app2usb()> App2USB </button>
+<br>
+<button class="btn" onclick=load_dbackup()> DB Backup </button>
+<button class="btn" onclick=load_dbrestore()> DB Restore </button>
+<button class="btn" onclick=load_enablebUpdates()> Enable Updates </button>
+<button class="btn" onclick=load_disableUpdates()> Disable Updates </button>
+<br>
+<button class="btn" onclick=load_historyBlocker()> History Blocker </button>
+<button class="btn" onclick=load_kernelDump()> Kernel Dumper </button>
+<button class="btn" onclick=load_moduleDump()> Module Dumper </button>
+<button class="btn" onclick=load_ps4debug()> PS4 Debug </button>
+<br>
+<button class="btn" onclick=load_disbAslr()> Disable ASLR </button>
+<button class="btn" onclick=load_exitidu()> Exit IDU </button>
+<button class="btn" onclick=load_rifRen()> RIF Renamer </button>
+<button class="btn" onclick=load_permUart()> Permanent UART </button>
+<br>
+<button class="btn" onclick=load_webrte()> WebRTE </button>
+<a href="https://butterglazed-paulomon.github.io/pauzen/paulomontrainer/index.html"><button class="btn"> Paulomon Trainer Offline </button></a>
+<br>
+<a href="webactivator.html"><button class="btn" style="margin-left: 75px;"> Web-Activator </button></a>
+<button class="btn" onclick=load_toolbox()> Orbis-Toolbox </button>
+<button class="btn" onclick=load_fanthreshold()> Fan Threshold </button><select id="tempC"></select>&#176;C
+<br><br><br>
+<script>
+for(var i=40; i<=79; i++){
+    var select = document.getElementById("tempC");
+    var option = document.createElement("OPTION");
+	select.options.add(option);
+	option.text = i;
+	option.value = i;
+}
+tempC.value=60;
+</script>
+<script>
+function load_payload(){
+var req = new XMLHttpRequest();
+req.responseType = "arraybuffer";
+req.open("GET",PLfile,true);
+req.send();
+req.onreadystatechange=function(){
+if (req.readyState == 4){
+  var tmp0 = new Uint8Array(req.response.byteLength);
+  tmp0.set(new Uint8Array(req.response), 0);
+  var payload = new Uint32Array(tmp0);
+  sendPL = payload;
+  setTimeout(poc,1500);
+  }
+};
+}
+
+function allset(){
+setTimeout(location.reload,1000);
+alert("Exploit loaded! Press OK on the memory error.");
+msgs.innerHTML= LoadedMSG;
+}
+
+function awaitpl(){
+setTimeout(location.reload,1000);
+alert("Exploit Initialized... You can now forward a payload to port 9020");
+msgs.innerHTML="...";
+}
+
+function load_goldhen21(){
+msgs.innerHTML="Initializing Exploit + GoldHEN v2.1.1..";
+LoadedMSG="GoldHEN v2.1.1 Loaded...";
+PLfile = "goldhen_21.bin";
+run_jb = "payload";
+load_payload();
+}
+
+
+function load_binloader(){
+msgs.innerHTML="Initializing Exploit + Bin Loader...";
+run_jb = "binloader";
+setTimeout(poc,1500);
+}
+
+function load_todex(){
+msgs.innerHTML="Initializing Exploit + ToDex..."
+LoadedMSG="ToDex Loaded...";
+PLfile = "todex.bin";
+run_jb = "payload";
+load_payload();
+}
+
+function load_dumper(){
+msgs.innerHTML="Initializing Exploit + App-Dumper..."
+LoadedMSG="App-Dumper Loaded...";
+PLfile = "dumper.bin";
+run_jb = "payload";
+load_payload();
+}
+
+function load_ftp(){
+msgs.innerHTML="Initializing Exploit + FTP..."
+LoadedMSG="FTP Loaded...";
+PLfile = "ftp.bin";
+run_jb = "payload";
+load_payload();
+}
+
+function load_app2usb(){
+msgs.innerHTML="Initializing Exploit + App2USB..."
+LoadedMSG="App2USB Loaded...";
+PLfile = "app2usb.bin";
+run_jb = "payload";
+load_payload();
+}
+
+function load_dbackup(){
+msgs.innerHTML="Initializing Exploit + DB Backup..."
+LoadedMSG="DB Backup Loaded...";
+PLfile = "backup.bin";
+run_jb = "payload";
+load_payload();
+}
+
+function load_dbrestore(){
+msgs.innerHTML="Initializing Exploit + DB Restore..."
+LoadedMSG="DB Restore Loaded...";
+PLfile = "restore.bin";
+run_jb = "payload";
+load_payload();
+}
+
+function load_enablebUpdates(){
+msgs.innerHTML="Initializing Exploit + Enable Updates..."
+LoadedMSG="Enable Updates Loaded...";
+PLfile = "enable-updates.bin";
+run_jb = "payload";
+load_payload();
+}
+
+function load_disableUpdates(){
+msgs.innerHTML="Initializing Exploit + Disable Updates..."
+LoadedMSG="Disable Updates Loaded...";
+PLfile = "disable-updates.bin";
+run_jb = "payload";
+load_payload();
+}
+
+function load_historyBlocker(){
+msgs.innerHTML="Initializing Exploit + History Blocker..."
+LoadedMSG="History Blocker Loaded...";
+PLfile = "history-blocker.bin";
+run_jb = "payload";
+load_payload();
+}
+
+function load_kernelDump(){
+msgs.innerHTML="Initializing Exploit + Kernel Dumper..."
+LoadedMSG="Kernel Dumper Loaded...";
+PLfile = "kernel-dumper.bin";
+run_jb = "payload";
+load_payload();
+}
+
+function load_moduleDump(){
+msgs.innerHTML="Initializing Exploit + Module Dumper..."
+LoadedMSG="Module Dumper Loaded...";
+PLfile = "module-dumper.bin";
+run_jb = "payload";
+load_payload();
+}
+
+function load_ps4debug(){
+msgs.innerHTML="Initializing Exploit + PS4 Debug..."
+LoadedMSG="PS4 Debug Loaded...";
+PLfile = "ps4debug.bin";
+run_jb = "payload";
+load_payload();
+}
+
+function load_disbAslr(){
+msgs.innerHTML="Initializing Exploit + Disable ASLR..."
+LoadedMSG="Disable ASLR Loaded...";
+PLfile = "disable-aslr.bin";
+run_jb = "payload";
+load_payload();
+}
+
+function load_exitidu(){
+msgs.innerHTML="Initializing Exploit + Exit IDU..."
+LoadedMSG="Exit IDU Loaded...";
+PLfile = "exit-idu.bin";
+run_jb = "payload";
+load_payload();
+}
+
+function load_rifRen(){
+msgs.innerHTML="Initializing Exploit + RIF Renamer..."
+LoadedMSG="RIF Renamer Loaded...";
+PLfile = "rif-renamer.bin";
+run_jb = "payload";
+load_payload();
+}
+
+function load_permUart(){
+msgs.innerHTML="Initializing Exploit + Permanent UART..."
+LoadedMSG="Permanent UART Loaded...";
+PLfile = "permanent-uart.bin";
+run_jb = "payload";
+load_payload();
+}
+
+function load_webrte(){
+msgs.innerHTML="Initializing Exploit + WebRTE..."
+LoadedMSG="WebRTE Loaded...";
+PLfile = "webrte.bin";
+run_jb = "payload";
+load_payload();
+}
+
+function load_toolbox(){
+msgs.innerHTML="Initializing Exploit + Orbis-Toolbox..."
+LoadedMSG="Orbis-Toolbox Loaded...";
+PLfile = "Orbis-Toolbox-900.bin";
+run_jb = "payload";
+load_payload();
+}
+
+function load_fanthreshold(){
+var script = document.createElement('script');script.src = "fan-threshold.js";localStorage.setItem('fanthreshold', tempC.value);document.getElementsByTagName('head')[0].appendChild(script);
+msgs.innerHTML="Initializing Exploit + Fan Threshold..."
+LoadedMSG="Fan Threshold Loaded...";
+run_jb = "payload";
+setTimeout(poc,1500);
+}
+</script>
+</body>
+</html>
