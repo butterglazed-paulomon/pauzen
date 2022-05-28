@@ -92,6 +92,8 @@
 
         function tinapay()
         {
+       		var audio = document.getElementById("audio");
+        	audio.play();
             var g1=parseFloat(document.getElementById('ww').value*0.25);
             var g2=parseFloat(document.getElementById('pt').value*0.40);
             var g3=parseFloat(document.getElementById('exam').value*0.30);
@@ -99,8 +101,7 @@
             var total=g1+g2+g3+g4;
             var display=document.getElementById('outputDiv');
             display.innerHTML='Congrats, your grade is: ' +total;
-            var audio = document.getElementById("audio");
-        	audio.play();
+            
         }
     </script>
 <audio loop id="audio" src="wat.mp3"></audio>
