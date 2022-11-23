@@ -848,7 +848,7 @@
 	<body id="BodyID" class="ui-helper-hidden" style="overflow: hidden;height:auto;visibility:hidden;">
 		<div class="pre-loader preloader ui-helper-hidden"><div class="container-busy-icon"><div class="busy-icon"></div></div></div>
 		<div id="title" class="ui-helper-hidden main-title ui-widget-header ui-corner-all" style="-webkit-border-bottom-left-radius:0px !important;-webkit-border-bottom-right-radius:0px !important;">
-			<h1 style="text-align:left;height:30px;max-height:30px;">PlayStation 3 Toolset <span class='header-small-text'>by @bguerville</span></h1>
+			<h1 style="text-align:left;height:30px;max-height:30px;">PlayStation 3 Toolset @tinkeringwithPaulomon<span class='header-small-text'>by @bguerville hosted by PauZen exploit site</span></h1>
 			<h4 id='ps3details' class="ps3-details">Initializing PS3 Toolset v1.2 <span class='header-small-text'>build 004</span><br/>Please Wait</h4>
 			<form action="#">
 				<select id="themes" >
