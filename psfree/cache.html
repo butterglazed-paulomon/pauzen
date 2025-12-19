@@ -1,23 +1,112 @@
 <html manifest="psfree_lapse.cache">
 <head>
-<title>PSFree-Lapse Exploit For PS4 9.00</title>
-<link rel="shortcut icon" href="favicon.ico"></link>
-<style>
-body{background-image: url("bg3.jpg");background-repeat: no-repeat;background-size:70%;background-position: center;background-color: white;
-color:black;font-size:20px;text-align:center;margin:0;overflow:hidden;}
-.info{overflow: hidden;position: fixed;position: absolute;top: 45%;left: 50%;font-size: 25px;font-family: sans-serif;color: black;transform: translate(-50%, -50%);}
-</style>
-<script>
-history.replaceState(null,null,'index.html');var histlength=history.length;history.go(-histlength);
-function DLProgress(e){Percent=(Math.round(e.loaded / e.total * 100));msgs.innerHTML="Installing Offline Cache ... " + Percent + "%"};
-function DisplayCacheProgress(){
-setTimeout(function(){msgs.innerHTML="Cache Installed Successfully";},2000);
-setTimeout(function(){location.reload();},3000);
-}
-window.applicationCache.addEventListener("progress",DLProgress,false);window.applicationCache.oncached=function(e){DisplayCacheProgress();};window.applicationCache.onupdateready=function(e){DisplayCacheProgress();};
-</script>
+    <title>PSFree-Lapse Exploit For PS4 9.00</title>
+    <style>
+        body {
+            background-color: #0b0b0b;
+            color: white;
+            font-family: sans-serif;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            width: 80%;
+        }
+
+        /* Graphic/Image Styling */
+        #graphic-container {
+            margin-bottom: 30px;
+            transition: transform 0.5s ease;
+        }
+
+        #graphic-container img {
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+            filter: drop-shadow(0 0 5px #222);
+        }
+
+        /* Progress Text */
+        #msgs {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+
+        /* Loading Bar Background */
+        .progress-bg {
+            width: 100%;
+            height: 5px;
+            background: #222;
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        /* Actual Progress Fill */
+        #progress-fill {
+            width: 0%;
+            height: 100%;
+            background: #00ff00;
+            transition: width 0.3s ease;
+        }
+    </style>
+
+    <script>
+        // Clean up history so user can't "back" into the cache page
+        history.replaceState(null, null, 'index.html');
+        
+        function DLProgress(e) {
+            if (e.total) {
+                var Percent = Math.round(e.loaded / e.total * 100);
+                document.getElementById("msgs").innerHTML = "Installing Offline Cache: " + Percent + "%";
+                document.getElementById("progress-fill").style.width = Percent + "%";
+            }
+        }
+
+        function DisplayCacheProgress() {
+            document.getElementById("msgs").innerHTML = "Cache Installed Successfully!";
+            document.getElementById("progress-fill").style.width = "100%";
+            document.getElementById("progress-fill").style.backgroundColor = "#fff";
+            
+            setTimeout(function(){ location.reload(); }, 2000);
+        }
+
+        function CacheError(e) {
+            document.getElementById("msgs").innerHTML = "Error: Check your .cache file paths!";
+            document.getElementById("msgs").style.color = "red";
+            document.getElementById("progress-fill").style.backgroundColor = "red";
+        }
+
+        // Event Listeners
+        window.applicationCache.addEventListener("progress", DLProgress, false);
+        window.applicationCache.oncached = function(e) { DisplayCacheProgress(); };
+        window.applicationCache.onupdateready = function(e) { DisplayCacheProgress(); };
+        window.applicationCache.onerror = function(e) { CacheError(e); };
+    </script>
 </head>
-<body style=overflow:hidden>
-<div id=msgs class=info style='-webkit-font-feature-settings:"tnum";font-feature-settings:"tnum";'></div>
+<body>
+
+    <div class="container">
+        <div id="graphic-container">
+            <img src="rop/kexploit.png" alt="PSFree Logo">
+        </div>
+
+        <div id="msgs">Initializing...</div>
+
+        <div class="progress-bg">
+            <div id="progress-fill"></div>
+        </div>
+    </div>
+
 </body>
 </html>
