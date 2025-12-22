@@ -1,80 +1,154 @@
+<!DOCTYPE html>
 <html manifest="offlineCache.manifest">
-<link rel="shortcut icon" href="favicon.ico"/>
 <head>
-<title>Paulomon's Exploit Site</title>
-<meta charset="utf-8"/>
-<style>
-.button {
-  background-color: #003263;  
-  border-radius: 5px;
-  color: white;
-  padding: .5em;
-  text-decoration: none;
-  height:100%;
-  display:inline-table;
-  font-family: system-ui;
-}
+    <title>Paulomon's Exploit Site</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <style>
+        :root {
+            --primary-color: #00d4ff; /* Cyan accent to match the circuit board cat */
+            --glass-bg: rgba(0, 0, 0, 0.75); /* Dark see-through background */
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+            --hover-glow: 0 0 15px rgba(0, 212, 255, 0.5);
+        }
 
-.button:focus,
-.button:hover {
-  background-color: #007bff;
-  color: White;
-}
+        body {
+            background-image: url("bg3.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-.titlehead {
-  background-color: #003263;  
-  border-radius: 5px;
-  color: white;
-  padding: .5em;
-  text-decoration: none;
-  text-align: center;
-  margin-top: -10px;
-  margin-bottom: -10px;
-  font-family: system-ui;
-}
+        /* Main Glass Panel */
+        .container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px); /* Blurs the background behind the box */
+            -webkit-backdrop-filter: blur(10px);
+            border: var(--glass-border);
+            border-radius: 16px;
+            padding: 40px;
+            width: 90%;
+            max-width: 900px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            margin: 20px;
+        }
 
-.titlehead:focus,
-.titlehead:hover {
-  background-color: #007bff;
-  color: White;
-}
+        h1.main-title {
+            text-align: center;
+            margin-bottom: 5px;
+            font-size: 2.2em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
 
-.bg {
-  /* The image used */
-  background-image: url("bg3.jpg");
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-</style></head>
-<body class="bg">
-<h1 id="progress" class="titlehead">PauZen Exploit Site for NSwitch/PS3/PS4 // January 10, 2025</h1><hr><br>
-<div>
-<table align="center" style="width:800px;margin-top:5px;">
-<tr>
-<td align="center" colspan="1" >
-<!--h1 style='font-size:30px; font-family: sans-serif; text-align:center;text-shadow: 4px 4px 4px black;color:white'>PS5 Exploits</h1>
-<a href="PS5V1/index.html" class="button" style="width:29%">Paulomon's ported Exploit for PS5 (specterDev release)</a-->
-<!--br-->
-<h1 style='font-size:30px; font-family: sans-serif; text-align:center;text-shadow: 4px 4px 4px black;color:white'>PS4 Exploits</h1>
-<a href="esp32/index.html" class="button" style="width:29%">Paulomon's ESP32-S2 Web Installer</a>
-<a href="esp32dev/index.html" class="button" style="width:29%">Paulomon's ESP32-S2 Web Installer with PSFree Webkit</a>
-<br>
-<br>
-<a href="505/index.html" class="button" style="width:29%">Paulomon's Full Exploit for FW5.05</a>
-<a href="900V4/index.html" class="button" style="width:29%">Paulomon's Auto GoldHEN for FW9.00</a>
-<br>
-<h1 style='font-size:30px;font-family: sans-serif;text-align:center;text-shadow: 4px 4px 4px black;color:white'>PS3 Exploit</h1>
-<a href="PS3/index.html" class="button" style="width:29%">Paulomon's Exploit and Tools for PS3</a>
-<a href="PS3/Paulomon's_HEN_Helper.pkg" class="button" style="width:29%">Paulomon's HEN Helper PKG (download on USB flash drive)</a>
-<h1 style='font-size:30px; font-family: sans-serif; text-align:center;text-shadow: 4px 4px 4px black;color:white'>Nintendo Switch Mods</h1>
-<a href="switch/index.html" class="button" style="width:29%">Paulomon's Mods for Nintendo Switch CFW</a>
-<br>
-<h1 style='font-size:30px; font-family: sans-serif; text-align:center;text-shadow: 4px 4px 4px black;color:white'>List of Games</h1>
-<a href="games.html" class="button" style="width:29%">Paulomon's List of Available Games</a>
-</td>
-</tr>
-</table></div>
+        p.subtitle {
+            text-align: center;
+            color: #ccc;
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-size: 0.9em;
+        }
+
+        /* Section Headers */
+        h2.section-header {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Grid Layout for Buttons */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        /* Button Styling */
+        a.button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 15px;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        a.button:hover {
+            background: var(--primary-color);
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: var(--hover-glow);
+            font-weight: bold;
+        }
+
+        /* Footer area */
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.8em;
+            color: #888;
+        }
+
+        /* Responsive Tweaks */
+        @media (max-width: 600px) {
+            .container { padding: 20px; width: 95%; }
+            h1.main-title { font-size: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="main-title">PauZen Exploit Site</h1>
+        <p class="subtitle">NSwitch / PS3 / PS4 • Updated: December 22, 2025</p>
+
+        <h2 class="section-header">PlayStation 4 Mods</h2>
+        <div class="grid-container">
+            <a href="psfree/index.html" class="button">NO USB PSFree Exploit (FW 9.00)</a>
+            <a href="esp32/index.html" class="button">ESP32-S2 Web Installer</a>
+            <a href="esp32dev/index.html" class="button">ESP32-S2 + PSFree Webkit</a>
+            <a href="505/index.html" class="button">Full Exploit (FW 5.05)</a>
+            <a href="900V4/index.html" class="button">Auto GoldHEN (FW 9.00)</a>
+        </div>
+
+        <h2 class="section-header">PlayStation 3</h2>
+        <div class="grid-container">
+            <a href="PS3/index.html" class="button">Exploits & Tools</a>
+            <a href="PS3/Paulomon's_HEN_Helper.pkg" class="button">HEN Helper PKG (Download)</a>
+        </div>
+
+        <h2 class="section-header">Nintendo Switch & Library</h2>
+        <div class="grid-container">
+            <a href="switch/index.html" class="button">Switch CFW Mods</a>
+            <a href="games.html" class="button">List of Available Games</a>
+        </div>
+
+        <div class="footer">
+            @tinkeringwithPaulomon www.facebook.com/tinkeringwithPaulomon<br>
+            <span style="opacity: 0.5;">Use at your own risk.</span>
+        </div>
+    </div>
+
 </body>
 </html>
