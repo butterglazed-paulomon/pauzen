@@ -859,4 +859,11 @@ async function main() {
     // path to your script that will use the exploit
     import('./lapse.mjs');
 }
-main();
+main().catch((err) => {
+    log("\nFATAL ERROR: WebKit exploit failed!");
+    log("Message: " + err);
+    log("Please reload the page to try again.");
+    
+    // Auto-reload Stage 1 failures as they are often transient
+    setTimeout(() => { location.reload(); }, 4000);
+});

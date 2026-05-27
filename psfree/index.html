@@ -78,42 +78,25 @@
         <script>
             // 1. CONFIGURATION
             // Time in milliseconds to wait before reloading if the exploit hangs
-            const TIMEOUT_MS = 15000; 
+            const TIMEOUT_MS = 30000; 
 
             // 2. ERROR HANDLER (Reload on JS Crash)
-            window.onerror = function() {
-                // If a JS error happens, reload immediately
-                console.log("Error detected, reloading...");
-                window.location.reload();
+            window.onerror = function(msg, url, line) {
+                document.getElementById("console").innerHTML += "\n[!] JS Error: " + msg + "\nReloading in 3s...";
+                setTimeout(function() { window.location.reload(); }, 3000);
                 return true; 
             };
 
             // 3. WATCHDOG TIMER (Reload on Hang)
-            // If the browser freezes or nothing happens for 15 seconds, reload.
-            // Note: If the exploit succeeds and you want to STOP the reload, 
-            // your exploit code needs to call clearTimeout(failTimeout);
-            const failTimeout = setTimeout(function() {
+            // If the browser freezes or nothing happens for 30 seconds, reload.
+            window.failTimeout = setTimeout(function() {
                 document.getElementById("console").innerHTML += "\n[!] Watchdog: Exploit took too long. Reloading...";
                 window.location.reload();
             }, TIMEOUT_MS);
 
-            // 4. AUTO-START EXPLOIT
-            // Waits for the page to fully load, then tries to trigger the exploit
+            // 4. AUTO-START NOTICE
             window.addEventListener('load', function() {
-                document.getElementById("console").innerHTML += "[+] Auto-starting exploit...\n";
-                
-                // Attempt to call the most common function names for PS4 9.00 exploits
-                setTimeout(() => {
-                    if (typeof run === 'function') {
-                        run();
-                    } else if (typeof exploit === 'function') {
-                        exploit();
-                    } else if (typeof load_exploit === 'function') {
-                        load_exploit();
-                    } else if (typeof start === 'function') {
-                        start();
-                    }
-                }, 500); // Small delay to ensure modules are ready
+                document.getElementById("console").innerHTML += "[+] Auto-starting exploit chain...\n";
             });
         </script>
     </body>

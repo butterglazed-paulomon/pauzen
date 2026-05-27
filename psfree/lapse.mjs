@@ -1861,12 +1861,33 @@ function PayloadLoader(Pfile)
 }
 
 kexploit().then(() => {
+    // Clear watchdog timer on success
+    if (window.failTimeout) {
+        clearTimeout(window.failTimeout);
+        window.failTimeout = null;
+    }
 
-//Load ABC fix as a regular Payload
-setTimeout(PayloadLoader("aio_patches.bin"),500);
-log("AIO Fixes Applied.!");
-//Load GoldHEN :)
-setTimeout(PayloadLoader("goldhen.bin"),500);
-log("GoldHEN Loaded.!");
+    // Load ABC fix as a regular Payload
+    setTimeout(() => {
+        PayloadLoader("aio_patches.bin");
+        log("AIO Fixes Applied!");
+    }, 500);
 
-})
+    // Load GoldHEN :)
+    setTimeout(() => {
+        PayloadLoader("goldhen.bin");
+        log("GoldHEN Loaded!");
+        log("\n--------------------------------------------------");
+        log("SUCCESS: Exploit chain completed successfully.");
+        log("You can now close the browser (PS Button).");
+        log("--------------------------------------------------");
+    }, 1000);
+}).catch((err) => {
+    log("\n--------------------------------------------------");
+    log("ERROR: Exploit failed during Kernel Stage.");
+    log("Details: " + err);
+    log("The system will autoreload in 4s to try again.");
+    log("--------------------------------------------------");
+    
+    setTimeout(() => { location.reload(); }, 4000);
+});
