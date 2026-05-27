@@ -26,26 +26,45 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 // We log the line and column numbers as well since some exceptions (like
 // SyntaxError) do not show it in the stack trace.
 
+const console_element = document.getElementById('console');
+
+function log_to_terminal(msg) {
+    if (console_element) {
+        console_element.append(msg + '\n');
+        console_element.scrollTop = console_element.scrollHeight;
+    }
+}
+
 addEventListener('unhandledrejection', event => {
-    const reason = event.reason;
-    alert(
-        'Unhandled rejection\n'
+    const reason = event.reason || 'Unknown rejection';
+    const errorMsg = 'Unhandled rejection\n'
         + `${reason}\n`
-        + `${reason.sourceURL}:${reason.line}:${reason.column}\n`
-        + `${reason.stack}`
-    );
-    location.reload();
+        + (reason.sourceURL ? `${reason.sourceURL}:${reason.line}:${reason.column}\n` : '')
+        + (reason.stack || '');
+    
+    console.error(errorMsg);
+    log_to_terminal(errorMsg);
+
+    // Short delay so the user can see the failure in the terminal before reload
+    setTimeout(() => {
+        location.reload();
+    }, 2000);
 });
 
 addEventListener('error', event => {
-    const reason = event.error;
-    alert(
-        'Unhandled error\n'
+    const reason = event.error || 'Unknown error';
+    const errorMsg = 'Unhandled error\n'
         + `${reason}\n`
-        + `${reason.sourceURL}:${reason.line}:${reason.column}\n`
-        + `${reason.stack}`
-    );
-    location.reload();
+        + (reason.sourceURL ? `${reason.sourceURL}:${reason.line}:${reason.column}\n` : '')
+        + (reason.stack || '');
+
+    console.error(errorMsg);
+    log_to_terminal(errorMsg);
+
+    // Short delay so the user can see the failure in the terminal before reload
+    setTimeout(() => {
+        location.reload();
+    }, 2000);
     return true;
 });
 

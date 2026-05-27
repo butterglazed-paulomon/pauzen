@@ -428,12 +428,6 @@ async function make_rdr(view) {
         gc();
         await sleep();
         str_wait++;
-
-        if (str_wait > 128) {
-            log('String spray timed out, reloading...');
-            location.reload();
-            return;
-        }
     }
     log(`JSString reused memory at loop: ${str_wait}`);
 
@@ -866,4 +860,3 @@ async function main() {
     import('./lapse.mjs');
 }
 main();
-n();
