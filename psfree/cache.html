@@ -1,0 +1,25 @@
+<html manifest="psfree_lapse.cache">
+<head>
+<title>PSFree-Lapse Exploit For PS4 9.00</title>
+<link rel="shortcut icon" href="favicon.ico"></link>
+<style>
+body{background-image: url("rop/bg3.jpg");background-repeat: no-repeat;background-size:cover;background-position: center;background-color: black;
+color:white;font-size:20px;text-align:center;margin:0;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;}
+.info{font-size: 25px;font-family: sans-serif;color: white;margin-top: 20px;}
+#logo {width: 200px;}
+</style>
+<script>
+history.replaceState(null,null,'index.html');var histlength=history.length;history.go(-histlength);
+function DLProgress(e){Percent=(Math.round(e.loaded / e.total * 100));msgs.innerHTML="Installing Offline Cache ... " + Percent + "%"};
+function DisplayCacheProgress(){
+setTimeout(function(){msgs.innerHTML="Cache Installed Successfully";},2000);
+setTimeout(function(){location.reload();},3000);
+}
+window.applicationCache.addEventListener("progress",DLProgress,false);window.applicationCache.oncached=function(e){DisplayCacheProgress();};window.applicationCache.onupdateready=function(e){DisplayCacheProgress();};
+</script>
+</head>
+<body style=overflow:hidden>
+<img id="logo" src="rop/kexploit.png">
+<div id=msgs class=info style='-webkit-font-feature-settings:"tnum";font-feature-settings:"tnum";'></div>
+</body>
+</html>

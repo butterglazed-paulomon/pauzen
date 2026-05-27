@@ -1,132 +1,149 @@
-<!DOCTYPE html>
-<html lang="en" manifest="PSFree.manifest">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PSFree Enhanced</title>
-    <link rel="stylesheet" id="main-stylesheet" href="">
-    <script>
-    var savedTheme = localStorage.getItem('theme') || "index";
-    if (savedTheme) {
-        document.getElementById('main-stylesheet').setAttribute('href', './includes/' + savedTheme + '.css');
-    }
-    </script>
-</head>
+<!-- Copyright (C) 2023-2025 anonymous
 
-<body class="bg-gray-900 text-white">
-    <main class="mainContainer">
-        <!-- Initial Screen -->
-        <section id="initial-screen" class="relative flex flex-col items-center justify-center min-h-screen p-6 transition-opacity duration-700 opacity-100">
-            <header class="absolute top-6 left-6 flex space-x-3 rtl:space-x-reverse z-10">
-                <button onclick="settingsPopup()" id="settings-btn" class="p-2 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors text-white/80 hover:text-white" title="Settings">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16"> <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/> <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/> </svg>
-                </button>
-                <button onclick="aboutPopup()" id="about-btn" class="p-2 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors text-white/80 hover:text-white" title="About">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" fill="currentColor" viewBox="0 0 512 512"><path d="M256,56C145.72,56,56,145.72,56,256s89.72,200,200,200,200-89.72,200-200S366.28,56,256,56Zm0,82a26,26,0,1,1-26,26A26,26,0,0,1,256,138Zm64,226H200V332h44V244H212V212h64V332h44Z"/></svg>
-                </button>
-            </header>
+This file is part of PSFree.
 
-            <button onclick="jailbreak()">
-                <div id="ps-logo-container" class="relative group cursor-pointer flex flex-col items-center justify-center p-8 rounded-full bg-white/5 hover:bg-white/10 transition-all duration-300 transform hover:scale-102">
-                    <img src="src/kexploit.png" class="w-32 h-32 object-contain logo-glowing">
-                </div>
-            </button>
-            <h3 class="text-white/70 text-lg mt-4" id="click-to-start-text">Click to start</h3>
-            <button id="stopAutoJb" class="hidden mt-2 bg-red-600 hover:bg-red-700 p-3 rounded font-semibold transition-colors" onclick="clearInterval(autoJbInterval);">Stop Auto Jailbreak</button>
-            <p id="PS4FW" class="text-white/70 text-lg mt-4 mb-6">-</p>
+PSFree is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
 
-            <button id="scrollDown" class="absolute bottom-10 animate-bounce cursor-pointer" onclick="ui.exploitScreen.scrollIntoView({block: 'end'});">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" fill="currentColor" viewBox="0 0 512 512"><polyline points="112 184 256 328 400 184"></polyline></svg>
-            </button>
-        </section>
+PSFree is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
 
-        <!-- Exploit section Redesigned -->
-        <section id="exploit-main-screen" class="w-full min-h-screen bg-gray-900 text-white p-6 transition-opacity duration-700">
-            <div class="container mx-auto h-full">
-                <div id="exploitContainer" class="grid md:grid-cols-2 gap-8 h-full">
-                    <!-- Left side: Logo -->
-                    <div id="logo-panel" class="flex items-center justify-center h-full">
-                        <img src="src/kexploit.png" class="logo-glowing max-w-full max-h-[80%]">
-                    </div>
-
-                    <!-- Right side: Terminal Output -->
-                    <div id="terminal-panel" class="bg-gray-800 p-6 rounded-lg flex flex-col h-full overflow-hidden">
-                        <div class="flex justify-between items-center mb-4">
-                            <h2 class="text-xl font-semibold">Terminal Output</h2>
-                            <button id="successRate" class="text-sm font-semibold hover:text-blue-400" onclick="clearStats()">Success rate: -</button>
-                        </div>
-                        <div id="DebugConsole" class="flex-grow bg-black p-4 rounded-lg overflow-y-auto mb-4 text-xs font-mono">
-                            <pre id="console"><center>--</center></pre>
-                        </div>
-
-                        <!-- Payloads integrated -->
-                        <div id="payloadsSection" class="hidden bg-gray-700/40 p-4 rounded-lg flex flex-col">
-                            <h3 id="payloads-section-title" class="text-lg font-semibold mb-2">Payloads</h3>
-                            <div id="payloadsGrid" class="grid grid-cols-2 gap-2 overflow-y-auto max-h-[200px]"></div>
-                        </div>
-
-                        <div id="warningBox" class="bg-yellow-600/10 border border-yellow-500/30 rounded-lg p-4 mt-auto">
-                            <p class="text-xs text-yellow-200/80">Close all apps before running. Multiple attempts may be required.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Popups -->
-    <div class="fixed inset-0 bg-black/50 z-50 flex backdrop-blur-sm items-center justify-center p-4 hidden" id="about-popup-overlay">
-        <div id="about-popup" class="bg-gray-800 p-6 rounded-lg shadow-xl w-full max-w-md">
-            <h2 class="text-2xl font-bold mb-4">About PSFree</h2>
-            <p class="text-white/80">Version: 1.5.1</p>
-            <p class="text-white/80 mt-2">A web interface to jailbreak your PS4 using PSFree chained with Lapse kernel exploit</p>
-            <button onclick="aboutPopup()" class="mt-6 w-full bg-blue-600 hover:bg-blue-700 p-3 rounded font-semibold transition-colors">Close</button>
-        </div>
-    </div>
-
-    <div class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden" id="settings-popup-overlay">
-        <div id="settings-popup" class="bg-gray-800 p-6 rounded-lg shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
-            <h2 class="text-2xl font-bold mb-4">PSFree settings</h2>
-            <div class="space-y-4">
-                <div id="chooseGoldHEN">
-                    <h3 class="text-lg font-semibold mb-2">GoldHEN versions</h3>
-                    <div class="radio-group space-y-2">
-                        <label class="flex items-center"><input type="radio" name="goldhen" value="GHv2.4b18.9" onchange="setGoldHENVer(this.value)"> <p class="ml-2">v2.4b18.9 (Latest)</p></label>
-                        <details><summary>Older versions</summary>
-                            <label class="flex items-center"><input type="radio" name="goldhen" value="GHv2.4b18.8" onchange="setGoldHENVer(this.value)"> <p class="ml-2">v2.4b18.8</p></label>
-                        </details>
-                    </div>
-                </div>
-                <div id="chooseTheme">
-                    <h3 class="text-lg font-semibold mb-2">Theme</h3>
-                    <div class="flex gap-4">
-                        <label class="flex items-center"><input type="radio" name="theme" value="index" onchange="setTheme(this.value)"> <p class="ml-2">Default</p></label>
-                        <label class="flex items-center"><input type="radio" name="theme" value="vibrant" onchange="setTheme(this.value)"> <p class="ml-2">Vibrant</p></label>
-                    </div>
-                </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-2">Options</h3>
-                    <label class="flex items-center"><input type="checkbox" id="autoJbRetry" onclick="setAutoJbRetry(this.checked)"> <p class="ml-2">Auto-Retry Jailbreak</p></label>
-                </div>
-            </div>
-            <button onclick="settingsPopup()" class="mt-6 w-full bg-blue-600 hover:bg-blue-700 p-3 rounded font-semibold transition-colors">Close</button>
-        </div>
-    </div>
-
-    <script src='./includes/js/index.js'></script>
-    <script src='./includes/js/bundle.js'></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            loadSettings();
-            // check for applicationCache
-            if (window.applicationCache) {
-                window.applicationCache.addEventListener("progress", DLProgress, false);
-                window.applicationCache.oncached = function (e) { DisplayCacheProgress(); };
-                window.applicationCache.onupdateready = function (e) { DisplayCacheProgress(); };
-            } else {
-                console.warn("This browser does not support save in cache!");
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Paulomon's PSFree for 9.00</title>
+        <style>
+            @font-face {
+                font-family: 'logging';
+                src: url('fonts/LiberationMono-Regular.ttf');
             }
-        });
-    </script>
-</body>
+            body {
+                background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("rop/bg3.jpg");
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+                background-color: black;
+                color: white;
+                font-family: sans-serif;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-around;
+                height: 100vh;
+                overflow: hidden;
+            }
+            #left-panel {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                flex: 1;
+                z-index: 1;
+            }
+            #hero-container {
+                position: relative;
+                width: 400px;
+                height: 400px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+            #hero-aura {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                background: radial-gradient(circle, rgba(57, 255, 20, 0.4) 0%, rgba(57, 255, 20, 0) 70%);
+                animation: rotate-aura 4s linear infinite;
+                filter: blur(20px);
+            }
+            @keyframes rotate-aura {
+                0% { transform: rotate(0deg) scale(1); }
+                50% { transform: rotate(180deg) scale(1.1); }
+                100% { transform: rotate(360deg) scale(1); }
+            }
+            #hero {
+                width: 350px;
+                z-index: 2;
+                position: relative;
+            }
+            #info-text {
+                text-align: center;
+                font-size: 1.2em;
+            }
+            #console-container {
+                flex: 1;
+                height: 80vh;
+                margin: 0 40px;
+                display: flex;
+                flex-direction: column;
+                z-index: 1;
+            }
+            #console {
+                font-family: 'logging';
+                background: rgba(0, 20, 0, 0.85);
+                color: #39FF14; /* Neon Green */
+                padding: 20px;
+                border: 1px solid #39FF14;
+                border-radius: 10px;
+                height: 100%;
+                overflow-y: auto;
+                text-align: left;
+                white-space: pre-wrap;
+                box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+                font-size: 14px;
+                scrollbar-width: thin;
+                scrollbar-color: #39FF14 rgba(0, 0, 0, 0.5);
+            }
+            #console::-webkit-scrollbar {
+                width: 8px;
+            }
+            #console::-webkit-scrollbar-track {
+                background: rgba(0, 0, 0, 0.5);
+            }
+            #console::-webkit-scrollbar-thumb {
+                background-color: #39FF14;
+                border-radius: 10px;
+            }
+            a {
+                color: #00aeef;
+            }
+        </style>
+        <script>
+        if (window.applicationCache.status=='0')
+        {
+          window.location.replace("cache.html");
+        }
+        </script>
+    </head>
+    <body>
+        <div id="left-panel">
+            <div id="hero-container">
+                <div id="hero-aura"></div>
+                <img id="hero" src="rop/kexploit.png" alt="PSFree Logo">
+            </div>
+            <div id="info-text">
+                @tinkeringwithPaulomon
+                <br>
+                <br>
+                Visit <a href='www.fb.com/tinkeringwithPaulomon'>Mga Pagkukutingting ni Paulomon</a>
+				<br>
+				Credits to the PS4 Scene for this exploit.
+            </div>
+        </div>
+        <div id="console-container">
+            <pre id='console'></pre>
+        </div>
+    </body>
+    <script type='module' src='./alert.mjs'></script>
 </html>
