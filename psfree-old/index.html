@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>@tinkeringwithPaulomon 9.0 PSFree</title>
+        <style>
+            @font-face {
+                font-family: 'logging';
+                src: url('fonts/LiberationMono-Regular.ttf');
+            }
+            body {
+                background-color: #000;
+                color: #fff;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                height: 100vh;
+                overflow: hidden;
+            }
+            #main-container {
+                display: flex;
+                flex: 1;
+                padding: 20px;
+                gap: 20px;
+            }
+            #graphic-side {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-right: 1px solid #333;
+            }
+            #graphic-side img {
+                max-width: 80%;
+                filter: drop-shadow(0 0 10px #00ff00); /* Adds a neon glow */
+            }
+            #console-side {
+                flex: 1;
+                overflow-y: auto;
+            }
+            #console {
+                font-family: 'logging';
+                color: #00ff00; /* Traditional green terminal text */
+                font-size: 14px;
+            }
+            .header-text {
+                text-align: center;
+                padding: 20px;
+                font-size: 2em;
+                font-family: Helvetica;
+                background: #111;
+            }
+        </style>
+        <script>
+        if (window.applicationCache.status=='0')
+        {
+          window.location.replace("cache.html");
+        }
+        </script>
+    </head>
+    <body>
+        <div class="header-text">
+            @tinkeringwithPaulomon PSFree 9.0
+        </div>
+        <div id="main-container">
+            <div id="graphic-side">
+                <img src="rop/kexploit.png" alt="Exploit Graphic">
+            </div>
+            <div id="console-side">
+                <pre id='console'></pre>
+            </div>
+        <div style="padding: 10px; font-size: 1.5em; color: #555;">
+            Visit us <a href="https://fb.com/tinkeringwithPaulomon" style="color: #888;">Mga Pagkukutingting ni Paulomon</a>.
+        </div>
+        </div>
+
+        <script type='module' src='./alert.mjs'></script>
+
+        <script>
+            // 1. CONFIGURATION
+            // Time in milliseconds to wait before reloading if the exploit hangs
+            const TIMEOUT_MS = 30000; 
+
+            // 2. ERROR HANDLER (Reload on JS Crash)
+            window.onerror = function(msg, url, line) {
+                document.getElementById("console").innerHTML += "\n[!] JS Error: " + msg + "\nReloading in 3s...";
+                setTimeout(function() { window.location.reload(); }, 3000);
+                return true; 
+            };
+
+            // 3. WATCHDOG TIMER (Reload on Hang)
+            // If the browser freezes or nothing happens for 30 seconds, reload.
+            window.failTimeout = setTimeout(function() {
+                document.getElementById("console").innerHTML += "\n[!] Watchdog: Exploit took too long. Reloading...";
+                window.location.reload();
+            }, TIMEOUT_MS);
+
+            // 4. AUTO-START NOTICE
+            window.addEventListener('load', function() {
+                document.getElementById("console").innerHTML += "[+] Auto-starting exploit chain...\n";
+            });
+        </script>
+    </body>
+</html>
