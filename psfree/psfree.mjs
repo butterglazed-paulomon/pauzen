@@ -579,12 +579,6 @@ async function leak_code_block(reader, bt_size) {
         find_cb_loop++;
         gc();
         await sleep();
-
-        if (find_cb_loop > 16) {
-            log('CodeBlock leak timed out, reloading...');
-            location.reload();
-            return;
-        }
     }
     log(`loop ${find_cb_loop} winning_off: ${hex(winning_off)}`);
     log(`winning_idx: ${hex(winning_idx)} false positives: ${fp}`);
@@ -872,3 +866,4 @@ async function main() {
     import('./lapse.mjs');
 }
 main();
+n();
