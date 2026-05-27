@@ -28,24 +28,30 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 addEventListener('unhandledrejection', event => {
     const reason = event.reason;
-    alert(
+    console.error(
         'Unhandled rejection\n'
         + `${reason}\n`
         + `${reason.sourceURL}:${reason.line}:${reason.column}\n`
         + `${reason.stack}`
     );
-    location.reload();
+    // Short delay so the user can see the failure in the terminal before reload
+    setTimeout(() => {
+        location.reload();
+    }, 2000);
 });
 
 addEventListener('error', event => {
     const reason = event.error;
-    alert(
+    console.error(
         'Unhandled error\n'
         + `${reason}\n`
         + `${reason.sourceURL}:${reason.line}:${reason.column}\n`
         + `${reason.stack}`
     );
-    location.reload();
+    // Short delay so the user can see the failure in the terminal before reload
+    setTimeout(() => {
+        location.reload();
+    }, 2000);
     return true;
 });
 
