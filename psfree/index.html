@@ -34,20 +34,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 font-family: sans-serif;
                 margin: 0;
                 padding: 0;
-                overflow: hidden;
-                height: 100vh;
-            }
-            #ui-wrapper {
                 display: flex;
                 flex-direction: row;
                 align-items: center;
                 justify-content: space-around;
-                height: 100%;
-                width: 100%;
-                position: absolute;
-                top: 0;
-                left: 0;
-                z-index: 10;
+                height: 100vh;
+                overflow: hidden;
             }
             #left-panel {
                 display: flex;
@@ -72,12 +64,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 height: 100%;
                 border-radius: 50%;
                 background: radial-gradient(circle, rgba(57, 255, 20, 0.4) 0%, rgba(57, 255, 20, 0) 70%);
-                filter: blur(20px);
-                display: none; /* Hidden during exploit to save CPU */
-            }
-            .animating #hero-aura {
-                display: block;
                 animation: rotate-aura 4s linear infinite;
+                filter: blur(20px);
             }
             @keyframes rotate-aura {
                 0% { transform: rotate(0deg) scale(1); }
@@ -100,32 +88,39 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 display: flex;
                 flex-direction: column;
                 z-index: 1;
-                min-width: 0;
+                min-width: 0; /* Critical for preventing flex items from overflowing parent */
                 overflow: hidden;
             }
             #console {
                 font-family: 'logging';
                 background: rgba(0, 20, 0, 0.85);
-                color: #39FF14;
+                color: #39FF14; /* Neon Green */
                 padding: 20px;
                 border: 1px solid #39FF14;
                 border-radius: 10px;
                 height: 100%;
                 overflow-y: auto;
-                overflow-x: hidden;
+                overflow-x: hidden; /* Prevent horizontal shift */
                 text-align: left;
                 white-space: pre-wrap;
-                word-break: break-all;
+                word-break: break-all; /* Ensure long hex dumps don't push width */
                 box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
                 font-size: 14px;
                 scrollbar-width: thin;
                 scrollbar-color: #39FF14 rgba(0, 0, 0, 0.5);
             }
-            /* Hide exploit elements visually but keep them functional */
-            input, a#bar {
-                position: absolute;
-                left: -1000px;
-                top: -1000px;
+            #console::-webkit-scrollbar {
+                width: 8px;
+            }
+            #console::-webkit-scrollbar-track {
+                background: rgba(0, 0, 0, 0.5);
+            }
+            #console::-webkit-scrollbar-thumb {
+                background-color: #39FF14;
+                border-radius: 10px;
+            }
+            a {
+                color: #00aeef;
             }
         </style>
         <script>
@@ -133,62 +128,25 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         {
           window.location.replace("cache.html");
         }
-
-        window.onload = () => {
-            const ua = navigator.userAgent;
-            const isPS4 = ua.indexOf('PlayStation 4') !== -1;
-            const statusBar = document.getElementById('status-bar');
-            
-            if (!isPS4) {
-                const overlay = document.getElementById('unsupported-overlay');
-                const browserInfo = document.getElementById('browser-info');
-                browserInfo.innerText = ua;
-                overlay.style.display = 'flex';
-                return;
-            }
-
-            statusBar.style.display = 'block';
-            statusBar.innerText = 'Exploit ongoing, do not close the browser and wait.';
-        };
-
-        function setExploitDone() {
-            const statusBar = document.getElementById('status-bar');
-            if (statusBar) {
-                statusBar.innerText = 'Exploit done, you may close the browser.';
-                statusBar.style.color = '#00aeef';
-                statusBar.style.borderColor = '#00aeef';
-            }
-            document.body.classList.add('animating');
-        }
         </script>
     </head>
     <body>
-        <div id="unsupported-overlay">
-            <h1>You look lost.</h1>
-            <p>This page is for PS4 browsers only.</p>
-            <p>You are on: <br><span id="browser-info" style="color: #39FF14;"></span></p>
+        <div id="left-panel">
+            <div id="hero-container">
+                <div id="hero-aura"></div>
+                <img id="hero" src="rop/kexploit.png" alt="PSFree Logo">
+            </div>
+            <div id="info-text">
+                @tinkeringwithPaulomon
+                <br>
+                <br>
+                Visit <a href='www.fb.com/tinkeringwithPaulomon'>Mga Pagkukutingting ni Paulomon</a>
+				<br>
+				Credits to the PS4 Scene for this exploit.
+            </div>
         </div>
-
-        <div id="status-bar"></div>
-
-        <div id="ui-wrapper">
-            <div id="left-panel">
-                <div id="hero-container">
-                    <div id="hero-aura"></div>
-                    <img id="hero" src="rop/kexploit.png" alt="PSFree Logo">
-                </div>
-                <div id="info-text">
-                    @tinkeringwithPaulomon
-                    <br>
-                    <br>
-                    Visit <a href='www.fb.com/tinkeringwithPaulomon'>Mga Pagkukutingting ni Paulomon</a>
-                    <br>
-                    Credits to the PS4 Scene for this exploit.
-                </div>
-            </div>
-            <div id="console-container">
-                <pre id='console'></pre>
-            </div>
+        <div id="console-container">
+            <pre id='console'></pre>
         </div>
     </body>
     <script type='module' src='./alert.mjs'></script>
