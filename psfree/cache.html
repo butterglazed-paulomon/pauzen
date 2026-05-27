@@ -3,23 +3,49 @@
 <title>PSFree-Lapse Exploit For PS4 9.00</title>
 <link rel="shortcut icon" href="favicon.ico"></link>
 <style>
-body{background-image: url("rop/bg3.jpg");background-repeat: no-repeat;background-size:cover;background-position: center;background-color: black;
+body{background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("rop/bg3.jpg");background-repeat: no-repeat;background-size:cover;background-position: center;background-color: black;
 color:white;font-size:20px;text-align:center;margin:0;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;}
-.info{font-size: 25px;font-family: sans-serif;color: white;margin-top: 20px;}
+.info{font-size: 25px;font-family: sans-serif;color: white;margin-top: 20px; margin-bottom: 20px;}
 #logo {width: 200px;}
+#loader-container {
+    width: 50%;
+    height: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #39FF14;
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
+}
+#loader-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #39FF14;
+    box-shadow: 0 0 15px #39FF14;
+    transition: width 0.3s ease;
+}
 </style>
 <script>
 history.replaceState(null,null,'index.html');var histlength=history.length;history.go(-histlength);
-function DLProgress(e){Percent=(Math.round(e.loaded / e.total * 100));msgs.innerHTML="Installing Offline Cache ... " + Percent + "%"};
+function DLProgress(e){
+    Percent=(Math.round(e.loaded / e.total * 100));
+    document.getElementById('msgs').innerHTML="Installing Exploit ... " + Percent + "%";
+    document.getElementById('loader-bar').style.width = Percent + '%';
+};
 function DisplayCacheProgress(){
-setTimeout(function(){msgs.innerHTML="Cache Installed Successfully";},2000);
-setTimeout(function(){location.reload();},3000);
+    setTimeout(function(){
+        document.getElementById('msgs').innerHTML="Exploit Installed Successfully";
+        document.getElementById('loader-bar').style.width = '100%';
+    },2000);
+    setTimeout(function(){location.reload();},3000);
 }
 window.applicationCache.addEventListener("progress",DLProgress,false);window.applicationCache.oncached=function(e){DisplayCacheProgress();};window.applicationCache.onupdateready=function(e){DisplayCacheProgress();};
 </script>
 </head>
 <body style=overflow:hidden>
 <img id="logo" src="rop/kexploit.png">
-<div id=msgs class=info style='-webkit-font-feature-settings:"tnum";font-feature-settings:"tnum";'></div>
+<div id="msgs" class="info" style='-webkit-font-feature-settings:"tnum";font-feature-settings:"tnum";'>Installing Exploit ... 0%</div>
+<div id="loader-container">
+    <div id="loader-bar"></div>
+</div>
 </body>
 </html>
