@@ -118,6 +118,14 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             loadSettings();
+            // check for applicationCache
+            if (window.applicationCache) {
+                window.applicationCache.addEventListener("progress", DLProgress, false);
+                window.applicationCache.oncached = function (e) { DisplayCacheProgress(); };
+                window.applicationCache.onupdateready = function (e) { DisplayCacheProgress(); };
+            } else {
+                console.warn("This browser does not support save in cache!");
+            }
         });
     </script>
 </body>
