@@ -27,12 +27,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 // SyntaxError) do not show it in the stack trace.
 
 addEventListener('unhandledrejection', event => {
-    const reason = event.reason;
+    const reason = event.reason || 'Unknown rejection';
     console.error(
         'Unhandled rejection\n'
         + `${reason}\n`
-        + `${reason.sourceURL}:${reason.line}:${reason.column}\n`
-        + `${reason.stack}`
+        + (reason.sourceURL ? `${reason.sourceURL}:${reason.line}:${reason.column}\n` : '')
+        + (reason.stack || '')
     );
     // Short delay so the user can see the failure in the terminal before reload
     setTimeout(() => {
@@ -41,12 +41,12 @@ addEventListener('unhandledrejection', event => {
 });
 
 addEventListener('error', event => {
-    const reason = event.error;
+    const reason = event.error || 'Unknown error';
     console.error(
         'Unhandled error\n'
         + `${reason}\n`
-        + `${reason.sourceURL}:${reason.line}:${reason.column}\n`
-        + `${reason.stack}`
+        + (reason.sourceURL ? `${reason.sourceURL}:${reason.line}:${reason.column}\n` : '')
+        + (reason.stack || '')
     );
     // Short delay so the user can see the failure in the terminal before reload
     setTimeout(() => {
