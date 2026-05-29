@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html manifest="offlineCache.manifest">
+
 <head>
     <title>Paulomon's Exploit Site</title>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="favicon.ico"/>
+    <link rel="shortcut icon" href="favicon.ico" />
     <style>
         :root {
-            --primary-color: #00d4ff; /* Cyan accent to match the circuit board cat */
-            --glass-bg: rgba(0, 0, 0, 0.75); /* Dark see-through background */
+            --primary-color: #00d4ff;
+            /* Cyan accent to match the circuit board cat */
+            --glass-bg: rgba(0, 0, 0, 0.75);
+            /* Dark see-through background */
             --glass-border: 1px solid rgba(255, 255, 255, 0.1);
             --hover-glow: 0 0 15px rgba(0, 212, 255, 0.5);
         }
@@ -32,7 +35,8 @@
         /* Main Glass Panel */
         .container {
             background: var(--glass-bg);
-            backdrop-filter: blur(10px); /* Blurs the background behind the box */
+            backdrop-filter: blur(10px);
+            /* Blurs the background behind the box */
             -webkit-backdrop-filter: blur(10px);
             border: var(--glass-border);
             border-radius: 16px;
@@ -49,7 +53,7 @@
             font-size: 2.2em;
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
         }
 
         p.subtitle {
@@ -112,24 +116,31 @@
 
         /* Responsive Tweaks */
         @media (max-width: 600px) {
-            .container { padding: 20px; width: 95%; }
-            h1.main-title { font-size: 1.5em; }
+            .container {
+                padding: 20px;
+                width: 95%;
+            }
+
+            h1.main-title {
+                font-size: 1.5em;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
         <h1 class="main-title">PauZen Exploit Site</h1>
-        <p class="subtitle">NSwitch / PS3 / PS4 • Updated: December 22, 2025</p>
+        <p class="subtitle">NSwitch / PS3 / PS4 • Updated: May 29, 2026</p>
 
         <h2 class="section-header">PlayStation 4 Mods</h2>
         <div class="grid-container">
-            <a href="psfree/index.html" class="button">NO USB PSFree Exploit (FW 9.00)</a>
+            <a href="https://butterglazed-paulomon.github.io/psfree/" class="button">NO USB PSFree Exploit (FW 9.00)</a>
             <a href="esp32/index.html" class="button">ESP32-S2 Web Installer</a>
             <a href="esp32dev/index.html" class="button">ESP32-S2 + PSFree Webkit</a>
             <a href="505/index.html" class="button">Full Exploit (FW 5.05)</a>
-            <a href="900V4/index.html" class="button">Auto GoldHEN (FW 9.00)</a>
+            <a href="900V4/index.html" class="button">Auto GoldHEN with USB (FW 9.00)</a>
         </div>
 
         <h2 class="section-header">PlayStation 3</h2>
@@ -151,4 +162,5 @@
     </div>
 
 </body>
+
 </html>
