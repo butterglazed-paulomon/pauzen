@@ -102,6 +102,16 @@
         var barEl = document.getElementById('bar');
         var appCache = window.applicationCache;
         var finished = false;
+        var inactivityTimer = null;
+        var INACTIVITY_MS = 60000;  // reset on each progress event
+        var ABSOLUTE_MS   = 300000; // hard ceiling regardless of activity
+
+        function resetInactivityTimer() {
+            clearTimeout(inactivityTimer);
+            inactivityTimer = setTimeout(function () {
+                goFallback('No download activity for 60s — retrying next visit...');
+            }, INACTIVITY_MS);
+        }
 
         function goToIndex(message) {
             if (finished) return;
@@ -134,9 +144,11 @@
             appCache.addEventListener('downloading', function () {
                 statusEl.textContent = 'Downloading exploit assets...';
                 barEl.style.width = '5%';
+                resetInactivityTimer();
             }, false);
 
             appCache.addEventListener('progress', function (e) {
+                resetInactivityTimer();
                 if (e.lengthComputable && e.total > 0) {
                     var percent = Math.round((e.loaded / e.total) * 100);
                     statusEl.textContent = 'Installing exploit... ' + percent + '% (' + e.loaded + '/' + e.total + ')';
@@ -184,10 +196,10 @@
             }
         }
 
-        // Safety fallback: if caching hangs for 45s, redirect without marking ready so next visit retries
+        // Absolute ceiling: bail out after 5 min regardless of activity
         setTimeout(function () {
-            goFallback('Cache timed out — retrying next visit...');
-        }, 45000);
+            goFallback('Cache timed out (5 min) — retrying next visit...');
+        }, ABSOLUTE_MS);
     </script>
 </body>
 
