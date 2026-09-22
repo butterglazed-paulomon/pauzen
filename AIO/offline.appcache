@@ -1,6 +1,6 @@
 CACHE MANIFEST
 # PSFree AIO Unified Cache Manifest
-# Generated on 2026-09-22 13:48:50
+# Generated on 2026-09-22 13:54:23
 
 CACHE:
 index.html
@@ -10,33 +10,9 @@ about.html
 fonts/LiberationMono-Regular.ttf
 fonts/README.txt
 includes/assets/kexploit.png
-includes/caches/cache10xx.html
-includes/caches/cache11xx.html
-includes/caches/cache12xx.html
-includes/caches/cache1300.html
-includes/caches/cache1302-1352.html
-includes/caches/cache67x.html
-includes/caches/cache7-8xx.html
-includes/caches/cache9xx.html
-includes/caches/cachePayloads.html
-includes/css/cache.css
-includes/js/HENs.js
-includes/js/autoJbRetry.js
-includes/js/cache.js
 includes/js/checkFw.js
-includes/js/design.js
-includes/js/events.js
-includes/js/goldhenScanner.js
-includes/js/iframe_cache.js
-includes/js/index-legacy.js
-includes/js/index.js
-includes/js/language.js
 includes/js/loader.js
-includes/js/payloadsHandler.js
-includes/js/payloadsList.js
 includes/js/utilities.js
-includes/js/languages/en.js
-includes/payloads/payloads.js
 includes/payloads/GoldHEN/goldhen_v2.4b18.12.bin
 src/badhoist/672entrypoint.js
 src/badhoist/672kexploit.js
