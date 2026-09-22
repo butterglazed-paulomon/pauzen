@@ -3,13 +3,13 @@
  * 1. Detect firmware from client signals (navigator.userAgent)
  * 2. Select appropriate exploit chain and payload
  * 3. Verify / trigger offline caching
- * 4. Auto-run and auto-retry on failure
+ * 4. Auto-run and auto-retry on failure with Stage Watchdog
  */
 
 (function () {
     'use strict';
 
-    // Global state
+    // Global UI elements
     var consoleEl = document.getElementById('console');
     var platformBadge = document.getElementById('platform-badge');
     var fwBadge = document.getElementById('fw-badge');
@@ -18,22 +18,15 @@
     var payloadBadge = document.getElementById('payload-badge');
     var attemptBadge = document.getElementById('attempt-badge');
     var statusBadge = document.getElementById('status-badge');
+    var tipBox = document.getElementById('ps4-tip-box');
 
-    // Setup custom and global loggers
-    window.log = function (message, color) {
-        if (!consoleEl) consoleEl = document.getElementById('console');
-        if (!consoleEl) return;
-        var span = document.createElement('span');
-        span.textContent = message + '\n';
-        if (color) {
-            span.style.color = color;
-        } else {
-            span.style.color = '#39ff14';
-        }
-        consoleEl.appendChild(span);
-        consoleEl.scrollTop = consoleEl.scrollHeight;
-    };
-    window.print = window.log;
+    // Watchdog configuration
+    var stageWatchdogTimer = null;
+    var totalWatchdogTimer = null;
+    var STAGE_TIMEOUT_MS = 18000;   // 18s without stage/log activity triggers stall detection
+    var TOTAL_TIMEOUT_MS = 60000;   // 60s total ceiling for exploit execution
+    var exploitSucceeded = false;
+    var reloading = false;
 
     // Helper to update status badge
     function setStatus(text, type) {
@@ -41,6 +34,76 @@
         statusBadge.textContent = text;
         statusBadge.className = 'badge ' + (type || '');
     }
+
+    // Helper to show PS4 browser reset tip
+    function showBrowserTip(isSevere) {
+        if (!tipBox) tipBox = document.getElementById('ps4-tip-box');
+        if (tipBox) {
+            tipBox.style.display = 'block';
+            if (isSevere) {
+                tipBox.className = 'tip-box alert-danger';
+            }
+        }
+    }
+
+    // Watchdog management
+    function resetWatchdog() {
+        if (exploitSucceeded || reloading) return;
+        if (stageWatchdogTimer) clearTimeout(stageWatchdogTimer);
+        stageWatchdogTimer = setTimeout(function () {
+            if (exploitSucceeded || reloading) return;
+            handleStalledExploit('Stage activity timeout (no progress for 18s)');
+        }, STAGE_TIMEOUT_MS);
+    }
+
+    function stopWatchdog() {
+        exploitSucceeded = true;
+        if (stageWatchdogTimer) clearTimeout(stageWatchdogTimer);
+        if (totalWatchdogTimer) clearTimeout(totalWatchdogTimer);
+    }
+
+    function startWatchdog() {
+        exploitSucceeded = false;
+        resetWatchdog();
+        if (totalWatchdogTimer) clearTimeout(totalWatchdogTimer);
+        totalWatchdogTimer = setTimeout(function () {
+            if (exploitSucceeded || reloading) return;
+            handleStalledExploit('Total exploit execution timeout (exceeded 60s)');
+        }, TOTAL_TIMEOUT_MS);
+    }
+
+    function handleStalledExploit(reason) {
+        if (reloading || exploitSucceeded) return;
+        window.log('\n[!] WARNING: Exploit appears stalled at current stage.', '#ffbd2e');
+        window.log('[!] ' + (reason || 'No stage progress detected.'), '#ffbd2e');
+        window.log('[!] PS4 WebKit memory occasionally fragments and needs a clean reset.', '#ffbd2e');
+        if (attempts >= 2) {
+            window.log('[!] For highest success rate: Press PS button -> Close Browser Window -> Reopen User\'s Guide / Browser.', '#ff5f56');
+            showBrowserTip(true);
+        } else {
+            showBrowserTip(false);
+        }
+        triggerAutoRetry(reason || 'Exploit stage stalled');
+    }
+
+    // Setup custom and global loggers
+    window.log = function (message, color) {
+        if (!consoleEl) consoleEl = document.getElementById('console');
+        if (consoleEl) {
+            var span = document.createElement('span');
+            span.textContent = message + '\n';
+            if (color) {
+                span.style.color = color;
+            } else {
+                span.style.color = '#39ff14';
+            }
+            consoleEl.appendChild(span);
+            consoleEl.scrollTop = consoleEl.scrollHeight;
+        }
+        // Reset watchdog whenever new progress/log is emitted
+        resetWatchdog();
+    };
+    window.print = window.log;
 
     // Attempt counter & Auto-retry logic
     var attempts = parseInt(sessionStorage.getItem('exploitAttempts') || '1', 10);
@@ -51,18 +114,42 @@
     }
     if (attemptBadge) attemptBadge.textContent = '#' + attempts;
 
-    var reloading = false;
-    function triggerAutoRetry(err) {
-        if (reloading) return;
-        reloading = true;
-        setStatus('Failed (Retrying)', 'danger');
-        window.log('\n[-] Exploit Exception: ' + (err || 'Unknown error'), '#ff5f56');
-        window.log('[-] Auto-reloading in 3 seconds to retry...\n', '#ffbd2e');
-        sessionStorage.setItem('exploitAttempts', (attempts + 1).toString());
-        setTimeout(function () {
-            location.reload();
-        }, 3000);
+    // If already at attempt 3+, show browser tip proactively
+    if (attempts >= 3) {
+        showBrowserTip(true);
     }
+
+    function triggerAutoRetry(err) {
+        if (reloading || exploitSucceeded) return;
+        reloading = true;
+        stopWatchdog();
+        setStatus('Stuck / Retrying', 'danger');
+
+        var nextAttempt = attempts + 1;
+        sessionStorage.setItem('exploitAttempts', nextAttempt.toString());
+
+        window.log('\n[-] Exploit Issue: ' + (err || 'Unknown error / stall'), '#ff5f56');
+        
+        if (nextAttempt >= 3) {
+            window.log('[!] Multiple attempts reached (' + nextAttempt + '). If stages keep stalling (e.g. 2/3), close browser window completely.', '#ffbd2e');
+            showBrowserTip(true);
+        }
+
+        var countdown = 4;
+        setStatus('Auto-retry in ' + countdown + 's', 'warning');
+        window.log('[-] Auto-reloading in ' + countdown + ' seconds to retry...\n', '#ffbd2e');
+
+        var countdownInterval = setInterval(function () {
+            countdown--;
+            if (countdown > 0) {
+                setStatus('Auto-retry in ' + countdown + 's', 'warning');
+            } else {
+                clearInterval(countdownInterval);
+                location.reload();
+            }
+        }, 1000);
+    }
+    window.triggerAutoRetry = triggerAutoRetry;
 
     window.addEventListener('unhandledrejection', function (event) {
         var reason = event.reason;
@@ -77,6 +164,7 @@
     });
 
     window.jailbreakSuccess = function (statusMessage) {
+        stopWatchdog();
         setStatus('Successful!', 'badge');
         window.log('\n========================================', '#39ff14');
         window.log('[+] ' + (statusMessage || 'Jailbreak successful! Payload loaded.'), '#39ff14');
@@ -87,12 +175,14 @@
     };
 
     window.retryExploit = function () {
+        stopWatchdog();
         sessionStorage.setItem('exploitAttempts', '1');
         sessionStorage.removeItem('jailbreakNow');
         location.reload();
     };
 
     window.recacheApp = function () {
+        stopWatchdog();
         try { localStorage.removeItem('aio_cache_ready'); } catch (e) {}
         try { sessionStorage.removeItem('aio_skip_cache'); } catch (e) {}
         try { sessionStorage.removeItem('aio_cache_failed'); } catch (e) {}
@@ -149,8 +239,8 @@
     };
 
     // 2. Select matching exploit method and payload
-    var selectedChain = typeof getExploitForFw === 'function' 
-        ? getExploitForFw(fwVersion) 
+    var selectedChain = typeof getExploitForFw === 'function'
+        ? getExploitForFw(fwVersion)
         : { id: 1, name: "PSFree Lapse (7.00 - 9.60)", runner: "psfreeLapse" };
 
     if (exploitBadge) exploitBadge.textContent = selectedChain.name;
@@ -171,6 +261,7 @@
 
     // 4. Auto-run the exploit
     async function startExploit() {
+        startWatchdog();
         setStatus('Running Exploit...', 'warning');
         window.log('[*] PSFree PS4 Exploit Host');
         window.log('[*] Platform: ' + (isPS4 ? 'PlayStation 4' : 'PC Simulation Mode'));
@@ -242,6 +333,10 @@
         if (typeof doJailBreak === 'function') {
             window.log('[+] Executing doJailBreak()...');
             await doJailBreak();
+            // If doJailBreak completed without calling jailbreakSuccess
+            if (!localStorage.getItem('ExploitLoaded') && !exploitSucceeded) {
+                throw new Error('PSFree execution ended without triggering payload.');
+            }
         } else {
             throw new Error('doJailBreak function not found in bundle.js');
         }
@@ -253,11 +348,9 @@
         if (typeof doCssFontFaceJailbreak === 'function') {
             window.log('[+] Executing doCssFontFaceJailbreak()...');
             await doCssFontFaceJailbreak();
-        } else {
-            throw new Error('doCssFontFaceJailbreak function not found in main.js');
-        }
-    }
-
+            if (!localStorage.getItem('ExploitLoaded') && !exploitSucceeded) {
+                throw new Error('CSSFontFace execution ended without triggering payload.');
+            }
     async function runSlopkitLapse() {
         window.log('[+] Loading SlopKit Lapse module...');
         await getScript('src/slopkit/chain_lapse.js', true);

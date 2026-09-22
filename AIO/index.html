@@ -144,6 +144,31 @@
             border-color: #39ff14;
             box-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
         }
+        .tip-box {
+            background: rgba(255, 189, 46, 0.12);
+            border: 1px solid rgba(255, 189, 46, 0.35);
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 12.5px;
+            line-height: 1.45;
+            color: #ffbd2e;
+        }
+        .tip-box.alert-danger {
+            background: rgba(255, 95, 86, 0.15);
+            border-color: rgba(255, 95, 86, 0.4);
+            color: #ff7b72;
+        }
+        .tip-title {
+            font-weight: 700;
+            margin-bottom: 4px;
+            font-family: 'logging', monospace;
+        }
+        .tip-desc {
+            color: #c5c6c7;
+        }
+        .tip-desc strong {
+            color: #fff;
+        }
         .license-box {
             background-color: rgba(31, 40, 51, 0.6);
             border: 1px solid rgba(102, 252, 241, 0.2);
@@ -287,6 +312,11 @@
         <div class="btn-group">
             <button class="btn" onclick="retryExploit()">Restart Exploit</button>
             <button class="btn" onclick="recacheApp()">Reinstall Cache</button>
+        </div>
+
+        <div id="ps4-tip-box" class="tip-box" style="display: none;">
+            <div class="tip-title">⚡ PS4 Browser Notice</div>
+            <div class="tip-desc">If the exploit stalls at Stage 2/3 or fails repeatedly, press the <strong>PS button</strong> &rarr; <strong>Close Window</strong> &rarr; Re-open Browser to reset WebKit memory.</div>
         </div>
 
         <div class="license-box">

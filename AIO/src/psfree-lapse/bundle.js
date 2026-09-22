@@ -1261,6 +1261,9 @@ async function doPSFreeExploit() {
     window.log("Achieved Arbitrary R/W\n");
   } catch (error) {
     window.log("An error occured during PSFree\nPlease refresh page and try again...\nError definition: " + error, "red");
+    if (typeof triggerAutoRetry === "function") {
+      triggerAutoRetry("PSFree exploit error: " + error);
+    }
     return 0;
   }
   return 1;
@@ -4731,7 +4734,10 @@ async function doLapseExploit() {
     }
   } catch (error) {
     window.log("An error occured during Lapse\nPlease restart console and try again...\nError definition: " + error, "red");
-    
+    if (typeof triggerAutoRetry === "function") {
+      triggerAutoRetry("Lapse kernel error: " + error);
+    }
+
     // Al-Azif's minimal cleanup on failure
     if (unblock_fd !== -1) {
       try { close(unblock_fd); } catch (e) {}
@@ -4809,13 +4815,22 @@ async function doJailBreak() {
   if ((config_target >= 0x700) && (config_target < 0x1000)) { // 7.00 to 9.60
     Init_PSFreeGlobals();
     jb_step_status = await doPSFreeExploit();
-    if (jb_step_status !== 1) return;
+    if (jb_step_status !== 1) {
+      if (typeof triggerAutoRetry === "function") triggerAutoRetry("PSFree Stage failed");
+      return;
+    }
     window.log("Starting Lapse Kernel Exploit...");
     await sleep(200); // Wait 200ms
     jb_step_status = await doLapseInit();
-    if (jb_step_status !== 1) return;
+    if (jb_step_status !== 1) {
+      if (typeof triggerAutoRetry === "function") triggerAutoRetry("Lapse Init failed");
+      return;
+    }
     jb_step_status = await doLapseExploit();
-    if (jb_step_status !== 1) return;
+    if (jb_step_status !== 1) {
+      if (typeof triggerAutoRetry === "function") triggerAutoRetry("Lapse Kernel Exploit failed");
+      return;
+    }
     await sleep(500); // Wait 500ms
 
     if (sessionStorage.getItem('binloader')) {
@@ -4826,6 +4841,7 @@ async function doJailBreak() {
       jb_step_status = await PayloadLoader(sessionStorage.getItem('payload_path')); // Read payload from .bin file
       if (jb_step_status !== 1) {
         window.log("Failed to load HEN!\nPlease restart console and try again...", "red");
+        if (typeof triggerAutoRetry === "function") triggerAutoRetry("Failed to load HEN payload");
         return;
       }
       
