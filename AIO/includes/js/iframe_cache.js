@@ -43,4 +43,14 @@
             reason: 'AppCache error event fired. Status was: ' + statusName
         }, '*');
     }, false);
+
+    // If the cache is already idle/ready, 'noupdate' may have fired before
+    // these listeners were attached. Report current status so the parent
+    // does not wait forever.
+    if (appCache.status === appCache.IDLE || appCache.status === appCache.UPDATEREADY) {
+        if (appCache.status === appCache.UPDATEREADY) {
+            try { appCache.swapCache(); } catch (e) {}
+        }
+        window.parent.postMessage({ type: 'CACHE_EXISTS' }, '*');
+    }
 })();

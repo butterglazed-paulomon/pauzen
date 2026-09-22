@@ -93,6 +93,8 @@
     };
 
     window.recacheApp = function () {
+        try { localStorage.removeItem('aio_cache_ready'); } catch (e) {}
+        try { sessionStorage.removeItem('aio_skip_cache'); } catch (e) {}
         location.href = 'cache.html';
     };
 

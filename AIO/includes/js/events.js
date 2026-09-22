@@ -153,6 +153,8 @@ function chooseFanThreshold() {
 }
 
 ui.updateCacheBtn.addEventListener('click', function () {
+    try { localStorage.removeItem('aio_cache_ready'); } catch (e) {}
+    try { sessionStorage.removeItem('aio_skip_cache'); } catch (e) {}
     window.location.href = './cache.html';
 });
 

@@ -3,9 +3,10 @@
 // This way we dont cache just everyhting for everyone. faster caching.
 
 window.addEventListener('load', function () {
-    // check for applicationCache only on PS4
-    if (isPS4 && (!window.applicationCache || window.applicationCache.status === window.applicationCache.UNCACHED) && !devMode) {
-        // Not cached! Redirecting...
+    // AppCache lives on the firmware iframe pages, not this document.
+    // Status UNCACHED here is normal and must not trigger a redirect.
+    if (isPS4 && !devMode && !localStorage.getItem('aio_cache_ready') && !sessionStorage.getItem('aio_skip_cache')) {
+        sessionStorage.setItem('aio_skip_cache', '1');
         window.location.href = './cache.html';
     }
 })

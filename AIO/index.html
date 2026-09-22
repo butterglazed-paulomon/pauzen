@@ -235,8 +235,12 @@
             window.location.replace(window.location.href.replace(/^https:/, 'http:'));
         }
 
-        // 1. Check Offline AppCache: redirect to cache.html on first uncached visit
-        if (window.applicationCache && window.applicationCache.status === 0) {
+        // AppCache is bound to the firmware iframe pages, not index.html.
+        // applicationCache.status is therefore always UNCACHED (0) here and
+        // cannot be used as a "needs cache" check — that caused an endless
+        // index.html <-> cache.html redirect loop.
+        if (!localStorage.getItem('aio_cache_ready') && !sessionStorage.getItem('aio_skip_cache')) {
+            sessionStorage.setItem('aio_skip_cache', '1');
             window.location.replace("cache.html");
         }
     </script>

@@ -118,6 +118,19 @@
         statusEl.textContent = "Connecting to cache manifest...";
 
         var iframe = document.getElementById('cacheFrame');
+        var finished = false;
+
+        function goToIndex(message) {
+            if (finished) return;
+            finished = true;
+            try { localStorage.setItem('aio_cache_ready', '1'); } catch (e) {}
+            statusEl.textContent = message || 'Continuing to main application...';
+            barEl.style.width = '100%';
+            setTimeout(function () {
+                window.location.replace('index.html');
+            }, 1500);
+        }
+
         iframe.src = 'includes/caches/' + matchedPage;
 
         window.addEventListener('message', function (event) {
@@ -138,31 +151,21 @@
                     barEl.style.width = percent + '%';
                     break;
                 case 'CACHE_COMPLETE':
+                    goToIndex('Exploit Installed Successfully');
+                    break;
                 case 'CACHE_EXISTS':
-                    statusEl.textContent = 'Exploit Installed Successfully';
-                    barEl.style.width = '100%';
-                    setTimeout(function () {
-                        window.location.replace('index.html');
-                    }, 2000);
+                    goToIndex('Exploit cache already installed');
                     break;
                 case 'CACHE_ERROR':
-                    statusEl.textContent = 'Cache ready or already installed.';
-                    barEl.style.width = '100%';
-                    setTimeout(function () {
-                        window.location.replace('index.html');
-                    }, 1500);
+                    goToIndex('Cache ready or already installed.');
                     break;
             }
         });
 
-        // Safety fallback: if no cache events within 8 seconds, return to index
+        // Always proceed even if AppCache events never arrive (hung download, missed noupdate, etc.)
         setTimeout(function () {
-            if (barEl.style.width === '0%') {
-                statusEl.textContent = 'Continuing to main application...';
-                barEl.style.width = '100%';
-                setTimeout(function () {
-                    window.location.replace('index.html');
-                }, 1500);
+            goToIndex('Continuing to main application...');
+        }, 20000);
             }
         }, 8000);
     </script>
