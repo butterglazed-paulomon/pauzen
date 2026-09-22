@@ -1,17 +1,10 @@
 CACHE MANIFEST
-# v1
-# Generated on 2026-09-21
+# v3 - Verified & Updated on 2026-09-22
 
 CACHE:
 ../../../
 ../../../index.html
 ../../../exploit.html
-../../../includes/assets/icons/cat-paw-btns.svg
-../../../includes/assets/icons/cat-paw.svg
-../../../includes/assets/icons/favicon.ico
-../../../includes/assets/icons/peeking-cat.svg
-../../../includes/assets/icons/cat-face.svg
-../../../includes/assets/icons/webkitty.svg
 ../../../includes/css/colors/catppuccino.css
 ../../../includes/css/colors/default.css
 ../../../includes/css/colors/vibrant.css
@@ -117,6 +110,11 @@ CACHE:
 ../../../src/psfree-lapse/rop/ps4/850.mjs
 ../../../src/psfree-lapse/rop/ps4/900.mjs
 ../../../src/psfree-lapse/rop/ps4/950.mjs
+../../../includes/assets/kexploit.png
+../../../fonts/LiberationMono-Regular.ttf
+../../../fonts/FONTS.LICENSE
+../../../fonts/README.txt
+../../../includes/js/iframe_cache.js
 
 NETWORK:
 *

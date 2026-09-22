@@ -112,8 +112,8 @@
         var fwInfoEl = document.getElementById('fw-info');
 
         var fwVersion = getPs4FwVersion(navigator.userAgent) || localStorage.getItem('test_fw') || '9.00';
-
         var matchedPage = getCachePageForFw(fwVersion);
+
         fwInfoEl.textContent = "Targeting PS4 Firmware " + fwVersion + " (" + matchedPage + ")";
         statusEl.textContent = "Connecting to cache manifest...";
 
@@ -130,8 +130,6 @@
                 window.location.replace('index.html');
             }, 1500);
         }
-
-        iframe.src = 'includes/caches/' + matchedPage;
 
         window.addEventListener('message', function (event) {
             var data = event.data;
@@ -162,12 +160,13 @@
             }
         });
 
-        // Always proceed even if AppCache events never arrive (hung download, missed noupdate, etc.)
+        // Set iframe src after message listener is active
+        iframe.src = 'includes/caches/' + matchedPage;
+
+        // Safety fallback timeout
         setTimeout(function () {
             goToIndex('Continuing to main application...');
-        }, 20000);
-            }
-        }, 8000);
+        }, 12000);
     </script>
 </body>
 

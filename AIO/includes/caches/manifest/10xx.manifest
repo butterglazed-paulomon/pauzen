@@ -1,6 +1,5 @@
 CACHE MANIFEST
-# v2
-# Generated on 2026-09-21
+# v3 - Verified & Updated on 2026-09-22
 
 CACHE:
 ../../../
@@ -75,10 +74,6 @@ CACHE:
 ../../../includes/css/colors/default.css
 ../../../includes/css/colors/vibrant.css
 ../../../includes/css/colors/catppuccino.css
-../../../includes/assets/icons/cat-paw-btns.svg
-../../../includes/assets/icons/cat-paw.svg
-../../../includes/assets/icons/peeking-cat.svg
-../../../includes/assets/icons/cat-face.svg
 ../../../src/cssfontface/workers.js
 ../../../src/cssfontface/lapse.js
 ../../../src/cssfontface/loader.js
@@ -91,6 +86,11 @@ CACHE:
 ../../../src/cssfontface/ps4/userland.js
 ../../../src/cssfontface/ps4/patches/1000.bin
 ../../../src/cssfontface/ps4/patches/1050.bin
+../../../includes/assets/kexploit.png
+../../../fonts/LiberationMono-Regular.ttf
+../../../fonts/FONTS.LICENSE
+../../../fonts/README.txt
+../../../includes/js/iframe_cache.js
 
 NETWORK:
 *

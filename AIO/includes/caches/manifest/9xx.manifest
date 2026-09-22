@@ -1,6 +1,5 @@
 CACHE MANIFEST
-# v2
-# Generated on 2026-09-21
+# v3 - Verified & Updated on 2026-09-22
 
 CACHE:
 ../../../
@@ -26,8 +25,6 @@ CACHE:
 ../../../includes/js/languages/fa.js
 ../../../includes/js/languages/ru.js
 ../../../includes/js/languages/es.js
-../../../includes/assets/icons/webkitty.svg
-../../../includes/assets/icons/favicon.ico
 ../../../includes/payloads/payloads.js
 ../../../includes/payloads/Bins/Orbis-Toolbox-900.bin
 ../../../includes/payloads/Bins/WebRTE.bin
@@ -78,10 +75,6 @@ CACHE:
 ../../../includes/css/colors/default.css
 ../../../includes/css/colors/vibrant.css
 ../../../includes/css/colors/catppuccino.css
-../../../includes/assets/icons/cat-paw-btns.svg
-../../../includes/assets/icons/cat-paw.svg
-../../../includes/assets/icons/peeking-cat.svg
-../../../includes/assets/icons/cat-face.svg
 ../../../src/psfree-lapse/alert.mjs
 ../../../src/psfree-lapse/config.mjs
 ../../../src/psfree-lapse/psfree.mjs
@@ -129,6 +122,11 @@ CACHE:
 ../../../src/cssfontface/ps4/patches/900.bin
 ../../../src/cssfontface/ps4/patches/903.bin
 ../../../src/cssfontface/ps4/patches/950.bin
+../../../includes/assets/kexploit.png
+../../../fonts/LiberationMono-Regular.ttf
+../../../fonts/FONTS.LICENSE
+../../../fonts/README.txt
+../../../includes/js/iframe_cache.js
 
 NETWORK:
 *
