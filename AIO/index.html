@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>PSFree: A PS4 Exploit Chain</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <style>
+        @font-face {
+            font-family: 'logging';
+            src: url('fonts/LiberationMono-Regular.ttf');
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #0b0c10;
+            color: #e5e5e5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .sidebar {
+            width: 420px;
+            background-color: rgba(15, 22, 33, 0.95);
+            border-right: 1px solid rgba(57, 255, 20, 0.2);
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            box-sizing: border-box;
+            gap: 16px;
+            overflow-y: auto;
+        }
+        .hero-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .hero-img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid rgba(57, 255, 20, 0.3);
+            box-shadow: 0 4px 20px rgba(57, 255, 20, 0.15);
+        }
+        h1 {
+            font-size: 24px;
+            margin: 0;
+            color: #fff;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        p {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #c5c6c7;
+            margin: 0;
+        }
+        a {
+            color: #66fcf1;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        a:hover {
+            color: #45f3ff;
+            text-decoration: underline;
+        }
+        .card {
+            background-color: rgba(31, 40, 51, 0.6);
+            border: 1px solid rgba(57, 255, 20, 0.25);
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .card-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+        .card-label {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .badge {
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: rgba(57, 255, 20, 0.1);
+            color: #39ff14;
+            border: 1px solid rgba(57, 255, 20, 0.3);
+            font-size: 12px;
+            font-family: 'logging', monospace;
+        }
+        .badge.warning {
+            background: rgba(255, 189, 46, 0.15);
+            color: #ffbd2e;
+            border-color: rgba(255, 189, 46, 0.4);
+        }
+        .badge.danger {
+            background: rgba(255, 95, 86, 0.15);
+            color: #ff5f56;
+            border-color: rgba(255, 95, 86, 0.4);
+        }
+        .badge.cyan {
+            background: rgba(0, 229, 255, 0.15);
+            color: #00e5ff;
+            border-color: rgba(0, 229, 255, 0.4);
+        }
+        .select-input {
+            background: #08090c;
+            color: #39ff14;
+            border: 1px solid rgba(57, 255, 20, 0.4);
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 12px;
+            font-family: 'logging', monospace;
+            outline: none;
+        }
+        .btn-group {
+            display: flex;
+            gap: 8px;
+            margin-top: 5px;
+        }
+        .btn {
+            flex: 1;
+            padding: 10px;
+            background: #121826;
+            color: #39ff14;
+            border: 1px solid rgba(57, 255, 20, 0.4);
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+        .btn:hover {
+            background: rgba(57, 255, 20, 0.15);
+            border-color: #39ff14;
+            box-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
+        }
+        .license-box {
+            background-color: rgba(31, 40, 51, 0.6);
+            border: 1px solid rgba(102, 252, 241, 0.2);
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 12px;
+            line-height: 1.4;
+            margin-top: auto;
+        }
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(135deg, #0b0c10 0%, #1f2833 100%);
+            height: 100vh;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        .terminal-window {
+            flex: 1;
+            background-color: rgba(0, 20, 5, 0.65);
+            border: 1px solid rgba(57, 255, 20, 0.45);
+            border-radius: 8px;
+            box-shadow: inset 0 0 20px rgba(0, 255, 102, 0.15), 0 8px 32px rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            padding: 15px;
+        }
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(57, 255, 20, 0.2);
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .dot.red { background-color: #ff5f56; }
+        .dot.yellow { background-color: #ffbd2e; }
+        .dot.green { background-color: #27c93f; }
+        .terminal-title {
+            margin-left: 8px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            font-family: 'logging', monospace;
+        }
+        #console {
+            flex: 1;
+            font-family: 'logging', monospace;
+            color: #39ff14;
+            text-shadow: 0 0 5px rgba(57, 255, 20, 0.6);
+            margin: 0;
+            padding: 10px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 13.5px;
+            line-height: 1.6;
+        }
+        @media (max-width: 800px) {
+            body {
+                flex-direction: column;
+                height: auto;
+                min-height: 100vh;
+                overflow: auto;
+            }
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid rgba(57, 255, 20, 0.2);
+            }
+            .main-content {
+                height: 500px;
+            }
+        }
+    </style>
+    <script>
+        // Redirect PS4 from HTTPS to HTTP if on remote domain
+        if (window.location.protocol === 'https:' &&
+            window.location.hostname === 'webkitty.arabpixel.net' &&
+            navigator.userAgent.indexOf('PlayStation 4') !== -1) {
+            window.location.replace(window.location.href.replace(/^https:/, 'http:'));
+        }
+
+        // 1. Check Offline AppCache: redirect to cache.html on first uncached visit
+        if (window.applicationCache && window.applicationCache.status === 0) {
+            window.location.replace("cache.html");
+        }
+    </script>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="hero-container">
+            <img src="includes/assets/kexploit.png" class="hero-img" alt="PSFree Exploit Logo">
+        </div>
+        <h1>PSFree: A PS4 Exploit Chain</h1>
+        <p>An open-source, high-efficiency WebKit and kernel exploit chain targeting Sony PlayStation consoles.</p>
+
+        <div class="card">
+            <div class="card-row">
+                <span class="card-label">Platform:</span>
+                <span id="platform-badge" class="badge">Detecting...</span>
+            </div>
+            <div class="card-row">
+                <span class="card-label">Firmware:</span>
+                <div id="fw-container">
+                    <span id="fw-badge" class="badge">...</span>
+                </div>
+            </div>
+            <div class="card-row">
+                <span class="card-label">Exploit Chain:</span>
+                <span id="exploit-badge" class="badge cyan">...</span>
+            </div>
+            <div class="card-row">
+                <span class="card-label">Payload:</span>
+                <span id="payload-badge" class="badge">GoldHEN</span>
+            </div>
+            <div class="card-row">
+                <span class="card-label">Attempt:</span>
+                <span id="attempt-badge" class="badge">#1</span>
+            </div>
+            <div class="card-row">
+                <span class="card-label">Status:</span>
+                <span id="status-badge" class="badge warning">Initializing</span>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn" onclick="retryExploit()">Restart Exploit</button>
+            <button class="btn" onclick="recacheApp()">Reinstall Cache</button>
+        </div>
+
+        <div class="license-box">
+            See <a href='./about.html' data-jslicense='1'>JavaScript license information</a> for the source code and license details.
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+                <span class="terminal-title">PSFree Exploit Console</span>
+            </div>
+            <pre id="console"></pre>
+        </div>
+    </div>
+
+    <!-- Core Runtime Scripts -->
+    <script src="includes/js/utilities.js"></script>
+    <script src="includes/js/checkFw.js"></script>
+    <script src="includes/js/loader.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>PSFree Exploit Cache</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <style>
+        @font-face {
+            font-family: 'logging';
+            src: url('fonts/LiberationMono-Regular.ttf');
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #0b0c10;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            max-width: 520px;
+            padding: 28px;
+            background: rgba(15, 22, 33, 0.95);
+            border: 1px solid rgba(57, 255, 20, 0.25);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8), 0 0 20px rgba(57, 255, 20, 0.1);
+        }
+        .hero {
+            max-width: 80%;
+            max-height: 220px;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0, 255, 102, 0.15);
+            margin-bottom: 25px;
+            border: 1px solid rgba(0, 255, 102, 0.2);
+        }
+        h1 {
+            font-size: 22px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+        .status-text {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #39ff14;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 8px rgba(57, 255, 20, 0.5);
+            font-family: 'logging', monospace;
+            min-height: 24px;
+        }
+        .progress-container {
+            width: 350px;
+            height: 10px;
+            background-color: #1f2833;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 0 auto;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+            border: 1px solid rgba(57, 255, 20, 0.2);
+        }
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #39ff14, #00ff88);
+            box-shadow: 0 0 12px #39ff14;
+            border-radius: 5px;
+            transition: width 0.2s ease-out;
+        }
+        .subtitle {
+            margin-top: 18px;
+            font-size: 13px;
+            color: #c5c6c7;
+        }
+        iframe {
+            display: none;
+            width: 0;
+            height: 0;
+            border: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="includes/assets/kexploit.png" class="hero" alt="PSFree Exploit Logo">
+        <h1>PSFree Exploit Installation</h1>
+        <div id="status" class="status-text">Detecting firmware...</div>
+        <div class="progress-container">
+            <div id="bar" class="progress-bar"></div>
+        </div>
+        <div class="subtitle" id="fw-info">Firmware-Targeted Offline Caching</div>
+    </div>
+
+    <iframe id="cacheFrame" src="about:blank"></iframe>
+
+    <script src="includes/js/checkFw.js"></script>
+    <script>
+        var statusEl = document.getElementById('status');
+        var barEl = document.getElementById('bar');
+        var fwInfoEl = document.getElementById('fw-info');
+
+        var fwVersion = getPs4FwVersion(navigator.userAgent) || localStorage.getItem('test_fw') || '9.00';
+
+        var matchedPage = getCachePageForFw(fwVersion);
+        fwInfoEl.textContent = "Targeting PS4 Firmware " + fwVersion + " (" + matchedPage + ")";
+        statusEl.textContent = "Connecting to cache manifest...";
+
+        var iframe = document.getElementById('cacheFrame');
+        iframe.src = 'includes/caches/' + matchedPage;
+
+        window.addEventListener('message', function (event) {
+            var data = event.data;
+            if (!data || !data.type) return;
+
+            switch (data.type) {
+                case 'CACHE_CHECKING':
+                    statusEl.textContent = 'Checking cache manifest...';
+                    break;
+                case 'CACHE_DOWNLOADING':
+                    statusEl.textContent = 'Downloading exploit assets...';
+                    barEl.style.width = '10%';
+                    break;
+                case 'CACHE_PROGRESS':
+                    var percent = data.percent >= 0 ? data.percent : 50;
+                    statusEl.textContent = 'Installing exploit... ' + percent + '%';
+                    barEl.style.width = percent + '%';
+                    break;
+                case 'CACHE_COMPLETE':
+                case 'CACHE_EXISTS':
+                    statusEl.textContent = 'Exploit Installed Successfully';
+                    barEl.style.width = '100%';
+                    setTimeout(function () {
+                        window.location.replace('index.html');
+                    }, 2000);
+                    break;
+                case 'CACHE_ERROR':
+                    statusEl.textContent = 'Cache ready or already installed.';
+                    barEl.style.width = '100%';
+                    setTimeout(function () {
+                        window.location.replace('index.html');
+                    }, 1500);
+                    break;
+            }
+        });
+
+        // Safety fallback: if no cache events within 8 seconds, return to index
+        setTimeout(function () {
+            if (barEl.style.width === '0%') {
+                statusEl.textContent = 'Continuing to main application...';
+                barEl.style.width = '100%';
+                setTimeout(function () {
+                    window.location.replace('index.html');
+                }, 1500);
+            }
+        }, 8000);
+    </script>
+</body>
+
+</html>
