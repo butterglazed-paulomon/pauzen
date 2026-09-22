@@ -235,13 +235,15 @@
             window.location.replace(window.location.href.replace(/^https:/, 'http:'));
         }
 
-        // AppCache is bound to the firmware iframe pages, not index.html.
-        // applicationCache.status is therefore always UNCACHED (0) here and
-        // cannot be used as a "needs cache" check — that caused an endless
-        // index.html <-> cache.html redirect loop.
-        if (!localStorage.getItem('aio_cache_ready') && !sessionStorage.getItem('aio_skip_cache')) {
+        // Only redirect to cache.html once per session and only if cache not already ready/failed.
+        // aio_cache_ready  = set by goToIndex (success) — persists across sessions
+        // aio_cache_failed = set by goFallback (failure) — sessionStorage, clears on browser restart
+        // aio_skip_cache   = set on redirect to cache.html — prevents re-redirect on way back
+        if (!localStorage.getItem('aio_cache_ready') &&
+            !sessionStorage.getItem('aio_skip_cache') &&
+            !sessionStorage.getItem('aio_cache_failed')) {
             sessionStorage.setItem('aio_skip_cache', '1');
-            window.location.replace("cache.html");
+            window.location.replace('cache.html');
         }
     </script>
 </head>

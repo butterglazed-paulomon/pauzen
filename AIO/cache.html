@@ -109,9 +109,19 @@
             try { localStorage.setItem('aio_cache_ready', '1'); } catch (e) {}
             statusEl.textContent = message || 'Continuing to main application...';
             barEl.style.width = '100%';
-            setTimeout(function () {
-                window.location.replace('index.html');
-            }, 1500);
+            setTimeout(function () { window.location.replace('index.html'); }, 1500);
+        }
+
+        // Called on genuine cache failure — does NOT set aio_cache_ready so next visit retries.
+        // Sets aio_cache_failed (sessionStorage) to prevent redirect loop within same session.
+        function goFallback(reason) {
+            if (finished) return;
+            finished = true;
+            try { sessionStorage.setItem('aio_cache_failed', '1'); } catch (e) {}
+            statusEl.textContent = reason || 'Cache failed — continuing without cache...';
+            statusEl.style.color = '#ff5f56';
+            barEl.style.width = '0%';
+            setTimeout(function () { window.location.replace('index.html'); }, 2500);
         }
 
         if (!appCache) {
@@ -151,13 +161,17 @@
             }, false);
 
             appCache.addEventListener('error', function () {
-                // If the cache was already populated (IDLE) or offline, proceed safely
-                if (appCache.status === appCache.IDLE || appCache.status === appCache.UPDATEREADY) {
+                var s = appCache.status;
+                if (s === appCache.IDLE || s === appCache.UPDATEREADY) {
+                    // Cache already populated — error was non-fatal, safe to proceed
+                    if (s === appCache.UPDATEREADY) { try { appCache.swapCache(); } catch (e) {} }
                     goToIndex('Offline cache ready.');
-                } else if (!navigator.onLine) {
+                } else if (!navigator.onLine && s !== appCache.UNCACHED) {
+                    // Offline but previously cached
                     goToIndex('Operating offline mode.');
                 } else {
-                    goToIndex('Cache ready or already installed.');
+                    // True failure: quota exceeded, 404, or network error
+                    goFallback('Cache failed (quota/network error) — retrying next visit...');
                 }
             }, false);
 
@@ -170,10 +184,10 @@
             }
         }
 
-        // Safety fallback timeout
+        // Safety fallback: if caching hangs for 45s, redirect without marking ready so next visit retries
         setTimeout(function () {
-            goToIndex('Continuing to main application...');
-        }, 30000);
+            goFallback('Cache timed out — retrying next visit...');
+        }, 45000);
     </script>
 </body>
 
