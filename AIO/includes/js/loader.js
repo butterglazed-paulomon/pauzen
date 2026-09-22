@@ -351,6 +351,11 @@
             if (!localStorage.getItem('ExploitLoaded') && !exploitSucceeded) {
                 throw new Error('CSSFontFace execution ended without triggering payload.');
             }
+        } else {
+            throw new Error('doCssFontFaceJailbreak function not found in main.js');
+        }
+    }
+
     async function runSlopkitLapse() {
         window.log('[+] Loading SlopKit Lapse module...');
         await getScript('src/slopkit/chain_lapse.js', true);
