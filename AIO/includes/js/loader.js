@@ -95,6 +95,7 @@
     window.recacheApp = function () {
         try { localStorage.removeItem('aio_cache_ready'); } catch (e) {}
         try { sessionStorage.removeItem('aio_skip_cache'); } catch (e) {}
+        try { sessionStorage.removeItem('aio_cache_failed'); } catch (e) {}
         location.href = 'cache.html';
     };
 
