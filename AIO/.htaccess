@@ -1,0 +1,4 @@
+AddType text/cache-manifest .manifest
+<IfModule mod_headers.c>
+    Header set Cache-Control "no-cache, must-revalidate"
+</IfModule>

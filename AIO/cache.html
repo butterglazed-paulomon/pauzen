@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html manifest="PSFree.manifest" lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -83,12 +83,6 @@
             font-size: 13px;
             color: #c5c6c7;
         }
-        iframe {
-            display: none;
-            width: 0;
-            height: 0;
-            border: 0;
-        }
     </style>
 </head>
 
@@ -96,28 +90,17 @@
     <div class="container">
         <img src="includes/assets/kexploit.png" class="hero" alt="PSFree Exploit Logo">
         <h1>PSFree Exploit Installation</h1>
-        <div id="status" class="status-text">Detecting firmware...</div>
+        <div id="status" class="status-text">Checking cache manifest...</div>
         <div class="progress-container">
             <div id="bar" class="progress-bar"></div>
         </div>
-        <div class="subtitle" id="fw-info">Firmware-Targeted Offline Caching</div>
+        <div class="subtitle" id="fw-info">Unified Offline Exploit Caching</div>
     </div>
 
-    <iframe id="cacheFrame" src="about:blank"></iframe>
-
-    <script src="includes/js/checkFw.js"></script>
     <script>
         var statusEl = document.getElementById('status');
         var barEl = document.getElementById('bar');
-        var fwInfoEl = document.getElementById('fw-info');
-
-        var fwVersion = getPs4FwVersion(navigator.userAgent) || localStorage.getItem('test_fw') || '9.00';
-        var matchedPage = getCachePageForFw(fwVersion);
-
-        fwInfoEl.textContent = "Targeting PS4 Firmware " + fwVersion + " (" + matchedPage + ")";
-        statusEl.textContent = "Connecting to cache manifest...";
-
-        var iframe = document.getElementById('cacheFrame');
+        var appCache = window.applicationCache;
         var finished = false;
 
         function goToIndex(message) {
@@ -131,42 +114,66 @@
             }, 1500);
         }
 
-        window.addEventListener('message', function (event) {
-            var data = event.data;
-            if (!data || !data.type) return;
+        if (!appCache) {
+            goToIndex('Cache ready (applicationCache not supported)');
+        } else {
+            appCache.addEventListener('checking', function () {
+                statusEl.textContent = 'Checking cache manifest...';
+            }, false);
 
-            switch (data.type) {
-                case 'CACHE_CHECKING':
-                    statusEl.textContent = 'Checking cache manifest...';
-                    break;
-                case 'CACHE_DOWNLOADING':
-                    statusEl.textContent = 'Downloading exploit assets...';
-                    barEl.style.width = '10%';
-                    break;
-                case 'CACHE_PROGRESS':
-                    var percent = data.percent >= 0 ? data.percent : 50;
-                    statusEl.textContent = 'Installing exploit... ' + percent + '%';
+            appCache.addEventListener('downloading', function () {
+                statusEl.textContent = 'Downloading exploit assets...';
+                barEl.style.width = '5%';
+            }, false);
+
+            appCache.addEventListener('progress', function (e) {
+                if (e.lengthComputable && e.total > 0) {
+                    var percent = Math.round((e.loaded / e.total) * 100);
+                    statusEl.textContent = 'Installing exploit... ' + percent + '% (' + e.loaded + '/' + e.total + ')';
                     barEl.style.width = percent + '%';
-                    break;
-                case 'CACHE_COMPLETE':
-                    goToIndex('Exploit Installed Successfully');
-                    break;
-                case 'CACHE_EXISTS':
-                    goToIndex('Exploit cache already installed');
-                    break;
-                case 'CACHE_ERROR':
-                    goToIndex('Cache ready or already installed.');
-                    break;
-            }
-        });
+                } else {
+                    statusEl.textContent = 'Installing exploit assets...';
+                    barEl.style.width = '50%';
+                }
+            }, false);
 
-        // Set iframe src after message listener is active
-        iframe.src = 'includes/caches/' + matchedPage;
+            appCache.addEventListener('cached', function () {
+                goToIndex('Exploit Installed Successfully!');
+            }, false);
+
+            appCache.addEventListener('updateready', function () {
+                try { appCache.swapCache(); } catch (e) {}
+                goToIndex('Exploit Cache Updated Successfully!');
+            }, false);
+
+            appCache.addEventListener('noupdate', function () {
+                goToIndex('Exploit Cache Already Installed');
+            }, false);
+
+            appCache.addEventListener('error', function () {
+                // If the cache was already populated (IDLE) or offline, proceed safely
+                if (appCache.status === appCache.IDLE || appCache.status === appCache.UPDATEREADY) {
+                    goToIndex('Offline cache ready.');
+                } else if (!navigator.onLine) {
+                    goToIndex('Operating offline mode.');
+                } else {
+                    goToIndex('Cache ready or already installed.');
+                }
+            }, false);
+
+            // Handle case where noupdate fired before listeners were registered
+            if (appCache.status === appCache.IDLE || appCache.status === appCache.UPDATEREADY) {
+                if (appCache.status === appCache.UPDATEREADY) {
+                    try { appCache.swapCache(); } catch (e) {}
+                }
+                goToIndex('Exploit Cache Already Installed');
+            }
+        }
 
         // Safety fallback timeout
         setTimeout(function () {
             goToIndex('Continuing to main application...');
-        }, 12000);
+        }, 30000);
     </script>
 </body>
 
