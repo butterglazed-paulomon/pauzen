@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en" manifest="cache.appcache">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+    <title>Paulomon's AIO Site</title>
+    <style>
+      * { box-sizing: border-box; }
+      html, body {
+        margin: 0; padding: 0;
+        background: #0b0c10; color: #e5e5e5;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        height: 100vh; overflow: hidden;
+        display: flex;
+      }
+      .sidebar {
+        width: 420px;
+        background-color: rgba(15, 22, 33, 0.95);
+        border-right: 1px solid rgba(57, 255, 20, 0.2);
+        display: flex; flex-direction: column;
+        padding: 30px; gap: 16px; overflow-y: auto;
+      }
+      .hero-container {
+        display: flex; justify-content: center; align-items: center;
+        margin-bottom: 5px;
+      }
+      .hero-img {
+        width: 100%; border-radius: 8px;
+        border: 1px solid rgba(57, 255, 20, 0.3);
+        box-shadow: 0 4px 20px rgba(57, 255, 20, 0.15);
+      }
+      h1 {
+        font-size: 24px; margin: 0; color: #fff;
+        font-weight: 700; letter-spacing: -0.5px;
+      }
+      p { font-size: 14px; line-height: 1.5; color: #c5c6c7; margin: 0; }
+      .card {
+        background-color: rgba(31, 40, 51, 0.6);
+        border: 1px solid rgba(57, 255, 20, 0.25);
+        border-radius: 8px; padding: 15px;
+        display: flex; flex-direction: column; gap: 10px;
+      }
+      .card-row {
+        display: flex; justify-content: space-between; align-items: center;
+        font-size: 13px;
+      }
+      .card-label { color: rgba(255, 255, 255, 0.7); }
+      .badge {
+        font-weight: 600; padding: 2px 8px; border-radius: 4px;
+        background: rgba(57, 255, 20, 0.1); color: #39ff14;
+        border: 1px solid rgba(57, 255, 20, 0.3);
+        font-size: 12px; font-family: Consolas, 'Liberation Mono', monospace;
+      }
+      .badge.warning {
+        background: rgba(255, 189, 46, 0.15); color: #ffbd2e;
+        border-color: rgba(255, 189, 46, 0.4);
+      }
+      .badge.danger {
+        background: rgba(255, 95, 86, 0.15); color: #ff5f56;
+        border-color: rgba(255, 95, 86, 0.4);
+      }
+      .badge.cyan {
+        background: rgba(0, 229, 255, 0.15); color: #00e5ff;
+        border-color: rgba(0, 229, 255, 0.4);
+      }
+      .tip-box {
+        background: rgba(255, 189, 46, 0.12);
+        border: 1px solid rgba(255, 189, 46, 0.35);
+        border-radius: 8px; padding: 12px;
+        font-size: 12.5px; line-height: 1.45; color: #ffbd2e;
+      }
+      .tip-title { font-weight: 700; margin-bottom: 4px; font-family: Consolas, monospace; }
+      .tip-desc { color: #c5c6c7; }
+      .tip-desc strong { color: #fff; }
+      .main-content {
+        flex: 1; padding: 30px; display: flex; flex-direction: column;
+        background: linear-gradient(135deg, #0b0c10 0%, #1f2833 100%);
+        height: 100vh; overflow: hidden; position: relative;
+      }
+      .terminal-window {
+        flex: 1;
+        background-color: rgba(0, 20, 5, 0.65);
+        border: 1px solid rgba(57, 255, 20, 0.45);
+        border-radius: 8px;
+        box-shadow: inset 0 0 20px rgba(0, 255, 102, 0.15), 0 8px 32px rgba(0, 0, 0, 0.8);
+        display: flex; flex-direction: column; overflow: hidden; padding: 15px;
+      }
+      .terminal-header {
+        display: flex; align-items: center; gap: 8px;
+        margin-bottom: 12px; padding-bottom: 10px;
+        border-bottom: 1px solid rgba(57, 255, 20, 0.2);
+      }
+      .dot { width: 12px; height: 12px; border-radius: 50%; }
+      .dot.red { background-color: #ff5f56; }
+      .dot.yellow { background-color: #ffbd2e; }
+      .dot.green { background-color: #27c93f; }
+      .terminal-title {
+        margin-left: 8px; font-size: 12px; color: rgba(255, 255, 255, 0.6);
+        font-family: Consolas, monospace;
+      }
+      #console {
+        flex: 1; font-family: Consolas, 'Liberation Mono', monospace;
+        color: #39ff14; text-shadow: 0 0 5px rgba(57, 255, 20, 0.6);
+        margin: 0; padding: 10px; overflow-y: auto;
+        white-space: pre-wrap; word-wrap: break-word;
+        font-size: 13.5px; line-height: 1.6; position: relative;
+      }
+
+      /* running: a spinner under the brand. jb.js sets body.done / body.fail / body.log. */
+      #spin {
+        width: 46px; height: 46px; margin: 40px auto 0;
+        border: 4px solid rgba(57, 255, 20, 0.2);
+        border-top-color: #39ff14;
+        border-radius: 50%;
+        animation: spin 0.9s linear infinite;
+      }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      #msg {
+        text-align: center; font-size: 16px; letter-spacing: 0.5px;
+        display: none; margin-top: 24px; color: #ff5f56;
+      }
+      #wrap { padding: 0; }
+      #state, #out { display: none; }
+
+      body.done #spin { display: none; }
+      body.fail #spin { display: none; }
+      body.fail #msg { display: block; }
+      body.done #msg {
+        display: block; color: #39ff14;
+        font-weight: 700; letter-spacing: 2px;
+      }
+      body.done #status-badge {
+        background: rgba(57, 255, 20, 0.1); color: #39ff14;
+        border-color: rgba(57, 255, 20, 0.3);
+      }
+      body.fail #status-badge {
+        background: rgba(255, 95, 86, 0.15); color: #ff5f56;
+        border-color: rgba(255, 95, 86, 0.4);
+      }
+
+      /* ?log=1 -- the full step log, styled like the landing. */
+      body.log #spin, body.log #msg { display: none; }
+      body.log #wrap { padding: 0; flex: 1; display: flex; flex-direction: column; min-height: 0; }
+      body.log #state {
+        display: block; font-size: 16px; font-weight: 700; margin: 0 0 8px;
+      }
+      body.log #out {
+        display: block; white-space: pre-wrap;
+        font: 12px/1.45 Consolas, monospace;
+        background: transparent; border: none; padding: 0;
+        flex: 1; overflow-y: auto; color: #39ff14;
+        text-shadow: 0 0 5px rgba(57, 255, 20, 0.4);
+      }
+      .ok { color: #39ff14; }
+      .bad { color: #ff5f56; }
+      .warn { color: #ffbd2e; }
+      .safe { color: #39ff14; }
+      .danger { color: #ff5f56; }
+      code { color: #66fcf1; }
+      @media (max-width: 800px) {
+        body { flex-direction: column; height: auto; min-height: 100vh; overflow: auto; }
+        .sidebar { width: 100%; border-right: none; border-bottom: 1px solid rgba(57, 255, 20, 0.2); }
+        .main-content { height: 500px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="hero-container">
+        <img src="kexploit.png" class="hero-img" alt="PSFree Exploit Logo">
+      </div>
+      <h1>Paulomon's AIO Site</h1>
+      <p>All credits goes to the ps4 scene.</p>
+      <div class="card">
+        <div class="card-row">
+          <span class="card-label">Platform:</span>
+          <span class="badge">PS4</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Exploit Chain:</span>
+          <span class="badge cyan">Relapse</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Payload:</span>
+          <span class="badge">GoldHEN</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Status:</span>
+          <span id="status-badge" class="badge warning">Running</span>
+        </div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-title">PS4 Browser Notice</div>
+        <div class="tip-desc">If the exploit stalls or fails repeatedly, press the <strong>PS button</strong> &rarr; <strong>Close Window</strong> &rarr; Re-open Browser to reset WebKit memory.</div>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="terminal-window">
+        <div class="terminal-header">
+          <div class="dot red"></div>
+          <div class="dot yellow"></div>
+          <div class="dot green"></div>
+          <span class="terminal-title">Status</span>
+        </div>
+        <pre id="console"><div id="spin"></div>
+<div id="msg">Restart your console</div>
+<div id="wrap">
+<div id="state"></div>
+<div id="out"></div>
+</div></pre>
+      </div>
+    </div>
+    <script type="module">
+      import "./jb.js?v=19";
+    </script>
+  </body>
+</html>
